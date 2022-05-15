@@ -35,10 +35,10 @@ public class Login{
 
     public Login(Stage stage) {
         this.stage = stage;
-        createLogin(stage);
+        createLogin();
     }
 
-    private void createLogin(Stage stage) {
+    private void createLogin() {
         //setAlignment定义组件在BorderPane内部五种位置之一的相对位置，例如：BorderPane的Top的CENTER
         //setMargin设置组件周围间距
         loginNamePane.setAlignment(Pos.CENTER);
@@ -140,6 +140,8 @@ class LoginButton {
                 if(!new String(buf,0,len).equals(pwd)) {
                     new LoginAlert("密码错误！");
                 }
+                StaticValue.userName = name;
+                new Course(Login.stage);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
