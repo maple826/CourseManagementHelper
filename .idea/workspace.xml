@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="add Course scene">
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="modify StaticValue.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/aaa/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +82,8 @@
       <workItem from="1652504545393" duration="166000" />
       <workItem from="1652509480423" duration="2183000" />
       <workItem from="1652512162338" duration="17035000" />
-      <workItem from="1652579187215" duration="2712000" />
+      <workItem from="1652579187215" duration="2880000" />
+      <workItem from="1652586532062" duration="306000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -110,7 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652581926335</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modify Main.java">
+      <created>1652582191974</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652582191974</updated>
+    </task>
+    <task id="LOCAL-00006" summary="modify StaticValue.java">
+      <created>1652582306248</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652582306248</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +148,8 @@
     <MESSAGE value="login function with 3 test-user" />
     <MESSAGE value="delete maplepwd.txt" />
     <MESSAGE value="add Course scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Course scene" />
+    <MESSAGE value="modify Main.java" />
+    <MESSAGE value="modify StaticValue.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify StaticValue.java" />
   </component>
 </project>

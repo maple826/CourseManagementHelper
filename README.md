@@ -10,4 +10,4 @@
 * `./data/user/pwd.txt`存储用户密码信息
 * `./data/user/course`存储课程course信息
     * `./data/user/course/ddl`存储ddl信息
-    * `./data/user/course/resource`存储课程资源信息
+    * `./data/user/course/资源`存储课程资源信息

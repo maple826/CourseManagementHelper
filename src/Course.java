@@ -198,6 +198,8 @@ class CourseAlert {
                     return;
                 }
                 f.mkdir();
+                new File("./data/" + StaticValue.userName + "/" + course + "/ddl").mkdir();
+                new File("./data/" + StaticValue.userName + "/" + course + "/资源").mkdir();
                 alert.close();
                 new CourseAlert("Success");
             });
