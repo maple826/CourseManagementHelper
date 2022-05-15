@@ -139,6 +139,7 @@ class LoginButton {
                 int len = reader.read(buf);
                 if(!new String(buf,0,len).equals(pwd)) {
                     new LoginAlert("密码错误！");
+                    return;
                 }
                 StaticValue.userName = name;
                 new Course(Login.stage);
