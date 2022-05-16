@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="modify StaticValue.java">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="modify Course.java and README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/aaa/pwd.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,9 @@
       <workItem from="1652509480423" duration="2183000" />
       <workItem from="1652512162338" duration="17035000" />
       <workItem from="1652579187215" duration="2880000" />
-      <workItem from="1652586532062" duration="306000" />
+      <workItem from="1652586532062" duration="533000" />
+      <workItem from="1652610868146" duration="282000" />
+      <workItem from="1652666222520" duration="15399000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -127,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652582306248</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modify Course.java and README.md">
+      <created>1652586866451</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652586866451</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +158,7 @@
     <MESSAGE value="add Course scene" />
     <MESSAGE value="modify Main.java" />
     <MESSAGE value="modify StaticValue.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify StaticValue.java" />
+    <MESSAGE value="modify Course.java and README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify Course.java and README.md" />
   </component>
 </project>
