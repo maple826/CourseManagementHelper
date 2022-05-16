@@ -1,4 +1,4 @@
-#课程管理助手
+# 课程管理助手
 ## 开发环境
 * JDK1.8
 * IntelliJ IDEA 2021.3.1 (Ultimate Edition)
