@@ -23,10 +23,7 @@ import java.util.Arrays;
 public class Course {
     static Stage stage;
     BorderPane coursePane = new BorderPane();
-    Label courseIconLabel = new CourseIconLabel().getIconLabel();
-    Label courseUserName = new CourseUserName().getUserName();
-    Button courseExitButton = new CourseExitButton().getExit();
-    HBox courseTopHBox = new CourseTopHBox(courseUserName,courseIconLabel,courseExitButton).gethBox();
+    HBox courseTopHBox = StaticValue.getNewTopHBox();
     Line topLine = new Line(0,StaticValue.stageHeight / 7,
             StaticValue.stageWidth,StaticValue.stageHeight / 7);
     ScrollPane courseLeftScrollPane = new CourseLeftScrollPane().getPane();
@@ -45,67 +42,16 @@ public class Course {
     }
 }
 
-class CourseIconLabel {
-    private Label iconLable = new Label("学习小帮手");
-    Label getIconLabel() {
-        return this.iconLable;
-    }
-    CourseIconLabel() {
-        iconLable.setFont(Font.font("华文行楷", FontWeight.BOLD,36));
-        iconLable.setTextFill(Color.BLUE);
-    }
-}
-
-class CourseUserName {
-    private Label userName = new Label(StaticValue.userName);
-    Label getUserName() {
-        return this.userName;
-    }
-    CourseUserName() {
-        userName.setFont(Font.font("黑体", FontWeight.BOLD,18));
-    }
-}
-
-class CourseExitButton {
-    private Button exit = new Button("退出");
-    Button getExit() {
-        return this.exit;
-    }
-    CourseExitButton() {
-        exit.setFont(Font.font("黑体", FontWeight.BOLD,18));
-        exit.setTextFill(Color.RED);
-        exit.setOnAction(e -> {
-            new CourseAlert("Exit");
-        });
-    }
-}
-
-class CourseTopHBox {
-    private HBox hBox = new HBox();
-    HBox gethBox() {
-        return this.hBox;
-    }
-    CourseTopHBox(Label userName,Label icon,Button exit) {
-        hBox.getChildren().addAll(userName,icon,exit);
-        hBox.setMargin(userName,new Insets(StaticValue.stageHeight / 25));
-        hBox.setMargin(icon,new Insets(StaticValue.stageHeight / 40,0,
-                StaticValue.stageHeight / 45,StaticValue.stageHeight * 2 / 5));
-        hBox.setMargin(exit,new Insets(StaticValue.stageHeight / 25,0,
-                StaticValue.stageHeight / 25,StaticValue.stageWidth * 2 / 7));
-    }
-}
-
 class CourseLeftScrollPane {
     private ScrollPane pane = new ScrollPane();
     private VBox vBox = new VBox();
     private ContextMenu menu;
     CourseLeftScrollPane() {
         vBox.setSpacing(StaticValue.stageHeight / 20);
-        File f = new File("./data/" + StaticValue.userName);
+        File f = new File("./data/" + StaticValue.userName + "/资源");
         File[] tmp = f.listFiles();
-        String[] course = new String[tmp.length - 1];
+        String[] course = new String[tmp.length];
         for(int i = 0,j = 0;i < tmp.length;i++) {
-            if (tmp[i].getName().equals("pwd.txt")) continue;
             course[j++] = tmp[i].getName();
         }
         Arrays.sort(course);
@@ -245,16 +191,14 @@ class CourseAlert {
 
             yes.setOnAction(e -> {
                 String course = textField.getText();
-                File f = new File("./data/" + StaticValue.userName + "/" + course);
+                File f = new File("./data/" + StaticValue.userName + "/资源/" + course);
                 if(f.exists()) {
                     alert.close();
                     new CourseAlert("Exist");
-                    System.out.println("Exist");
                     return;
                 }
                 f.mkdir();
-                new File("./data/" + StaticValue.userName + "/" + course + "/ddl").mkdir();
-                new File("./data/" + StaticValue.userName + "/" + course + "/资源").mkdir();
+                new File("./data/" + StaticValue.userName + "/资源/" + course).mkdir();
                 alert.close();
                 new CourseAlert("SuccessAdd");
             });
@@ -275,8 +219,7 @@ class CourseAlert {
                 ButtonType result = alert.getResult();
                 if (result != null && result.equals(buttonYes)) {
                     try {
-                        System.out.println("./data/" + StaticValue.userName + "/" + course);
-                        StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/" + course));
+                        StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" + course));
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -311,8 +254,8 @@ class CourseAlert {
 
             yes.setOnAction(e -> {
                 String newCourse = textField.getText();
-                File f1 = new File("./data/" + StaticValue.userName + "/" + course);
-                File f2 = new File("./data/" + StaticValue.userName + "/" + newCourse);
+                File f1 = new File("./data/" + StaticValue.userName + "/资源/" + course);
+                File f2 = new File("./data/" + StaticValue.userName + "/资源/" + newCourse);
                 alert.close();
                 f1.renameTo(f2);
                 new CourseAlert("SuccessEdit");

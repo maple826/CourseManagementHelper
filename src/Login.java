@@ -113,6 +113,10 @@ class RegisterButton {
                 writer.write(pwd);
                 writer.flush();
                 new LoginAlert("注册成功！");
+                f = new File("./data/" + name + "/ddl");
+                f.mkdir();
+                f = new File("./data/" + name + "/资源");
+                f.mkdir();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

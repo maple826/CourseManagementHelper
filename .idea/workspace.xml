@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="modify Course.java and README.md">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="add Edit and Delete function &amp;&amp; add Menu function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/yangge/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/zhangxichen/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/zhangyichi/pwd.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +89,9 @@
       <workItem from="1652579187215" duration="2880000" />
       <workItem from="1652586532062" duration="533000" />
       <workItem from="1652610868146" duration="282000" />
-      <workItem from="1652666222520" duration="15399000" />
+      <workItem from="1652666222520" duration="15724000" />
+      <workItem from="1652795772462" duration="891000" />
+      <workItem from="1652844526298" duration="1412000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -135,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652586866451</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add Edit and Delete function &amp;&amp; add Menu function">
+      <created>1652691470065</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652691470066</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +173,7 @@
     <MESSAGE value="modify Main.java" />
     <MESSAGE value="modify StaticValue.java" />
     <MESSAGE value="modify Course.java and README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify Course.java and README.md" />
+    <MESSAGE value="add Edit and Delete function &amp;&amp; add Menu function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Edit and Delete function &amp;&amp; add Menu function" />
   </component>
 </project>
