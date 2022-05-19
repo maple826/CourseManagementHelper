@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="更改了界面布局逻辑，修改了本地数据存储规则" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="简化了测试用户数据">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/1/pwd.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +89,11 @@
       <workItem from="1652610868146" duration="282000" />
       <workItem from="1652666222520" duration="15724000" />
       <workItem from="1652795772462" duration="891000" />
-      <workItem from="1652844526298" duration="1788000" />
+      <workItem from="1652844526298" duration="2771000" />
+      <workItem from="1652859622349" duration="464000" />
+      <workItem from="1652866540054" duration="334000" />
+      <workItem from="1652871651174" duration="69000" />
+      <workItem from="1652942917536" duration="15059000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -147,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652846454983</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="简化了测试用户数据">
+      <created>1652846687329</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652846687329</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +191,7 @@
     <MESSAGE value="modify Course.java and README.md" />
     <MESSAGE value="add Edit and Delete function &amp;&amp; add Menu function" />
     <MESSAGE value="更改了界面布局逻辑，修改了本地数据存储规则" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改了界面布局逻辑，修改了本地数据存储规则" />
+    <MESSAGE value="简化了测试用户数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="简化了测试用户数据" />
   </component>
 </project>

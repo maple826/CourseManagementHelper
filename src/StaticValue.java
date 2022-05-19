@@ -1,18 +1,22 @@
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 
 public class StaticValue {
+    static Stage stage;
     static double stageWidth = 800;
     static double stageHeight = 450;
-    static String userName;
+    static String userName = "zhangyichi";
     static String course;
     static HBox topHbox;
 
@@ -40,25 +44,54 @@ public class StaticValue {
 class TopHBox {
     private HBox hBox = new HBox();
     Label userName = new Label(StaticValue.userName);
-    Label title = new Label("学习小帮手");
+    Button info = new Button("个人信息");
     Button exit = new Button("退出");
+    HBox leftBottom = new HBox(info,exit);
+    VBox left = new VBox(userName,leftBottom);
+    Label title = new Label("学习小帮手");
+    Button resource = new Button("课程资料");
+    Button ddl = new Button("我的DDL");
+    Button memo = new Button("备忘录");
+    HBox right = new HBox(resource,ddl,memo);
 
     TopHBox() {
-        userName.setFont(Font.font("黑体", FontWeight.BOLD,18));
+        userName.setFont(Font.font("黑体", FontWeight.BOLD,22));
         title.setFont(Font.font("华文行楷", FontWeight.BOLD,36));
         title.setTextFill(Color.BLUE);
-        exit.setFont(Font.font("黑体", FontWeight.BOLD,18));
         exit.setTextFill(Color.RED);
+
+        leftBottom.setSpacing(StaticValue.stageHeight / 25);
+        left.setSpacing(StaticValue.stageHeight / 20);
+        right.setSpacing(StaticValue.stageWidth / 60);
+
+        hBox.getChildren().addAll(left,title,right);
+        hBox.setMargin(left,new Insets(StaticValue.stageHeight / 30,0,
+                0,StaticValue.stageWidth / 100));
+
+        hBox.setMargin(title,new Insets(StaticValue.stageHeight / 15,0,
+                0,StaticValue.stageWidth * 2 / 9));
+        hBox.setMargin(right,new Insets(StaticValue.stageHeight / 7,0,
+                0,StaticValue.stageWidth / 8));
+
+        info.setOnAction(e -> {
+            new Info();
+        });
+
         exit.setOnAction(e -> {
             new CourseAlert("Exit");
         });
 
-        hBox.getChildren().addAll(userName,title,exit);
-        hBox.setMargin(userName,new Insets(StaticValue.stageHeight / 25));
-        hBox.setMargin(title,new Insets(StaticValue.stageHeight / 40,0,
-                StaticValue.stageHeight / 45,StaticValue.stageHeight * 2 / 5));
-        hBox.setMargin(exit,new Insets(StaticValue.stageHeight / 25,0,
-                StaticValue.stageHeight / 25,StaticValue.stageWidth * 2 / 7));
+        resource.setOnAction(e -> {
+
+        });
+
+        ddl.setOnAction(e -> {
+
+        });
+
+        memo.setOnAction(e -> {
+
+        });
     }
 
     HBox gethBox() {

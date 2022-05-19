@@ -146,7 +146,7 @@ class LoginButton {
                     return;
                 }
                 StaticValue.userName = name;
-                new Course(Login.stage);
+                new Home();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

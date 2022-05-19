@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -10,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        StaticValue.stage = primaryStage;
         new Login(primaryStage);
     }
 }

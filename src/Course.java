@@ -28,8 +28,8 @@ public class Course {
             StaticValue.stageWidth,StaticValue.stageHeight / 7);
     ScrollPane courseLeftScrollPane = new CourseLeftScrollPane().getPane();
 
-    public Course(Stage stage) {
-        this.stage = stage;
+    public Course() {
+        this.stage = StaticValue.stage;
         createCourse();
     }
     private void createCourse() {
@@ -131,13 +131,13 @@ class CourseAlert {
             alert.setTitle("提示信息");
             alert.setHeaderText("");
             alert.setContentText("您确定要退出当前帐号吗");
-            alert.initOwner(Course.stage);
+            alert.initOwner(StaticValue.stage);
             alert.show();
             alert.setOnCloseRequest(e -> {
                 ButtonType result = alert.getResult();
                 if (result != null && result.equals(buttonYes)) {
                     StaticValue.userName = "";
-                    new Login(Course.stage);
+                    new Login(StaticValue.stage);
                 } else {
                     alert.close();
                 }
@@ -156,7 +156,7 @@ class CourseAlert {
             alert.setHeaderText("");
             alert.setContentText("添加成功！");
             alert.show();
-            new Course(Course.stage);
+            new Course();
         }
         else if(s.equals("SuccessEdit")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -164,7 +164,7 @@ class CourseAlert {
             alert.setHeaderText("");
             alert.setContentText("更改成功！");
             alert.show();
-            new Course(Course.stage);
+            new Course();
         }
         else if(s.equals("Add")) {
             Text text = new Text("请输入课程名称：");
@@ -213,7 +213,7 @@ class CourseAlert {
             alert.setTitle("提示信息");
             alert.setHeaderText("");
             alert.setContentText("确定要删除课程：" + course + " 吗？");
-            alert.initOwner(Course.stage);
+            alert.initOwner(StaticValue.stage);
             alert.show();
             alert.setOnCloseRequest(e -> {
                 ButtonType result = alert.getResult();
@@ -223,7 +223,7 @@ class CourseAlert {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    new Course(Course.stage);
+                    new Course();
                 } else {
                     alert.close();
                 }
@@ -259,7 +259,7 @@ class CourseAlert {
                 alert.close();
                 f1.renameTo(f2);
                 new CourseAlert("SuccessEdit");
-                new Course(Course.stage);
+                new Course();
             });
         }
     }
