@@ -5,11 +5,15 @@
 ## 功能介绍
 * 用户注册、登录，保存用户课程信息
 * 每个用户登录后，按课程进行分类，管理每个课程的ddl、资料
+* 课程资料、书签界面具备增删改功能
 ## 文件结构
 用户信息存储在`./data`下， 以用户user为例
 * `./data/user/pwd.txt`存储用户密码信息
 * `./data/user/资源`存储资源信息
-    * `./data/user/course/资源/course1`
-    * `./data/user/course/资源/course2`
-    * ……
+    - `./data/user/资源/course1`
+      - `./data/user/资源/course1/书签链接`存储书签链接（文件名为书签名，内容为链接，后缀规定为.txt）
+      - `./data/user/资源/course1/file1`存储本地资料
+      - `./data/user/资源/course1/file2`
+    - `./data/user/资源/course2`
+    - ……
 * `./data/user/ddl`存储该用户全部ddl信息
