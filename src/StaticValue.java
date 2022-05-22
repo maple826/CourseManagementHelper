@@ -82,7 +82,7 @@ class TopHBox {
         });
 
         resource.setOnAction(e -> {
-
+            new Course();
         });
 
         ddl.setOnAction(e -> {

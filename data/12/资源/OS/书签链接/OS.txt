@@ -1,1 +1,1 @@
-os.buaa.edu.cn
+https://os.buaa.edu.cn

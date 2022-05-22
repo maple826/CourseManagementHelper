@@ -52,8 +52,8 @@ class All_materials {
 
 }
 public class Materials{
-    public static BorderPane material_pane = new BorderPane();
-    public static String course = new String();
+    public static BorderPane material_pane;
+    public static String course;
 
     public Materials(BorderPane pane,String course){
         material_pane = pane;

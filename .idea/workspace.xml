@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="简化了测试用户数据">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="增加了Home页面，增加了修改密码的功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/1/pwd.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/12/资源/OS/书签链接/OS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/12/资源/OS/书签链接/OS.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Materials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Materials.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +91,10 @@
       <workItem from="1652859622349" duration="464000" />
       <workItem from="1652866540054" duration="334000" />
       <workItem from="1652871651174" duration="69000" />
-      <workItem from="1652942917536" duration="15059000" />
+      <workItem from="1652942917536" duration="15290000" />
+      <workItem from="1652968745363" duration="770000" />
+      <workItem from="1653055519765" duration="145000" />
+      <workItem from="1653204022519" duration="1364000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -165,7 +166,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652846687329</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="增加了Home页面，增加了修改密码的功能">
+      <created>1652965667580</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652965667580</updated>
+    </task>
+    <task id="LOCAL-00012" summary="增加了Home页面，增加了修改密码的功能">
+      <created>1652965699088</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1652965699089</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +207,7 @@
     <MESSAGE value="add Edit and Delete function &amp;&amp; add Menu function" />
     <MESSAGE value="更改了界面布局逻辑，修改了本地数据存储规则" />
     <MESSAGE value="简化了测试用户数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="简化了测试用户数据" />
+    <MESSAGE value="增加了Home页面，增加了修改密码的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了Home页面，增加了修改密码的功能" />
   </component>
 </project>
