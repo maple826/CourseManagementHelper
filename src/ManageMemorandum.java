@@ -21,9 +21,11 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class ManageMemorandum {
-    public static Stage stage =new Stage();
-    public static ArrayList<Memorandum> MemoList=new ArrayList<Memorandum>();
-    public static Memorandum currentMemorandum;
+    public static Stage stage =new Stage();//这个stage是我写代码时用的，移植到主体代码上后可以删除这个stage，用主体代码的stage。
+    public static ArrayList<Memorandum> MemoList=new ArrayList<Memorandum>();//这个数组存放备忘录
+    public static Memorandum currentMemorandum;//当前备忘录，确定哪一条在centerPane中显示
+
+    //从文件中读取备忘录信息
     public static void read() throws FileNotFoundException, ParseException {
         MemoList.clear();
         FileReader reader = new FileReader("./data/" + StaticValue.userName + "/Memorandum.txt");
@@ -35,12 +37,16 @@ public class ManageMemorandum {
             System.out.println(e);
         }
         String row_data=new String(buf);
+
+        //不同信息是用“#”分隔的
         String[] splitData=row_data.split("#");
 
         for(int i=0;i<splitData.length-1;i+=3){
             Memorandum newMemorandum=new Memorandum(splitData[i],splitData[i+1],splitData[i+2]);
             MemoList.add(newMemorandum);
         }
+
+        //按照最近修改时间排序，最晚修改的在第一条
         Collections.sort(MemoList, new Comparator<Memorandum>() {
             @Override
             public int compare(Memorandum o1, Memorandum o2) {
@@ -56,6 +62,7 @@ public class ManageMemorandum {
             }
         }
     }
+    //把修改过的备忘录信息写回文件
     public static void write() throws IOException {
         ManageMemorandum.currentMemorandum=null;
         FileWriter writer = new FileWriter("./data/" + StaticValue.userName + "/Memorandum.txt");
@@ -66,6 +73,8 @@ public class ManageMemorandum {
         writer.flush();
         writer.close();
     }
+
+    //更换场景********************************
     public static void setScene() throws FileNotFoundException, ParseException {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
@@ -84,7 +93,7 @@ public class ManageMemorandum {
         Scene MemoManageScene=new Scene(mainPane,900,500);
         stage.setScene(MemoManageScene);
         stage.setTitle("学习小帮手");
-        stage.show();
+        stage.show();//******************  改stage时修改这里   *****************
     }
     ManageMemorandum() throws FileNotFoundException, ParseException {
         setScene();
@@ -97,12 +106,15 @@ class Memorandum{
     private Date lastModifiedTime;
     public int delete=0;
     HBox hbox=new HBox();
+
+    //新建和修改备忘录用这个构造函数
     Memorandum(String name,String content){
         this.name=name;
         this.content=content;
         this.lastModifiedTime=new Date();
     }
 
+    //读入备忘录用这个构造函数
     Memorandum(String date,String name,String content ) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         this.lastModifiedTime=sdf.parse(date);
@@ -167,6 +179,8 @@ class topPane1{
         return this.topPane;
     }
 }
+
+//中间是当前展示的备忘录
 class centerPane1{
     ScrollPane centerPane=new ScrollPane();
     centerPane1(){
@@ -183,6 +197,8 @@ class centerPane1{
         return this.centerPane;
     }
 }
+
+//左边是备忘录目录
 class leftPane1{
     ScrollPane leftPane=new ScrollPane();
     leftPane1(){
@@ -241,6 +257,8 @@ class deleteMemo {
     }
 }
 
+
+//新建和修改备忘录都用这个类，我写的逻辑本质上都是新建
 class addMemo{
     addMemo(Memorandum origin){
         Text nameText=new Text("备忘录名称：");

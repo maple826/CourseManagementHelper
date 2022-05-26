@@ -21,10 +21,12 @@ import java.util.*;
 
 
 public class ManageDDL {
-    public static Stage stage =new Stage();
+    public static Stage stage =new Stage();//这个stage是我写代码时用的，移植到主体代码上后可以删除这个stage，用主体代码的stage。
 
-    public static ArrayList<DDL> ddlArrayList=new ArrayList<DDL>();
+    public static ArrayList<DDL> ddlArrayList=new ArrayList<DDL>();//存放ddl信息
 
+
+    //从文件中读取ddl信息
     public static void read() throws IOException, ParseException {
         ddlArrayList.clear();
         FileReader reader = new FileReader("./data/" + StaticValue.userName + "/ddl.txt");
@@ -55,6 +57,8 @@ public class ManageDDL {
         reader.close();
     }
 
+
+    //写回修改过的ddl信息
     public static void write() throws IOException {
         FileWriter writer = new FileWriter("./data/" + StaticValue.userName + "/ddl.txt");
         for(int i=0;i<ManageDDL.ddlArrayList.size();i++){
@@ -84,7 +88,7 @@ public class ManageDDL {
         Scene ddlManageScene=new Scene(mainPane,900,500);
         stage.setScene(ddlManageScene);
         stage.setTitle("学习小帮手");
-        stage.show();
+        stage.show();//******************  改stage时修改这里   *****************
     }
 
     ManageDDL() throws IOException, ParseException {
@@ -199,7 +203,7 @@ class bottomPane{
     }
 }
 
-
+//中间展示ddl信息
 class centerPane{
     ScrollPane centerPane=new ScrollPane();
     centerPane() throws FileNotFoundException {
@@ -346,6 +350,7 @@ class addDDL{
                     else theDay=Integer.toString(day);
                     String theDate=theYear+"-"+theMonth+"-"+theDay;
 
+                    //这里验证日期合法性
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date testDate=sdf.parse(theDate);
                     String testString = sdf.format(testDate);
@@ -356,6 +361,7 @@ class addDDL{
                     if(!testString.equals(theDate)){
                         throw new Exception();
                     }
+                    //一直验证到这里
 
                     if(newUrl.equals(urlTextNotice)){
                         newUrl="null";

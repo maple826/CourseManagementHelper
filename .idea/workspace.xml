@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="增加了Home页面，增加了修改密码的功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/资源/Java/书签链接/java.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/资源/OS/OS.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/资源/OS/书签链接/OS.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/资源/OS/书签链接/lab网站.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/12/资源/OS/资料2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/2/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +96,7 @@
       <workItem from="1653204022519" duration="1364000" />
       <workItem from="1653482439469" duration="12546000" />
       <workItem from="1653525319168" duration="268000" />
-      <workItem from="1653526961429" duration="1429000" />
+      <workItem from="1653526961429" duration="2431000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
