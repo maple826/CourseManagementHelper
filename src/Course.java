@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class Course {
     static Stage stage;
-    static BorderPane coursePane = new BorderPane();
+    BorderPane coursePane = new BorderPane();
     HBox courseTopHBox = StaticValue.getNewTopHBox();
     Line topLine = new Line(0,StaticValue.stageHeight / 7,
             StaticValue.stageWidth,StaticValue.stageHeight / 7);
@@ -104,7 +104,7 @@ class CourseButton {
                     menu.show(button, Side.TOP, event.getX(), event.getY());
                 }
                 else if(event.getButton().equals(MouseButton.PRIMARY)){
-                    new Materials(Course.coursePane,button.getText());
+                    new Materials(new Course().coursePane,button.getText());
                 }
 
 

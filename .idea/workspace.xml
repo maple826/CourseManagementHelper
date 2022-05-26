@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="增加了Home页面，增加了修改密码的功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/Memorandum.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Materials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Materials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../local" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -94,9 +99,6 @@
       <workItem from="1652968745363" duration="770000" />
       <workItem from="1653055519765" duration="145000" />
       <workItem from="1653204022519" duration="1364000" />
-      <workItem from="1653482439469" duration="12546000" />
-      <workItem from="1653525319168" duration="268000" />
-      <workItem from="1653526961429" duration="2431000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>

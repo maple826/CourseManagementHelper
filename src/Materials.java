@@ -62,8 +62,8 @@ public class Materials{
     }
     private void create_materials(){
 
-        Course.coursePane.setCenter(new Center_scroller_pane().get_mat_pane());
-        Course.coursePane.getScene().setRoot(Course.coursePane);
+        material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
+        material_pane.getScene().setRoot(material_pane);
 //        Course.stage.setScene(new Scene(Course.coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
         Course.stage.show();
     }
@@ -399,7 +399,7 @@ class Material_alert {
             alert.setHeaderText("");
             alert.setContentText("更改成功！");
             alert.show();
-            new Materials(Course.coursePane,course);
+            new Materials(Materials.material_pane,course);
         }
         else if(s.equals("SuccessAdd")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -407,7 +407,7 @@ class Material_alert {
             alert.setHeaderText("");
             alert.setContentText("添加成功！");
             alert.show();
-            new Materials(Course.coursePane,course);
+            new Materials(Materials.material_pane,course);
         }
         else if(s.equals("Exit")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -456,7 +456,7 @@ class Material_alert {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
-                        new Materials(Course.coursePane,course);
+                        new Materials(Materials.material_pane,course);
                     }
                     else{
                         try {
@@ -465,7 +465,7 @@ class Material_alert {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
-                        new Materials(Course.coursePane,course);
+                        new Materials(Materials.material_pane,course);
                     }
 
                 } else {
@@ -513,7 +513,7 @@ class Material_alert {
                     alert.close();
                     f1.renameTo(f2);
                     new Material_alert("SuccessEdit",course,0);
-                    new Materials(Course.coursePane,course);
+                    new Materials(Materials.material_pane,course);
                 }
                 else{
 //                    规定书签文件名后缀必须为txt
@@ -523,7 +523,7 @@ class Material_alert {
                     alert.close();
                     f1.renameTo(f2);
                     new Material_alert("SuccessEdit",course,1);
-                    new Materials(Course.coursePane,course);
+                    new Materials(Materials.material_pane,course);
                 }
             });
         }
