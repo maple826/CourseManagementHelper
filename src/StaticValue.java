@@ -10,7 +10,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class StaticValue {
     static Stage stage;
@@ -82,15 +84,23 @@ class TopHBox {
         });
 
         resource.setOnAction(e -> {
-
+            new Course();
         });
 
         ddl.setOnAction(e -> {
-
+            try {
+                new ManageDDL();
+            } catch (IOException | ParseException ex) {
+                ex.printStackTrace();
+            }
         });
 
         memo.setOnAction(e -> {
-
+            try {
+                new ManageMemorandum();
+            } catch (FileNotFoundException | ParseException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 

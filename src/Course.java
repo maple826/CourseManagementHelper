@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class Course {
     static Stage stage;
-    static BorderPane coursePane = new BorderPane();
+    BorderPane coursePane = new BorderPane();
     HBox courseTopHBox = StaticValue.getNewTopHBox();
     Line topLine = new Line(0,StaticValue.stageHeight / 7,
             StaticValue.stageWidth,StaticValue.stageHeight / 7);
@@ -104,10 +104,8 @@ class CourseButton {
                     menu.show(button, Side.TOP, event.getX(), event.getY());
                 }
                 else if(event.getButton().equals(MouseButton.PRIMARY)){
-                    new Materials(Course.coursePane,button.getText());
+                    new Materials(new Course().coursePane,button.getText());
                 }
-
-
             }
         });
         itemDel.setOnAction(e -> {
@@ -199,6 +197,8 @@ class CourseAlert {
                     new CourseAlert("Exist");
                     return;
                 }
+                f.mkdir();
+                f = new File("./data/" + StaticValue.userName + "/资源/" + course + "/书签链接");
                 f.mkdir();
                 new File("./data/" + StaticValue.userName + "/资源/" + course).mkdir();
                 alert.close();
