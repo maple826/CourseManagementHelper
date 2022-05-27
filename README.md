@@ -16,4 +16,5 @@
       - `./data/user/资源/course1/file2`
     - `./data/user/资源/course2`
     - ……
-* `./data/user/ddl`存储该用户全部ddl信息
+* `./data/user/ddl.txt`存储该用户全部ddl信息
+* `./data/user/ddl.Memorandum.txt`存储该用户备忘录信息

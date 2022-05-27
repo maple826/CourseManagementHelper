@@ -106,8 +106,6 @@ class CourseButton {
                 else if(event.getButton().equals(MouseButton.PRIMARY)){
                     new Materials(new Course().coursePane,button.getText());
                 }
-
-
             }
         });
         itemDel.setOnAction(e -> {
@@ -199,6 +197,8 @@ class CourseAlert {
                     new CourseAlert("Exist");
                     return;
                 }
+                f.mkdir();
+                f = new File("./data/" + StaticValue.userName + "/资源/" + course + "/书签链接");
                 f.mkdir();
                 new File("./data/" + StaticValue.userName + "/资源/" + course).mkdir();
                 alert.close();
