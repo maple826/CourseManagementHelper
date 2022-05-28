@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/Memorandum.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/ddl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/资源/Java/2019期末.word.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +103,8 @@
       <workItem from="1653526961429" duration="2728000" />
       <workItem from="1653651776383" duration="167000" />
       <workItem from="1653648629890" duration="3284000" />
+      <workItem from="1653736365397" duration="12723000" />
+      <workItem from="1653752684558" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>

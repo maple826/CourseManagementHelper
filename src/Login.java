@@ -55,13 +55,13 @@ public class Login{
         loginPane.setCenter(loginVBox);
 
         stage.setScene(new Scene(loginPane,StaticValue.stageWidth,StaticValue.stageHeight));
-        stage.setTitle("学习小帮手");
+        stage.setTitle("学业助理");
         stage.show();
     }
 }
 
 class LoginIconLabel {
-    private Label iconLable = new Label("学习小帮手");
+    private Label iconLable = new Label("学业助理");
     Label getLoginIconLabel() {
         return this.iconLable;
     }

@@ -24,7 +24,7 @@ public class Info {
         VBox vBox = new CenterChangePwd().getvBox();
         pane.setCenter(vBox);
         StaticValue.stage.setScene(new Scene(pane,StaticValue.stageWidth,StaticValue.stageHeight));
-        StaticValue.stage.setTitle("学习小帮手");
+        StaticValue.stage.setTitle("学业助理");
         StaticValue.stage.show();
     }
 }

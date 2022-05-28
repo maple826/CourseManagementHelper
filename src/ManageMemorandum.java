@@ -21,9 +21,12 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class ManageMemorandum {
-    public static Stage stage =new Stage();//这个stage是我写代码时用的，移植到主体代码上后可以删除这个stage，用主体代码的stage。
-    public static ArrayList<Memorandum> MemoList=new ArrayList<Memorandum>();//这个数组存放备忘录
-    public static Memorandum currentMemorandum;//当前备忘录，确定哪一条在centerPane中显示
+    //统一使用StaticValue的stage。
+    public static Stage stage =StaticValue.stage;
+    //这个数组存放备忘录
+    public static ArrayList<Memorandum> MemoList=new ArrayList<Memorandum>();
+    //当前备忘录，确定哪一条在centerPane中显示
+    public static Memorandum currentMemorandum;
 
     //从文件中读取备忘录信息
     public static void read() throws FileNotFoundException, ParseException {
@@ -38,8 +41,8 @@ public class ManageMemorandum {
         }
         String row_data=new String(buf);
 
-        //不同信息是用“#”分隔的
-        String[] splitData=row_data.split("#");
+        //不同信息是用“###”分隔的，不仅不同备忘录是用###分隔的，一条备忘录中的不同部分也是###分隔
+        String[] splitData=row_data.split("###");
 
         for(int i=0;i<splitData.length-1;i+=3){
             Memorandum newMemorandum=new Memorandum(splitData[i],splitData[i+1],splitData[i+2]);
@@ -56,12 +59,15 @@ public class ManageMemorandum {
                 else return 1;
             }
         });
+
+        //每次重新加载页面时显示最近一次编辑的备忘录
         if(currentMemorandum==null) {
             if(MemoList.size()>0) {
                 currentMemorandum = MemoList.get(0);
             }
         }
     }
+
     //把修改过的备忘录信息写回文件
     public static void write() throws IOException {
         ManageMemorandum.currentMemorandum=null;
@@ -79,7 +85,7 @@ public class ManageMemorandum {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
         //设置页面的顶部标识
-        mainPane.setTop(new topPane1().getTopPane());
+        mainPane.setTop(new TopHBox().gethBox());
         //设置页面的左侧标识
         mainPane.setLeft(new leftPane1().getLeftPane());
 
@@ -90,31 +96,35 @@ public class ManageMemorandum {
         catch(Exception e){
             System.out.println(e);
         }
-        Scene MemoManageScene=new Scene(mainPane,900,500);
+        Scene MemoManageScene=new Scene(mainPane,StaticValue.stageWidth,StaticValue.stageHeight);
         stage.setScene(MemoManageScene);
-        stage.setTitle("学习小帮手");
-        stage.show();//******************  改stage时修改这里   *****************
+        stage.setTitle("学业助理");
+        stage.show();
     }
     ManageMemorandum() throws FileNotFoundException, ParseException {
         setScene();
     }
 }
 
+
+//备忘录类
 class Memorandum{
     private  String name;
     private String content;
     private Date lastModifiedTime;
+
+    //删除备忘录的逻辑和删除ddl一样，delete参数设为1的话不显示不写回。
     public int delete=0;
     HBox hbox=new HBox();
 
-    //新建和修改备忘录用这个构造函数
+    //新建和修改备忘录用这个构造函数，时间是系统当前时间
     Memorandum(String name,String content){
         this.name=name;
         this.content=content;
         this.lastModifiedTime=new Date();
     }
 
-    //读入备忘录用这个构造函数
+    //读入备忘录用这个构造函数，时间是记录的时间
     Memorandum(String date,String name,String content ) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         this.lastModifiedTime=sdf.parse(date);
@@ -161,24 +171,10 @@ class Memorandum{
     public String toString(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String date=sdf.format(lastModifiedTime);
-        return date+"#"+this.name+"#"+this.content+"#";
+        return date+"###"+this.name+"###"+this.content+"###";
     }
 }
 
-class topPane1{
-    HBox topPane=new HBox();
-    topPane1(){
-        Label Memo=new Label("备忘录");
-        Memo.setFont(Font.font("黑体", FontWeight.BOLD,60));
-        Memo.setTextFill(Color.BLUE);
-        topPane.getChildren().add(Memo);
-        topPane.setMinHeight(80);
-        topPane.setAlignment(Pos.CENTER);
-    }
-    HBox getTopPane(){
-        return this.topPane;
-    }
-}
 
 //中间是当前展示的备忘录
 class centerPane1{
@@ -203,6 +199,7 @@ class leftPane1{
     ScrollPane leftPane=new ScrollPane();
     leftPane1(){
         VBox vbox=new VBox();
+        vbox.setSpacing(20);
         for(int i=0;i<ManageMemorandum.MemoList.size();i++){
             if(ManageMemorandum.MemoList.get(i).delete==1) continue;
             vbox.getChildren().add(ManageMemorandum.MemoList.get(i).getHBox());
@@ -236,7 +233,7 @@ class deleteMemo {
         alert.getButtonTypes().setAll(buttonYes, buttonNo);
         alert.setTitle("删除备忘录");
         alert.setHeaderText("");
-        alert.setContentText("确定删除？");
+        alert.setContentText("确定删除吗？");
         alert.initOwner(ManageMemorandum.stage);
         alert.show();
         alert.setOnCloseRequest(e -> {
@@ -258,7 +255,7 @@ class deleteMemo {
 }
 
 
-//新建和修改备忘录都用这个类，我写的逻辑本质上都是新建
+//新建和修改备忘录都用这个类，修改的逻辑是把原有信息提前放在文本框中然后新建
 class addMemo{
     addMemo(Memorandum origin){
         Text nameText=new Text("备忘录名称：");

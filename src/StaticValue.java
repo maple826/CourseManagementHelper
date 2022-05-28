@@ -16,8 +16,8 @@ import java.text.ParseException;
 
 public class StaticValue {
     static Stage stage;
-    static double stageWidth = 800;
-    static double stageHeight = 450;
+    static double stageWidth = 900;
+    static double stageHeight = 500;
     static String userName = "zhangyichi";
     static String course;
     static HBox topHbox;
@@ -50,7 +50,7 @@ class TopHBox {
     Button exit = new Button("退出");
     HBox leftBottom = new HBox(info,exit);
     VBox left = new VBox(userName,leftBottom);
-    Label title = new Label("学习小帮手");
+    Label title = new Label("学不可以已");
     Button resource = new Button("课程资料");
     Button ddl = new Button("我的DDL");
     Button memo = new Button("备忘录");
@@ -62,6 +62,7 @@ class TopHBox {
         title.setTextFill(Color.BLUE);
         exit.setTextFill(Color.RED);
 
+
         leftBottom.setSpacing(StaticValue.stageHeight / 25);
         left.setSpacing(StaticValue.stageHeight / 20);
         right.setSpacing(StaticValue.stageWidth / 60);
@@ -71,7 +72,7 @@ class TopHBox {
                 0,StaticValue.stageWidth / 100));
 
         hBox.setMargin(title,new Insets(StaticValue.stageHeight / 15,0,
-                0,StaticValue.stageWidth * 2 / 9));
+                0,StaticValue.stageWidth *2/9));
         hBox.setMargin(right,new Insets(StaticValue.stageHeight / 7,0,
                 0,StaticValue.stageWidth / 8));
 

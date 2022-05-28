@@ -13,7 +13,7 @@ public class Home {
         BorderPane pane = new BorderPane();
         pane.setTop(StaticValue.getNewTopHBox());
         StaticValue.stage.setScene(new Scene(pane,StaticValue.stageWidth,StaticValue.stageHeight));
-        StaticValue.stage.setTitle("学习小帮手");
+        StaticValue.stage.setTitle("学业助理");
         StaticValue.stage.show();
     }
 }
