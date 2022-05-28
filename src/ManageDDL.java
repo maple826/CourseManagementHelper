@@ -106,6 +106,42 @@ public class ManageDDL {
 
 }
 
+
+class DDLBar{
+    HBox hbox=new HBox();
+    DDLBar(){
+        Label titleLabel=new Label("DDL内容");
+        titleLabel.setMinWidth(StaticValue.stageWidth*3/10);
+        titleLabel.setMaxWidth(StaticValue.stageWidth*3/10);
+        titleLabel.setTextFill(Paint.valueOf("blue"));
+
+        Label hyperlink=new Label("相关链接");
+        hyperlink.setMinWidth(StaticValue.stageWidth*2/10);
+        hyperlink.setMaxWidth(StaticValue.stageWidth*2/10);
+        hyperlink.setTextFill(Paint.valueOf("blue"));
+
+        Label dateLabel=new Label("截止日期");
+        dateLabel.setMinWidth(StaticValue.stageWidth/10);
+        dateLabel.setMaxWidth(StaticValue.stageWidth/10);
+        dateLabel.setTextFill(Paint.valueOf("blue"));
+
+
+        Label timeLabel=new Label("剩余时间");
+        timeLabel.setMinWidth(StaticValue.stageWidth*2/10);
+        timeLabel.setTextFill(Paint.valueOf("blue"));
+
+        Label amountLabel=new Label("当前共有"+ ManageDDL.ddlArrayList.size()+"条DDL");
+        amountLabel.setMinWidth(StaticValue.stageWidth*1/10);
+        amountLabel.setTextFill(Paint.valueOf("blue"));
+
+        hbox.getChildren().addAll(titleLabel,hyperlink,dateLabel,timeLabel,amountLabel);
+        hbox.setSpacing(10);
+    }
+    HBox getHbox(){
+        return this.hbox;
+    }
+}
+
 //DDL类
 class DDL{
     HBox hbox=new HBox();
@@ -171,7 +207,6 @@ class DDL{
         }
 
         hbox.getChildren().addAll(titleLabel,hyperlink,dateLabel,timeLabel,editButton,button);
-        hbox.setAlignment(Pos.CENTER_RIGHT);
         hbox.setSpacing(10);
 
         button.setOnAction(event -> {
@@ -224,6 +259,7 @@ class centerPane{
     ScrollPane centerPane=new ScrollPane();
     centerPane() throws FileNotFoundException {
         VBox DDLs=new VBox();
+        DDLs.getChildren().add(new DDLBar().getHbox());
         for(int i=0;i<ManageDDL.ddlArrayList.size();i++){
             if(ManageDDL.ddlArrayList.get(i).delete==1) continue;
             DDLs.getChildren().add(ManageDDL.ddlArrayList.get(i).getHBox());
