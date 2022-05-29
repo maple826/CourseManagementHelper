@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +102,8 @@
       <workItem from="1653752851912" duration="888000" />
       <workItem from="1653754004596" duration="1563000" />
       <workItem from="1653756493706" duration="235000" />
+      <workItem from="1653811828792" duration="341000" />
+      <workItem from="1653812201980" duration="935000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
