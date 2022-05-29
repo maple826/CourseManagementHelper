@@ -11,9 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodTextRun;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -64,7 +63,6 @@ public class Materials{
 
         material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
         material_pane.getScene().setRoot(material_pane);
-//        Course.stage.setScene(new Scene(Course.coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
         Course.stage.show();
     }
 
@@ -274,7 +272,7 @@ class Bkmark_hplink{
 }
 class Material_alert {
     //    mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
-    //    此构造函数专为生成新书签使用
+    //    此构造函数的Add专为生成新书签使用
     Material_alert(String s,String course){
         if(s.equals("Add")){
             Text text_name = new Text("请输入书签名称：");
@@ -311,6 +309,11 @@ class Material_alert {
 //              书签链接文件后缀必须为.txt
                 String new_bkm = textField_name.getText() + ".txt";
                 File f = new File("./data/" + StaticValue.userName + "/资源/" + course + "/书签链接/" + new_bkm);
+                if(f.exists()){
+                    alert.close();
+                    new Material_alert("Exist",course,1);
+                    return;
+                }
                 try {
                     f.createNewFile();
                 } catch (IOException ex) {
@@ -329,32 +332,73 @@ class Material_alert {
                 new Material_alert("SuccessAdd",course,1);
             });
         }
+
     }
     //    mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
     Material_alert(String s,String course,int mat_or_bkm) {
 
         if(s.equals("Add")) {
-            Text text;
-            if(mat_or_bkm == 0){
-                text = new Text("请输入资料名称：");
-            }
-            else{
-                text = new Text("请输入书签名称：");
-            }
+            Text text,text1;
+            text = new Text("请输入资料名称：");
+            text1 = new Text("可将本地文件拖拽至此");
             text.setFont(Font.font("宋体",18));
+            text1.setFont(Font.font("宋体",16));
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
             HBox hBox1 = new HBox(text,textField);
+            VBox vBox = new VBox(hBox1,text1);
+            vBox.setSpacing(StaticValue.stageHeight / 30);
             HBox hBox2 = new HBox(yes,no);
             hBox2.setAlignment(Pos.CENTER);
             BorderPane borderPane = new BorderPane();
-            borderPane.setCenter(hBox1);
+            borderPane.setCenter(vBox);
             borderPane.setBottom(hBox2);
-            borderPane.setMargin(hBox1,new Insets(30));
+            borderPane.setMargin(vBox,new Insets(30));
+
             Stage alert = new Stage();
             alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
+            Scene mat_scene = new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5);
+            mat_scene.setOnDragDropped(new EventHandler<DragEvent>() {
+                @Override
+                public void handle(DragEvent event) {
+                    Dragboard dragboard = event.getDragboard();
+                    if (dragboard.hasFiles()){
+                        try {
+                            File receive_file = dragboard.getFiles().get(0);
+                            File add_file = new File("./data/" + StaticValue.userName + "/资源/"
+                                    + course + "/" + receive_file.getName());
+                            if(add_file.exists()) {
+                                alert.close();
+                                new Material_alert("Exist",course,0);
+                                return;
+                            }
+                            try {
+                                Files.copy(receive_file.toPath(),add_file.toPath());
+                            } catch (IOException ex) {
+                                alert.close();
+                                new Material_alert("Exist",course,0);
+                                return;
+                            }
+                            alert.close();
+                            new Material_alert("SuccessAdd",course,0);
+                        }catch (Exception e){
+                            e.toString();
+                        }
+                    }
+                }
+            });
+            mat_scene.setOnDragOver(new EventHandler<DragEvent>() {
+                @Override
+                public void handle(DragEvent event) {
+                    if (event.getDragboard().hasFiles()) {
+                        /* allow for both copying and moving, whatever user chooses */
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    }
+                    event.consume();
+                }
+            });
+            alert.setScene(mat_scene);
             alert.setTitle("提示信息");
             alert.show();
 
@@ -366,7 +410,12 @@ class Material_alert {
                 if(mat_or_bkm == 0){
                     String new_mat = textField.getText();
                     File f = new File("./data/" + StaticValue.userName + "/资源/" + course + "/" + new_mat);
-                    try {
+                    if(f.exists()) {
+                        alert.close();
+                        new Material_alert("Exist",course,0);
+                        return;
+                    }
+                    try{
                         f.createNewFile();
                     } catch (IOException ex) {
                         alert.close();
@@ -408,6 +457,18 @@ class Material_alert {
             alert.setContentText("添加成功！");
             alert.show();
             new Materials(Materials.material_pane,course);
+        }
+        else if(s.equals("Exist")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("提示信息");
+            alert.setHeaderText("");
+            if(mat_or_bkm == 0){
+                alert.setContentText("该文件已存在！");
+            }
+            else {
+                alert.setContentText("该书签已存在！");
+            }
+            alert.show();
         }
         else if(s.equals("Exit")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

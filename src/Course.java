@@ -9,7 +9,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -24,8 +23,6 @@ public class Course {
     static Stage stage;
     BorderPane coursePane = new BorderPane();
     HBox courseTopHBox = StaticValue.getNewTopHBox();
-    Line topLine = new Line(0,StaticValue.stageHeight / 7,
-            StaticValue.stageWidth,StaticValue.stageHeight / 7);
     ScrollPane courseLeftScrollPane = new CourseLeftScrollPane().getPane();
 
     public Course() {
@@ -35,7 +32,6 @@ public class Course {
     private void createCourse() {
         coursePane.setTop(courseTopHBox);
         coursePane.setLeft(courseLeftScrollPane);
-        coursePane.getChildren().add(topLine);
         stage.setScene(new Scene(coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
         stage.setTitle("学习小帮手");
         stage.show();
