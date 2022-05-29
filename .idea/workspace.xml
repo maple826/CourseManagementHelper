@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="修复了添加课程时初始化资源文件的bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/123/ddl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Materials.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/Memorandum.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Materials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Materials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +56,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -94,15 +105,8 @@
       <workItem from="1652968745363" duration="770000" />
       <workItem from="1653055519765" duration="145000" />
       <workItem from="1653204022519" duration="1364000" />
-      <workItem from="1653482439469" duration="12546000" />
-      <workItem from="1653525319168" duration="268000" />
-      <workItem from="1653526961429" duration="2728000" />
-      <workItem from="1653651776383" duration="167000" />
       <workItem from="1653648629890" duration="3284000" />
-      <workItem from="1653736365397" duration="12723000" />
-      <workItem from="1653752684558" duration="1000" />
-      <workItem from="1653752851912" duration="888000" />
-      <workItem from="1653754004596" duration="1563000" />
+      <workItem from="1653788367493" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
