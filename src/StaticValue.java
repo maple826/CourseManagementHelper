@@ -18,23 +18,13 @@ public class StaticValue {
     static Stage stage;
     static double stageWidth = 900;
     static double stageHeight = 500;
-    static String userName = "zhangyichi";
+    static String userName = "";
     static String course;
     static HBox topHbox;
     static String buttonStyle1 = "-fx-background-color:darkturquoise;"+
-            "-fx-background-radius:20;"+
-            "-fx-border-style: solid;" +
-            "-fx-border-color: blue;" +
-            "-fx-border-radius:20;"+
-            "-fx-border-width:2;"+
-            "-fx-border-insets:-2";
+            "-fx-background-radius:20;";
     static String buttonStyle2 = "-fx-background-color:lightskyblue;"+
-            "-fx-background-radius:20;"+
-            "-fx-border-style: solid;" +
-            "-fx-border-color: blue;" +
-            "-fx-border-radius:20;"+
-            "-fx-border-width:2;"+
-            "-fx-border-insets:-2";
+            "-fx-background-radius:20;";
 
     public static void deleteFile(File file) throws IOException {
         File[] files = file.listFiles();
@@ -73,12 +63,6 @@ class TopHBox {
     TopHBox() {
         setStyle();
 
-        userName.setFont(Font.font("黑体", FontWeight.BOLD,22));
-        title.setFont(Font.font("华文行楷", FontWeight.BOLD,36));
-        title.setTextFill(Color.BLUE);
-        exit.setTextFill(Color.RED);
-
-
         leftBottom.setSpacing(StaticValue.stageHeight / 25);
         left.setSpacing(StaticValue.stageHeight / 20);
         right.setSpacing(StaticValue.stageWidth / 60);
@@ -88,7 +72,7 @@ class TopHBox {
                 0,StaticValue.stageWidth / 100));
 
         hBox.setMargin(title,new Insets(StaticValue.stageHeight / 15,0,
-                0,StaticValue.stageWidth *2/9));
+                0,StaticValue.stageWidth * 2 / 9));
         hBox.setMargin(right,new Insets(StaticValue.stageHeight / 7,0,
                 0,StaticValue.stageWidth / 8));
 
@@ -124,28 +108,30 @@ class TopHBox {
     private void setStyle() {
         Button[] button = {info,resource,ddl,memo};
 
-        hBox.setStyle("-fx-background-color: RGB(20,138,210)");
+        hBox.setStyle("-fx-background-color: #203A97");
+
+        userName.setFont(Font.font("黑体", FontWeight.BOLD,22));
+        userName.setTextFill(Color.rgb(245,202,42));
+        title.setFont(Font.font("华文行楷", FontWeight.BOLD,40));
+        title.setTextFill(Color.rgb(245,202,42));
 
         String buttonStyle1 = StaticValue.buttonStyle1;
         String buttonStyle2 = StaticValue.buttonStyle2;
         for(Button i : button) {
-            i.setStyle(buttonStyle1);
-            i.setMinHeight(StaticValue.stageHeight / 20);
+            i.setStyle(buttonStyle1 + "-fx-font-size: 13");
             i.setOnMouseMoved(e -> {
-                i.setStyle(buttonStyle2);
-                i.setMinHeight(StaticValue.stageHeight / 10);
+                i.setStyle(buttonStyle2 + "-fx-font-size: 16");
             });
             i.setOnMouseExited(e -> {
-                i.setStyle(buttonStyle1);
-                i.setMinHeight(StaticValue.stageHeight / 20);
+                i.setStyle(buttonStyle1 + "-fx-font-size: 13");
             });
         }
-        exit.setStyle(buttonStyle1 + ";-fx-text-fill: red");
+        exit.setStyle(buttonStyle1 + ";-fx-text-fill: red;" + "-fx-font-size: 13");
         exit.setOnMouseMoved(e -> {
-            exit.setStyle(buttonStyle2 + ";-fx-text-fill: red");
+            exit.setStyle(buttonStyle2 + ";-fx-text-fill: red;" + "-fx-font-size: 16");
         });
         exit.setOnMouseExited(e -> {
-            exit.setStyle(buttonStyle1 + ";-fx-text-fill: red");
+            exit.setStyle(buttonStyle1 + ";-fx-text-fill: red;" + "-fx-font-size: 13");
         });
     }
 

@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -30,27 +31,19 @@ public class Info {
     }
 }
 class CenterChangePwd {
-    private VBox vBox = new VBox();
-    CenterChangePwd() {
-        Label title = new Label("修改密码");
-        title.setFont(Font.font("方正姚体", 22));
-        Label oldPwdLabel = new Label("旧密码");
-        Label newPwdLabel = new Label("新密码");
-        Label newPwdLabel2 = new Label("再次输入新密码");
-        PasswordField oldPwd = new PasswordField();
-        PasswordField newPwd = new PasswordField();
-        PasswordField newPwd2 = new PasswordField();
-        Button button = new Button("修改密码");
-        VBox pwdVBox = new VBox(oldPwdLabel,oldPwd,newPwdLabel,newPwd,newPwdLabel2,newPwd2);
+    VBox vBox = new VBox();
+    Label title = new Label("修改密码");
+    Label oldPwdLabel = new Label("旧密码");
+    Label newPwdLabel = new Label("新密码");
+    Label newPwdLabel2 = new Label("再次输入新密码");
+    PasswordField oldPwd = new PasswordField();
+    PasswordField newPwd = new PasswordField();
+    PasswordField newPwd2 = new PasswordField();
+    Button button = new Button("修改密码");
+    VBox pwdVBox = new VBox(oldPwdLabel,oldPwd,newPwdLabel,newPwd,newPwdLabel2,newPwd2);
 
-        vBox.setStyle("-fx-background-color: rgb(83,177,238)");
-        button.setStyle(StaticValue.buttonStyle1);
-        button.setOnMouseMoved(e -> {
-            button.setStyle(StaticValue.buttonStyle2);
-        });
-        button.setOnMouseExited(e -> {
-            button.setStyle(StaticValue.buttonStyle1);
-        });
+    CenterChangePwd() {
+        setStyle();
 
         vBox.getChildren().addAll(title,pwdVBox,button);
 
@@ -97,6 +90,28 @@ class CenterChangePwd {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        });
+    }
+
+    private void setStyle() {
+        title.setFont(Font.font("方正姚体", 26));
+        title.setTextFill(Color.rgb(245,202,42));
+
+        oldPwdLabel.setFont(Font.font("宋体",18));
+        oldPwdLabel.setTextFill(Color.rgb(245,202,42));
+        newPwdLabel.setFont(Font.font("宋体",18));
+        newPwdLabel.setTextFill(Color.rgb(245,202,42));
+        newPwdLabel2.setFont(Font.font("宋体",18));
+        newPwdLabel2.setTextFill(Color.rgb(245,202,42));
+
+        vBox.setStyle("-fx-background-color: #203A97");
+
+        button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 13");
+        button.setOnMouseMoved(e -> {
+            button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 16");
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 13");
         });
     }
 

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="修复了课程界面显示多余横线的bug">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_26_15_04_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_26_15_04__Changes_.xml" beforeDir="false" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了登录、主页、个人信息界面的UI设计">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
@@ -115,7 +114,8 @@
       <workItem from="1653816397217" duration="1194000" />
       <workItem from="1654137995456" duration="4389000" />
       <workItem from="1654178505609" duration="5833000" />
-      <workItem from="1654218789089" duration="3736000" />
+      <workItem from="1654218789089" duration="4104000" />
+      <workItem from="1654260396457" duration="8192000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -215,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653814654478</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="优化了登录、主页、个人信息界面的UI设计">
+      <created>1654223906536</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1654223906536</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +252,7 @@
     <MESSAGE value="增加了Home页面，增加了修改密码的功能" />
     <MESSAGE value="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug" />
     <MESSAGE value="修复了课程界面显示多余横线的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了课程界面显示多余横线的bug" />
+    <MESSAGE value="优化了登录、主页、个人信息界面的UI设计" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化了登录、主页、个人信息界面的UI设计" />
   </component>
 </project>

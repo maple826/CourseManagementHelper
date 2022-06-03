@@ -63,10 +63,13 @@ public class Login{
 
     private void setStyle() {
         //loginVBox.setStyle("-fx-background-image: url('"+ "../image/img.png" + "')");
-        loginPane.setStyle("-fx-background-color: RGB(20,138,210)");
+        loginPane.setStyle("-fx-background-color: #203A97");
 
-        String buttonStyle1 = StaticValue.buttonStyle1;
-        String buttonStyle2 = StaticValue.buttonStyle2;
+        loginName.setStyle("-fx-font-size: 14;");
+        loginPwd.setStyle("-fx-font-size: 14");
+
+        String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 13";
+        String buttonStyle2 = StaticValue.buttonStyle2 + "-fx-font-size: 16";
         registerButton.setStyle(buttonStyle1);
         loginButton.setStyle(buttonStyle1);
         registerButton.setOnMouseMoved(e -> {
@@ -91,28 +94,30 @@ class LoginIconLabel {
         return this.iconLable;
     }
     LoginIconLabel() {
-        iconLable.setFont(Font.font("华文行楷", FontWeight.BOLD,36));
-        iconLable.setTextFill(Color.BLUE);
+        iconLable.setFont(Font.font("华文行楷", FontWeight.BOLD,50));
+        iconLable.setTextFill(Color.rgb(245,202,42));
     }
 }
 
 class LoginNameText {
-    private Text loginNameText = new Text("用户名");
+    private Text loginNameText = new Text("用户名 ");
     Text getLoginNameText() {
         return this.loginNameText;
     }
     LoginNameText() {
-        loginNameText.setFont(Font.font("宋体",14));
+        loginNameText.setFont(Font.font("宋体",20));
+        loginNameText.setFill(Color.rgb(245,202,42));
     }
 }
 
 class LoginPwdText {
-    private Text loginPwdText = new Text("密码   ");
+    private Text loginPwdText = new Text("密码    ");
     Text getLoginPwdText() {
         return this.loginPwdText;
     }
     LoginPwdText() {
-        loginPwdText.setFont(Font.font("宋体",14));
+        loginPwdText.setFont(Font.font("宋体",20));
+        loginPwdText.setFill(Color.rgb(245,202,42));
     }
 }
 
