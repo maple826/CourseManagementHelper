@@ -21,6 +21,20 @@ public class StaticValue {
     static String userName = "zhangyichi";
     static String course;
     static HBox topHbox;
+    static String buttonStyle1 = "-fx-background-color:darkturquoise;"+
+            "-fx-background-radius:20;"+
+            "-fx-border-style: solid;" +
+            "-fx-border-color: blue;" +
+            "-fx-border-radius:20;"+
+            "-fx-border-width:2;"+
+            "-fx-border-insets:-2";
+    static String buttonStyle2 = "-fx-background-color:lightskyblue;"+
+            "-fx-background-radius:20;"+
+            "-fx-border-style: solid;" +
+            "-fx-border-color: blue;" +
+            "-fx-border-radius:20;"+
+            "-fx-border-width:2;"+
+            "-fx-border-insets:-2";
 
     public static void deleteFile(File file) throws IOException {
         File[] files = file.listFiles();
@@ -57,6 +71,8 @@ class TopHBox {
     HBox right = new HBox(resource,ddl,memo);
 
     TopHBox() {
+        setStyle();
+
         userName.setFont(Font.font("黑体", FontWeight.BOLD,22));
         title.setFont(Font.font("华文行楷", FontWeight.BOLD,36));
         title.setTextFill(Color.BLUE);
@@ -102,6 +118,34 @@ class TopHBox {
             } catch (FileNotFoundException | ParseException ex) {
                 ex.printStackTrace();
             }
+        });
+    }
+
+    private void setStyle() {
+        Button[] button = {info,resource,ddl,memo};
+
+        hBox.setStyle("-fx-background-color: RGB(20,138,210)");
+
+        String buttonStyle1 = StaticValue.buttonStyle1;
+        String buttonStyle2 = StaticValue.buttonStyle2;
+        for(Button i : button) {
+            i.setStyle(buttonStyle1);
+            i.setMinHeight(StaticValue.stageHeight / 20);
+            i.setOnMouseMoved(e -> {
+                i.setStyle(buttonStyle2);
+                i.setMinHeight(StaticValue.stageHeight / 10);
+            });
+            i.setOnMouseExited(e -> {
+                i.setStyle(buttonStyle1);
+                i.setMinHeight(StaticValue.stageHeight / 20);
+            });
+        }
+        exit.setStyle(buttonStyle1 + ";-fx-text-fill: red");
+        exit.setOnMouseMoved(e -> {
+            exit.setStyle(buttonStyle2 + ";-fx-text-fill: red");
+        });
+        exit.setOnMouseExited(e -> {
+            exit.setStyle(buttonStyle1 + ";-fx-text-fill: red");
         });
     }
 

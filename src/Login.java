@@ -35,6 +35,7 @@ public class Login{
 
     public Login(Stage stage) {
         this.stage = stage;
+        setStyle();
         createLogin();
     }
 
@@ -51,12 +52,36 @@ public class Login{
         loginPane.setAlignment(iconLabel, Pos.CENTER);
         loginPane.setMargin(iconLabel,
                 new Insets(StaticValue.stageWidth / 12,0,StaticValue.stageWidth / 12,0));
+        buttonPane.setMargin(loginButton,new Insets(0,0,0,StaticValue.stageWidth / 9));
 
         loginPane.setCenter(loginVBox);
 
         stage.setScene(new Scene(loginPane,StaticValue.stageWidth,StaticValue.stageHeight));
         stage.setTitle("学业助理");
         stage.show();
+    }
+
+    private void setStyle() {
+        //loginVBox.setStyle("-fx-background-image: url('"+ "../image/img.png" + "')");
+        loginPane.setStyle("-fx-background-color: RGB(20,138,210)");
+
+        String buttonStyle1 = StaticValue.buttonStyle1;
+        String buttonStyle2 = StaticValue.buttonStyle2;
+        registerButton.setStyle(buttonStyle1);
+        loginButton.setStyle(buttonStyle1);
+        registerButton.setOnMouseMoved(e -> {
+            registerButton.setStyle(buttonStyle2);
+        });
+        registerButton.setOnMouseExited(e -> {
+            registerButton.setStyle(buttonStyle1);
+        });
+        loginButton.setOnMouseMoved(e -> {
+            loginButton.setStyle(buttonStyle2);
+        });
+        loginButton.setOnMouseExited(e -> {
+            loginButton.setStyle(buttonStyle1);
+        });
+
     }
 }
 

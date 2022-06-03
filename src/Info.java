@@ -14,6 +14,7 @@ import javafx.scene.text.FontWeight;
 import java.io.*;
 
 public class Info {
+
     Info() {
         createInfo();
     }
@@ -41,6 +42,16 @@ class CenterChangePwd {
         PasswordField newPwd2 = new PasswordField();
         Button button = new Button("修改密码");
         VBox pwdVBox = new VBox(oldPwdLabel,oldPwd,newPwdLabel,newPwd,newPwdLabel2,newPwd2);
+
+        vBox.setStyle("-fx-background-color: rgb(83,177,238)");
+        button.setStyle(StaticValue.buttonStyle1);
+        button.setOnMouseMoved(e -> {
+            button.setStyle(StaticValue.buttonStyle2);
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle(StaticValue.buttonStyle1);
+        });
+
         vBox.getChildren().addAll(title,pwdVBox,button);
 
         pwdVBox.setSpacing(StaticValue.stageHeight / 50);
