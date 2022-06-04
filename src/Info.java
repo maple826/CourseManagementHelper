@@ -11,15 +11,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.*;
 
+/**
+ * 个人信息类.
+ * 包括修改密码功能
+ */
 public class Info {
-
     Info() {
         createInfo();
     }
 
+    /**
+     * 使用{@link StaticValue#topHbox}作为顶端部件 <br>
+     * 使用{@link CenterChangePwd#getvBox()}作为中心部件 <br>
+     * 设置标题、大小并显示
+     */
     private void createInfo() {
         BorderPane pane = new BorderPane();
         pane.setTop(StaticValue.getNewTopHBox());
@@ -30,6 +40,9 @@ public class Info {
         StaticValue.stage.show();
     }
 }
+/**
+ * 修改密码类.
+ */
 class CenterChangePwd {
     VBox vBox = new VBox();
     Label title = new Label("修改密码");
@@ -120,12 +133,37 @@ class CenterChangePwd {
     }
 }
 
+/**
+ * 个人信息提示类.
+ */
 class InfoAlert {
+    /**
+     * 显示s作为提示内容
+     * @param s
+     */
     InfoAlert(String s) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage alert = new Stage();
+        BorderPane pane = new BorderPane();
+        pane.setStyle("-fx-background-color: rgb(32,34,151)");
+        Text text = new Text(s);
+        text.setFont(Font.font("宋体",20));
+        text.setFill(Color.rgb(245,202,42));
+        Button button = new Button("确定");
+        button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        button.setOnAction(e -> {
+            alert.close();
+        });
+        button.setOnMouseMoved(e -> {
+            button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 16");
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        });
+        pane.setCenter(text);
+        pane.setBottom(button);
+        pane.setMargin(button,new Insets(0,0,20,130));
         alert.setTitle("提示信息");
-        alert.setHeaderText("");
-        alert.setContentText(s);
+        alert.setScene(new Scene(pane,300,160));
         alert.show();
     }
 }

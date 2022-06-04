@@ -12,36 +12,60 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
+/**
+ * @author maple826
+ * 登陆类.
+ * <p>
+ *     创建登录页面 <br>
+ *     具有注册、登录功能
+ * </p>
+ */
 public class Login{
     public static Stage stage;
     Label iconLabel = new LoginIconLabel().getLoginIconLabel();
-    //BorderPane内部组件按Top，Bottom，Left，Right，Center排布
+    /**
+     * BorderPane内部分为上下左右中五个区域
+     */
     BorderPane loginPane = new BorderPane();
     TextField loginName = new TextField();
     PasswordField loginPwd = new PasswordField();
     Button registerButton = new RegisterButton(loginName,loginPwd).getRegisterButton();
     Button loginButton = new LoginButton(loginName,loginPwd).getLoginButton();
-    //FlowPane内部组件按行排布
-    //两个Pane分别放置用户名及输入框，密码及输入框
+    /**
+     * FlowPane内部水平排布
+     */
     FlowPane loginNamePane = new FlowPane(new LoginNameText().getLoginNameText(),loginName);
     FlowPane loginPwdPane = new FlowPane(new LoginPwdText().getLoginPwdText(),loginPwd);
-    //空白占位，使用户名、密码间，密码、按钮间存在一行的空隙
     FlowPane loginBlankPane1 = new FlowPane(new Text(""));
     FlowPane loginBlankPane2 = new FlowPane(new Text(""));
-    //放置按钮组件
     FlowPane buttonPane = new FlowPane(registerButton,loginButton);
-    //VBox内部按列排布
+    /**
+     * VBox内部竖直排布
+     */
     VBox loginVBox = new VBox(loginNamePane,loginBlankPane1,loginPwdPane,loginBlankPane2,buttonPane);
 
+    /**
+     * 构造函数.
+     * <p>
+     *     设置UI样式 <br>
+     *     创建登陆界面
+     * </p>
+     * @param stage
+     */
     public Login(Stage stage) {
         this.stage = stage;
         setStyle();
         createLogin();
     }
 
+    /**
+     * 创建登陆界面.
+     * <p>
+     *     调整组件位置 <br>
+     *     设置标题，展示界面
+     * </p>
+     */
     private void createLogin() {
-        //setAlignment定义组件在BorderPane内部五种位置之一的相对位置，例如：BorderPane的Top的CENTER
-        //setMargin设置组件周围间距
         loginNamePane.setAlignment(Pos.CENTER);
         loginBlankPane1.setAlignment(Pos.CENTER);
         loginPwdPane.setAlignment(Pos.CENTER);
@@ -61,6 +85,14 @@ public class Login{
         stage.show();
     }
 
+    /**
+     * 设置UI样式.
+     * <p>
+     *     背景颜色为 #203A97 <br>
+     *     字体颜色为 #F5CA2A <br>
+     *     鼠标移动到登录、注册按钮⑩，相应按钮颜色、大小将会改变
+     * </p>
+     */
     private void setStyle() {
         //loginVBox.setStyle("-fx-background-image: url('"+ "../image/img.png" + "')");
         loginPane.setStyle("-fx-background-color: #203A97");
@@ -88,6 +120,9 @@ public class Login{
     }
 }
 
+/**
+ * 学业助理图标.
+ */
 class LoginIconLabel {
     private Label iconLable = new Label("学业助理");
     Label getLoginIconLabel() {
@@ -99,6 +134,9 @@ class LoginIconLabel {
     }
 }
 
+/**
+ * 用户名.
+ */
 class LoginNameText {
     private Text loginNameText = new Text("用户名 ");
     Text getLoginNameText() {
@@ -110,6 +148,9 @@ class LoginNameText {
     }
 }
 
+/**
+ * 密码.
+ */
 class LoginPwdText {
     private Text loginPwdText = new Text("密码    ");
     Text getLoginPwdText() {
@@ -121,6 +162,12 @@ class LoginPwdText {
     }
 }
 
+/**
+ * 注册按钮.
+ * <p>
+ *     点击后首先判断用户名是否存在，存在则提示，否则在data目录下新建该用户
+ * </p>
+ */
 class RegisterButton {
     private Button registerButton = new Button("注册");
     RegisterButton(TextField na,TextField pw) {
@@ -159,6 +206,12 @@ class RegisterButton {
     }
 }
 
+/**
+ * 登录按钮.
+ * <p>
+ *     点击后会验证用户名是否存在及密码是否正确，正确则进入Home界面，否则提示用户名不存在或密码错误
+ * </p>
+ */
 class LoginButton {
     private Button loginButton = new Button("登录");
     LoginButton(TextField na,TextField pw) {
@@ -188,14 +241,37 @@ class LoginButton {
         return this.loginButton;
     }
 }
-
+/**
+ * 提示信息.
+ */
 class LoginAlert {
+    /**
+     * 构造函数.
+     * @param s 提示信息内容
+     */
     LoginAlert(String s) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage alert = new Stage();
+        BorderPane pane = new BorderPane();
+        pane.setStyle("-fx-background-color: rgb(32,34,151)");
+        Text text = new Text(s);
+        text.setFont(Font.font("宋体",20));
+        text.setFill(Color.rgb(245,202,42));
+        Button button = new Button("确定");
+        button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        button.setOnAction(e -> {
+            alert.close();
+        });
+        button.setOnMouseMoved(e -> {
+            button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 16");
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        });
+        pane.setCenter(text);
+        pane.setBottom(button);
+        pane.setMargin(button,new Insets(0,0,20,130));
         alert.setTitle("提示信息");
-        alert.setHeaderText("");
-        alert.setContentText(s);
-        alert.initOwner(Login.stage);
+        alert.setScene(new Scene(pane,300,160));
         alert.show();
     }
 }

@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了登录、主页、个人信息界面的UI设计">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="进一步优化了登录、主页、个人信息界面的UI设计">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +116,8 @@
       <workItem from="1654137995456" duration="4389000" />
       <workItem from="1654178505609" duration="5833000" />
       <workItem from="1654218789089" duration="4104000" />
-      <workItem from="1654260396457" duration="8192000" />
+      <workItem from="1654260396457" duration="12299000" />
+      <workItem from="1654305940792" duration="9709000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -222,7 +224,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654223906536</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="进一步优化了登录、主页、个人信息界面的UI设计">
+      <created>1654269359851</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1654269359851</updated>
+    </task>
+    <task id="LOCAL-00017" summary="进一步优化了登录、主页、个人信息界面的UI设计">
+      <created>1654269452775</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1654269452775</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +269,7 @@
     <MESSAGE value="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug" />
     <MESSAGE value="修复了课程界面显示多余横线的bug" />
     <MESSAGE value="优化了登录、主页、个人信息界面的UI设计" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化了登录、主页、个人信息界面的UI设计" />
+    <MESSAGE value="进一步优化了登录、主页、个人信息界面的UI设计" />
+    <option name="LAST_COMMIT_MESSAGE" value="进一步优化了登录、主页、个人信息界面的UI设计" />
   </component>
 </project>
