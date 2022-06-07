@@ -29,6 +29,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 class Test{
     public static void main(String[] args){
@@ -284,12 +285,17 @@ class Material_alert {
             TextField textField_content = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
             HBox hBox1 = new HBox(text_name,textField_name);
             HBox hBox2 = new HBox(yes,no);
             HBox hBox3 = new HBox(text_content,textField_content);
             VBox vBox = new VBox(hBox1,hBox3,hint);
             vBox.setSpacing(StaticValue.stageHeight / 30);
             hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(vBox);
 
@@ -334,7 +340,7 @@ class Material_alert {
         }
 
     }
-    //    mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
+
     Material_alert(String s,String course,int mat_or_bkm) {
 
         if(s.equals("Add")) {
@@ -346,10 +352,15 @@ class Material_alert {
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
             HBox hBox1 = new HBox(text,textField);
             VBox vBox = new VBox(hBox1,text1);
             vBox.setSpacing(StaticValue.stageHeight / 30);
             HBox hBox2 = new HBox(yes,no);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
             hBox2.setAlignment(Pos.CENTER);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(vBox);
@@ -483,7 +494,7 @@ class Material_alert {
             alert.show();
         }
     }
-//    mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
+
     Material_alert(String s,String name,String course,int mat_or_bkm) {
         if(s.equals("Delete")) {
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -507,6 +518,7 @@ class Material_alert {
 
             alert.initOwner(Course.stage);
             alert.show();
+
             alert.setOnCloseRequest(e -> {
                 ButtonType result = alert.getResult();
                 if (result != null && result.equals(buttonYes)) {
@@ -533,6 +545,7 @@ class Material_alert {
                     alert.close();
                 }
             });
+
         }
         else if(s.equals("Edit")) {
             Text text;
@@ -546,9 +559,14 @@ class Material_alert {
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
             HBox hBox1 = new HBox(text,textField);
             HBox hBox2 = new HBox(yes,no);
             hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
@@ -592,63 +610,3 @@ class Material_alert {
 }
 
 
-class  MyMouseListener
-        extends  java.awt.event.MouseAdapter  {
-    private static boolean flag=false;//用来判断是否已经执行双击事件
-    private static int clickNum=0;//用来判断是否该执行双击事件
-
-    public void mouseClicked(MouseEvent e) {
-        final MouseEvent me=e;//事件源
-
-        this.flag=false;//每次点击鼠标初始化双击事件执行标志为false
-
-        if (this.clickNum == 1) {//当clickNum==1时执行双击事件
-            this.mouseDoubleClicked(me);//执行双击事件
-            this.clickNum=0;//初始化双击事件执行标志为0
-            this.flag=true;//双击事件已执行,事件标志为true
-            return;
-        }
-
-        //定义定时器
-        java.util.Timer timer=new java.util.Timer();
-
-        //定时器开始执行,延时0.2秒后确定是否执行单击事件
-        timer.schedule(new java.util.TimerTask() {
-            private int n=0;//记录定时器执行次数
-            public void run() {
-                if(MyMouseListener.flag){//如果双击事件已经执行,那么直接取消单击执行
-                    n=0;
-                    MyMouseListener.clickNum=0;
-                    this.cancel();
-                    return;
-                }
-                if (n == 1) {//定时器等待0.2秒后,双击事件仍未发生,执行单击事件
-                    mouseSingleClicked(me);//执行单击事件
-                    MyMouseListener.flag = true;
-                    MyMouseListener.clickNum=0;
-                    n=0;
-                    this.cancel();
-                    return;
-                }
-                clickNum++;
-                n++;
-            }
-        },new java.util.Date(),200);
-    }
-
-    /**
-     * 鼠标单击事件
-     * @param e 事件源参数
-     */
-    public void mouseSingleClicked(MouseEvent e){
-        System.out.println("Single Clicked!");
-    }
-
-    /**
-     * 鼠标双击事件
-     * @param e 事件源参数
-     */
-    public void mouseDoubleClicked(MouseEvent e){
-        System.out.println("Doublc Clicked!");
-    }
-}
