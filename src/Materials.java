@@ -1,4 +1,3 @@
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -28,14 +27,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
 
 class Test{
     public static void main(String[] args){
 
     }
 }
+//用于获得某路径下文件
 class All_materials {
 //    传入路径（例：".//data//user1//资源//course1"）,遍历取得所有资源存入ArrayList res中
     public static void get_materials(String path, ArrayList<String> res){
@@ -61,13 +59,14 @@ public class Materials{
         create_materials();
     }
     private void create_materials(){
-
         material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
         material_pane.getScene().setRoot(material_pane);
+
         Course.stage.show();
     }
 
 }
+//中心滚动栏
 class Center_scroller_pane{
     private ScrollPane mat_pane = new ScrollPane();
     private VBox mat_vbox = new VBox();
@@ -108,7 +107,7 @@ class Center_scroller_pane{
         mat_vbox.setPadding(new Insets(StaticValue.stageHeight/10,0,0,StaticValue.stageWidth/3));
         Text title_mat = new Text("资料");
         title_mat.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
-        title_mat.setFill(Color.BLUE);
+        title_mat.setFill(Color.rgb(245,202,42));
         mat_vbox.getChildren().add(title_mat);
         Button buttons[] = new Button[mat_list.size()];
 
@@ -128,7 +127,7 @@ class Center_scroller_pane{
 
         Text title_bkmark = new Text("书签链接");
         title_bkmark.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
-        title_bkmark.setFill(Color.BLUE);
+        title_bkmark.setFill(Color.rgb(245,202,42));
         mat_vbox.getChildren().add(title_bkmark);
 
         Hyperlink options[] = new Hyperlink[bkmark_list.size()];
@@ -153,6 +152,7 @@ class Mat_button{
     Mat_button(String material,String course){
         mat = material;
         button = new Button(mat);
+//        设置右键菜单
         menu = new ContextMenu();
         MenuItem itemDel = new MenuItem("删除");
         MenuItem itemEdit = new MenuItem("编辑");
@@ -206,6 +206,7 @@ class Bkmark_hplink{
 
 
         hyperlink = new Hyperlink(hplink_name);
+//        设置右键菜单
         menu = new ContextMenu();
         MenuItem itemDel = new MenuItem("删除");
         MenuItem itemEdit = new MenuItem("编辑");
@@ -239,7 +240,7 @@ class Bkmark_hplink{
                             ex.printStackTrace();
                         }
 
-                        //创建一个url,默认浏览器打开
+                        //创建一个url,使用默认浏览器打开
                         try {
                             URI url = new URI(bkmark_url);
                             java.awt.Desktop.getDesktop().browse(url);
@@ -249,7 +250,7 @@ class Bkmark_hplink{
                     }
 
                 };
-        // when hyperlink is pressed
+        // 按下链接后
         hyperlink.setOnAction(event);
         hyperlink.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -271,9 +272,10 @@ class Bkmark_hplink{
     }
 
 }
+//    提示信息类，mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
 class Material_alert {
-    //    mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
-    //    此构造函数的Add专为生成新书签使用
+
+    //    此构造函数专为生成新书签使用
     Material_alert(String s,String course){
         if(s.equals("Add")){
             Text text_name = new Text("请输入书签名称：");
@@ -340,7 +342,7 @@ class Material_alert {
         }
 
     }
-
+//    此构造函数用于生成新资料等功能
     Material_alert(String s,String course,int mat_or_bkm) {
 
         if(s.equals("Add")) {
@@ -370,6 +372,7 @@ class Material_alert {
             Stage alert = new Stage();
             alert.initModality(Modality.APPLICATION_MODAL);
             Scene mat_scene = new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5);
+//            实现拖拽文件功能
             mat_scene.setOnDragDropped(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent event) {
@@ -453,6 +456,7 @@ class Material_alert {
 
             });
         }
+//        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("提示信息");
@@ -461,6 +465,7 @@ class Material_alert {
             alert.show();
             new Materials(Materials.material_pane,course);
         }
+//        提示信息——添加成功
         else if(s.equals("SuccessAdd")){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("提示信息");
@@ -469,6 +474,7 @@ class Material_alert {
             alert.show();
             new Materials(Materials.material_pane,course);
         }
+//        提示信息——已存在
         else if(s.equals("Exist")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("提示信息");
@@ -481,21 +487,10 @@ class Material_alert {
             }
             alert.show();
         }
-        else if(s.equals("Exit")){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            if(mat_or_bkm == 0){
-                alert.setContentText("该资料已存在！");
-            }
-            else{
-                alert.setContentText("该书签已存在！");
-            }
-            alert.show();
-        }
     }
-
+//    删除和编辑的提示信息
     Material_alert(String s,String name,String course,int mat_or_bkm) {
+//        提示信息——删除
         if(s.equals("Delete")) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             ButtonType buttonYes = new ButtonType("确定");
@@ -547,6 +542,7 @@ class Material_alert {
             });
 
         }
+//        提示信息——编辑
         else if(s.equals("Edit")) {
             Text text;
             if(mat_or_bkm == 0){
