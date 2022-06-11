@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -18,17 +19,35 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-
+/**
+ * @author maple826
+ * 课程资料类
+ * <p>
+ *     用户选择 “课程资料” 按钮后的界面 <br>
+ *     具有课程添加、删除、编辑功能
+ * </p>
+ */
 public class Course {
     static Stage stage;
     BorderPane coursePane = new BorderPane();
     HBox courseTopHBox = StaticValue.getNewTopHBox();
     ScrollPane courseLeftScrollPane = new CourseLeftScrollPane().getPane();
-
+    /**
+     * 构造函数.
+     * <p>
+     *     创建界面
+     * </p>
+     */
     public Course() {
         this.stage = StaticValue.stage;
         createCourse();
     }
+    /**
+     * 创建课程界面.
+     * <p>
+     *     调整组件位置
+     * </p>
+     */
     private void createCourse() {
         coursePane.setTop(courseTopHBox);
         coursePane.setLeft(courseLeftScrollPane);
@@ -37,11 +56,20 @@ public class Course {
         stage.show();
     }
 }
-
+/**
+ * 左侧滚动栏类.
+ */
 class CourseLeftScrollPane {
     private ScrollPane pane = new ScrollPane();
     private VBox vBox = new VBox();
     private ContextMenu menu;
+    /**
+     * 构造函数.
+     * <p>
+     *     设置右键添加课程功能 <br>
+     *     创建界面
+     * </p>
+     */
     CourseLeftScrollPane() {
         vBox.setSpacing(StaticValue.stageHeight / 20);
         File f = new File("./data/" + StaticValue.userName + "/资源");
@@ -75,25 +103,49 @@ class CourseLeftScrollPane {
         itemAdd.setOnAction(e -> {
             new CourseAlert("Add");
         });
-    }
 
+    }
+    /**
+     * 获取该滚动栏
+     */
     public ScrollPane getPane() {
         return pane;
     }
 }
-
+/**
+ * 课程按钮类.
+ */
 class CourseButton {
     private String course;
     private Button button;
     private ContextMenu menu;
+    /**
+     * 构造函数.
+     * 根据传入的课程名建立button
+     * @param course 当前课程
+     */
     public CourseButton(String course) {
         this.course = course;
-        button = new Button(course);
-        button.setFont(Font.font("宋体",24));
-        menu = new ContextMenu();
         MenuItem itemDel = new MenuItem("删除");
         MenuItem itemEdit = new MenuItem("编辑");
+
+        button = new Button(course);
+        button.setFont(Font.font("宋体",24));
+        button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 24");
+        menu = new ContextMenu();
+
         menu.getItems().addAll(itemDel,itemEdit);
+
+        //当鼠标进入按钮时添加阴影特效
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.rgb(67,173,217));
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            button.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            button.setEffect(null);
+        });
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if(event.getButton().equals(MouseButton.SECONDARY)) {
@@ -116,8 +168,14 @@ class CourseButton {
         return button;
     }
 }
-
+/**
+ * 提示信息类.
+ */
 class CourseAlert {
+    /**
+     * 构造函数.
+     * @param s 指令
+     */
     CourseAlert(String s) {
         if(s.equals("Exit")) {
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -146,6 +204,7 @@ class CourseAlert {
             alert.setContentText("该课程已存在！");
             alert.show();
         }
+        //        提示信息——添加成功
         else if(s.equals("SuccessAdd")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("提示信息");
@@ -154,6 +213,7 @@ class CourseAlert {
             alert.show();
             new Course();
         }
+        //        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("提示信息");
@@ -202,6 +262,12 @@ class CourseAlert {
             });
         }
     }
+    /**
+     * 构造函数.
+     * 实现编辑、删除功能
+     * @param course 课程
+     * @param s 指令
+     */
     CourseAlert(String s,String course) {
         if(s.equals("Delete")) {
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -233,8 +299,13 @@ class CourseAlert {
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
             HBox hBox1 = new HBox(text,textField);
             HBox hBox2 = new HBox(yes,no);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
             hBox2.setAlignment(Pos.CENTER);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);

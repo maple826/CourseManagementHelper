@@ -3,7 +3,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -18,24 +17,61 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.application.*;
 import java.awt.*;
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
-class Test{
-    public static void main(String[] args){
-
+/**
+ * @author AboveParadise
+ * 各课程的资料类，分为本地文件、书签链接两部分
+ * <p>
+ *     用户选择 “课程资料” 按钮后各课程的 学习资料 & 书签链接 页面 <br>
+ *     本地文件具有添加、编辑、删除功能，可以拖拽本地文件至窗口中 <br>
+ *     书签链接具有添加、编辑、删除功能，单击书签可唤醒默认浏览器打开网址 <br>
+ * </p>
+ */
+public class Materials{
+    public static BorderPane material_pane;
+    public static String course;
+    /**
+     * 构造函数.
+     * <p>
+     *     根据不同课程创建对应的资料界面
+     * </p>
+     * @param pane  Course.java传入的BorderPane
+     * @param course 当前课程
+     */
+    public Materials(BorderPane pane,String course){
+        material_pane = pane;
+        this.course = course;
+        create_materials();
     }
+    /**
+     * 创建资料界面.
+     * <p>
+     *     调整组件位置 <br>
+     *     重设Scene的root
+     * </p>
+     */
+    private void create_materials(){
+        material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
+        material_pane.getScene().setRoot(material_pane);
+        Course.stage.show();
+    }
+
 }
-//用于获得某路径下文件
+/**
+ * 用于获得某路径下文件的类.
+ */
 class All_materials {
-//    传入路径（例：".//data//user1//资源//course1"）,遍历取得所有资源存入ArrayList res中
+    /**
+     * 遍历传入路径文件夹取得所有资源存入res中
+     * @param path 传入路径（例：".//data//user1//资源//course1"）.
+     * @param res 将所有资源存入ArrayList res中
+     */
     public static void get_materials(String path, ArrayList<String> res){
         File file = new File(path);
         int i ;
@@ -49,24 +85,9 @@ class All_materials {
     }
 
 }
-public class Materials{
-    public static BorderPane material_pane;
-    public static String course;
-
-    public Materials(BorderPane pane,String course){
-        material_pane = pane;
-        this.course = course;
-        create_materials();
-    }
-    private void create_materials(){
-        material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
-        material_pane.getScene().setRoot(material_pane);
-
-        Course.stage.show();
-    }
-
-}
-//中心滚动栏
+/**
+ * 中心滚动栏类.
+ */
 class Center_scroller_pane{
     private ScrollPane mat_pane = new ScrollPane();
     private VBox mat_vbox = new VBox();
@@ -74,9 +95,15 @@ class Center_scroller_pane{
     private ArrayList mat_list = new ArrayList<>();
     private ArrayList bkmark_list = new ArrayList();
     private ContextMenu menu;
+    /**
+     * 构造函数.
+     * <p>
+     *     设置右键添加资料/书签功能 <br>
+     *     分本地资料、书签链接两部分创建界面
+     * </p>
+     */
     Center_scroller_pane(){
         int i;
-//        设置右键添加资料/书签功能
         menu = new ContextMenu();
         MenuItem itemAddMat = new MenuItem("添加资料");
         MenuItem itemAddBkm = new MenuItem("添加书签");
@@ -97,9 +124,9 @@ class Center_scroller_pane{
         itemAddBkm.setOnAction(e -> {
             new Material_alert("Add",Materials.course);
         });
-        /***
-         第一部分——本地资料
-         ***/
+        /*
+         * 第一部分——本地资料
+         */
         try{
             All_materials.get_materials(".//data//"+StaticValue.userName+"//资源//"+Materials.course, mat_list);
         }catch(NullPointerException exc){};
@@ -117,9 +144,9 @@ class Center_scroller_pane{
             VBox.setMargin(buttons[i], new Insets(0, 0, 0, 8)); //为每个节点设置外边距
             mat_vbox.getChildren().add(buttons[i]);
         }
-        /***
-        第二部分——书签链接
-        ***/
+        /*
+         * 第二部分——书签链接
+         */
         try{
             All_materials.get_materials(".//data//"+StaticValue.userName+"//资源//"+
                     Materials.course+"//书签链接", bkmark_list);
@@ -139,16 +166,27 @@ class Center_scroller_pane{
         }
         mat_pane.setContent(mat_vbox);
     }
+    /**
+     * 获取该滚动栏
+     */
     public ScrollPane get_mat_pane(){
         return mat_pane;
     }
 
 }
-//根据传入的本地资料名建立button
+/**
+ * 本地资料按钮类.
+ */
 class Mat_button{
     private String mat;
     private ContextMenu menu;
     private Button button;
+    /**
+     * 构造函数.
+     * 根据传入的本地资料名建立button
+     * @param course 当前课程
+     * @param material 该课程的本地资料
+     */
     Mat_button(String material,String course){
         mat = material;
         button = new Button(mat);
@@ -184,15 +222,26 @@ class Mat_button{
             new Material_alert("Edit",button.getText(),course,0);
         });
     }
+    /**
+     * 获取该按钮
+     */
     public Button getButton(){
         return button;
     }
 }
-//根据传入的书签名建立hyperlink
+/**
+ * 书签链接类.
+ */
 class Bkmark_hplink{
     private String bkmark;
     private ContextMenu menu;
     private Hyperlink hyperlink;
+    /**
+     * 构造函数.
+     * 根据传入的书签名建立Hyperlink
+     * @param course 当前课程
+     * @param bkm 该课程的书签
+     */
     Bkmark_hplink(String bkm,String course){
         bkmark = bkm;
 //        删除书签文件名的后缀作为hyperlink的名字
@@ -267,15 +316,25 @@ class Bkmark_hplink{
             new Material_alert("Edit",bkm,course,1);
         });
     }
+    /**
+     * 获取该链接
+     */
     public Hyperlink getHyperlink(){
         return hyperlink;
     }
 
 }
-//    提示信息类，mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
+/**
+ * 提示信息类.
+ * mat_or_bkm用于判定是本地资料还是书签链接,前者为0后者为1
+ */
 class Material_alert {
-
-    //    此构造函数专为生成新书签使用
+    /**
+     * 构造函数.
+     * 专为生成新书签使用
+     * @param course 当前课程
+     * @param s 指令
+     */
     Material_alert(String s,String course){
         if(s.equals("Add")){
             Text text_name = new Text("请输入书签名称：");
@@ -342,7 +401,13 @@ class Material_alert {
         }
 
     }
-//    此构造函数用于生成新资料等功能
+    /**
+     * 构造函数.
+     * 用于生成新资料等功能
+     * @param course 当前课程
+     * @param s 指令
+     * @param mat_or_bkm 区分是本地文件还是书签链接
+     */
     Material_alert(String s,String course,int mat_or_bkm) {
 
         if(s.equals("Add")) {
@@ -488,7 +553,15 @@ class Material_alert {
             alert.show();
         }
     }
-//    删除和编辑的提示信息
+    /**
+     * 构造函数.
+     * 删除和编辑的提示信息
+     * @param course 当前课程
+     * @param name 删除的对象
+     * @param s 指令
+     * @param mat_or_bkm 本地文件还是书签链接
+     */
+//
     Material_alert(String s,String name,String course,int mat_or_bkm) {
 //        提示信息——删除
         if(s.equals("Delete")) {
