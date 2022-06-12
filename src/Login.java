@@ -189,6 +189,8 @@ class RegisterButton {
                 FileWriter writer = new FileWriter(f);
                 writer.write(pwd);
                 writer.flush();
+                f.setReadable(false);
+                f.setWritable(false);
                 new LoginAlert("注册成功！");
                 f = new File("./data/" + name + "/ddl.txt");
                 f.createNewFile();
@@ -223,9 +225,12 @@ class LoginButton {
                 return;
             }
             try {
+                File f1 = new File("./data/" + name + "/pwd.txt");
+                f1.setReadable(true);
                 FileReader reader = new FileReader("./data/" + name + "/pwd.txt");
                 char[] buf = new char[1024];
                 int len = reader.read(buf);
+                f1.setReadable(false);
                 if(!new String(buf,0,len).equals(pwd)) {
                     new LoginAlert("密码错误！");
                     return;

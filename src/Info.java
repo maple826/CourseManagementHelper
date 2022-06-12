@@ -73,9 +73,12 @@ class CenterChangePwd {
             String new2 = newPwd2.getText();
             String pwd = "";
             try {
+                File f = new File("./data/" + StaticValue.userName + "/pwd.txt");
+                f.setReadable(true);
                 FileReader reader = new FileReader("./data/" + StaticValue.userName + "/pwd.txt");
                 char[] buf = new char[1024];
                 int len = reader.read(buf);
+                f.setReadable(false);
                 pwd = new String(buf,0,len);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -96,9 +99,12 @@ class CenterChangePwd {
             }
             FileWriter writer = null;
             try {
-                writer = new FileWriter(new File("./data/" + StaticValue.userName + "/pwd.txt"));
+                File f = new File("./data/" + StaticValue.userName + "/pwd.txt");
+                f.setWritable(true);
+                writer = new FileWriter(f);
                 writer.write(new1);
                 writer.flush();
+                f.setWritable(false);
                 new InfoAlert("修改成功！");
             } catch (IOException ex) {
                 ex.printStackTrace();
