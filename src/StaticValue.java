@@ -16,7 +16,7 @@ import java.text.ParseException;
 
 public class StaticValue {
     static Stage stage;
-    static double stageWidth = 900;
+    static double stageWidth = 920;
     static double stageHeight = 500;
     static String userName = "zhangyichi";
     static String course;

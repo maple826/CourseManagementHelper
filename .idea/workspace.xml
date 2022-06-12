@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="修复了添加课程时初始化资源文件的bug">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_26_15_04_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_26_15_04__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/Materials.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/Memorandum.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Materials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Materials.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +103,6 @@
       <workItem from="1653055519765" duration="145000" />
       <workItem from="1653204022519" duration="1364000" />
       <workItem from="1653648629890" duration="3284000" />
-
       <workItem from="1653736365397" duration="12723000" />
       <workItem from="1653752684558" duration="1000" />
       <workItem from="1653752851912" duration="888000" />
@@ -116,9 +110,10 @@
       <workItem from="1653756493706" duration="235000" />
       <workItem from="1653811828792" duration="341000" />
       <workItem from="1653812201980" duration="935000" />
-
       <workItem from="1653788367493" duration="1000" />
-
+      <workItem from="1653815268839" duration="892000" />
+      <workItem from="1654797189385" duration="211000" />
+      <workItem from="1654839848305" duration="922000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
