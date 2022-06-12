@@ -49,6 +49,7 @@ public class Course {
      * </p>
      */
     private void createCourse() {
+        coursePane.setStyle("-fx-background-color: #203A97");
         coursePane.setTop(courseTopHBox);
         coursePane.setLeft(courseLeftScrollPane);
         stage.setScene(new Scene(coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
@@ -71,6 +72,8 @@ class CourseLeftScrollPane {
      * </p>
      */
     CourseLeftScrollPane() {
+
+        vBox.setStyle("-fx-background-color: #203A97");
         vBox.setSpacing(StaticValue.stageHeight / 20);
         File f = new File("./data/" + StaticValue.userName + "/资源");
         File[] tmp = f.listFiles();
@@ -86,7 +89,8 @@ class CourseLeftScrollPane {
         }
 
         pane.setContent(vBox);
-
+        pane.setFitToHeight(true);
+//        pane.setFitToWidth(true);
         menu = new ContextMenu();
         MenuItem itemAdd = new MenuItem("添加");
         menu.getItems().add(itemAdd);
@@ -103,7 +107,8 @@ class CourseLeftScrollPane {
         itemAdd.setOnAction(e -> {
             new CourseAlert("Add");
         });
-
+        pane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        pane.setStyle("-fx-background-color: #203A97");
     }
     /**
      * 获取该滚动栏
@@ -131,7 +136,7 @@ class CourseButton {
 
         button = new Button(course);
         button.setFont(Font.font("宋体",24));
-        button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 24");
+        button.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 21");
         menu = new ContextMenu();
 
         menu.getItems().addAll(itemDel,itemEdit);
@@ -198,20 +203,12 @@ class CourseAlert {
             });
         }
         else if(s.equals("Exist")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            alert.setContentText("该课程已存在！");
-            alert.show();
+            new LoginAlert("该课程已存在");
         }
         //        提示信息——添加成功
         else if(s.equals("SuccessAdd")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            alert.setContentText("添加成功！");
-            alert.show();
             new Course();
+            new LoginAlert("添加成功");
         }
         //        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
@@ -219,28 +216,55 @@ class CourseAlert {
             alert.setTitle("提示信息");
             alert.setHeaderText("");
             alert.setContentText("更改成功！");
+            alert.setHeight(200);
             alert.show();
             new Course();
         }
+        else if(s.equals("Wrong")){
+//            借用Login.java中生成提升窗口的功能
+            new LoginAlert("请输入正确的课程名！");
+        }
         else if(s.equals("Add")) {
             Text text = new Text("请输入课程名称：");
+            text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
+            String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 18";
+            yes.setStyle(buttonStyle1);
+            no.setStyle(buttonStyle1);
             HBox hBox1 = new HBox(text,textField);
             HBox hBox2 = new HBox(yes,no);
             hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
+            borderPane.setStyle("-fx-background-color: #203A97");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
+            alert.setHeight(160);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
             alert.show();
-
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            no.setOnMouseMoved(e -> {
+                no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
             no.setOnAction(e -> {
                 alert.close();
             });
@@ -288,19 +312,25 @@ class CourseAlert {
                         ex.printStackTrace();
                     }
                     new Course();
+                    new LoginAlert("删除成功！");
                 } else {
                     alert.close();
                 }
             });
+
         }
         else if(s.equals("Edit")) {
             Text text = new Text("请输入新课程名称：");
+            text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
             yes.setFont(Font.font("Microsoft YaHei", 18));
             no.setFont(Font.font("Microsoft YaHei", 18));
+            String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 18";
+            yes.setStyle(buttonStyle1);
+            no.setStyle(buttonStyle1);
             yes.setPadding(new Insets(10));
             no.setPadding(new Insets(10));
             HBox hBox1 = new HBox(text,textField);
@@ -311,24 +341,48 @@ class CourseAlert {
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
             borderPane.setMargin(hBox1,new Insets(30));
+            borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.setHeight(2/5 * StaticValue.stageHeight);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
+            alert.setHeight(180);
             alert.show();
-
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            no.setOnMouseMoved(e -> {
+                no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
             no.setOnAction(e -> {
                 alert.close();
             });
 
             yes.setOnAction(e -> {
                 String newCourse = textField.getText();
+                if(newCourse.equals("")){
+                    new CourseAlert("Wrong");
+                    return;
+                }
                 File f1 = new File("./data/" + StaticValue.userName + "/资源/" + course);
                 File f2 = new File("./data/" + StaticValue.userName + "/资源/" + newCourse);
+                if(f2.exists()) {
+                    alert.close();
+                    new CourseAlert("Exist");
+                    return;
+                }
                 alert.close();
                 f1.renameTo(f2);
-                new CourseAlert("SuccessEdit");
+//                new CourseAlert("SuccessEdit");
                 new Course();
+                new LoginAlert("更改成功");
             });
         }
     }
