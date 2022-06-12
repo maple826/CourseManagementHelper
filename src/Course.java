@@ -49,6 +49,7 @@ public class Course {
      * </p>
      */
     private void createCourse() {
+        courseLeftScrollPane.setStyle("-fx-background-color: #203A97");
         coursePane.setStyle("-fx-background-color: #203A97");
         coursePane.setTop(courseTopHBox);
         coursePane.setLeft(courseLeftScrollPane);
@@ -75,6 +76,10 @@ class CourseLeftScrollPane {
 
         vBox.setStyle("-fx-background-color: #203A97");
         vBox.setSpacing(StaticValue.stageHeight / 20);
+        Text text_course = new Text("课程");
+        text_course.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
+        text_course.setFill(Color.rgb(245,202,42));
+        vBox.getChildren().add(text_course);
         File f = new File("./data/" + StaticValue.userName + "/资源");
         File[] tmp = f.listFiles();
         String[] course = new String[tmp.length];
@@ -90,7 +95,7 @@ class CourseLeftScrollPane {
 
         pane.setContent(vBox);
         pane.setFitToHeight(true);
-//        pane.setFitToWidth(true);
+        pane.setFitToWidth(true);
         menu = new ContextMenu();
         MenuItem itemAdd = new MenuItem("添加");
         menu.getItems().add(itemAdd);
@@ -212,13 +217,8 @@ class CourseAlert {
         }
         //        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            alert.setContentText("更改成功！");
-            alert.setHeight(200);
-            alert.show();
             new Course();
+            new LoginAlert("更改成功！");
         }
         else if(s.equals("Wrong")){
 //            借用Login.java中生成提升窗口的功能
@@ -248,7 +248,7 @@ class CourseAlert {
             borderPane.setStyle("-fx-background-color: #203A97");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
-            alert.setHeight(160);
+            alert.setHeight(170);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
@@ -294,30 +294,47 @@ class CourseAlert {
      */
     CourseAlert(String s,String course) {
         if(s.equals("Delete")) {
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            ButtonType buttonYes = new ButtonType("确定");
-            ButtonType buttonNo = new ButtonType("取消");
-            alert.getButtonTypes().setAll(buttonYes, buttonNo);
+            Text text = new Text("确定要删除课程：" + course + " 吗？");
+            text.setFill(Color.rgb(245,202,42));
+            text.setFont(Font.font("宋体",18));
+            Button yes = new Button("确定");
+            Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
+            String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 18";
+            yes.setStyle(buttonStyle1);
+            no.setStyle(buttonStyle1);
+            HBox hBox1 = new HBox(text);
+            HBox hBox2 = new HBox(yes,no);
+            hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
+            BorderPane borderPane = new BorderPane();
+            borderPane.setCenter(hBox1);
+            borderPane.setBottom(hBox2);
+            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setMargin(hBox1,new Insets(30));
+            Stage alert = new Stage();
+            alert.setHeight(170);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            alert.setContentText("确定要删除课程：" + course + " 吗？");
-            alert.initOwner(StaticValue.stage);
             alert.show();
-            alert.setOnCloseRequest(e -> {
-                ButtonType result = alert.getResult();
-                if (result != null && result.equals(buttonYes)) {
-                    try {
-                        StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" + course));
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    new Course();
-                    new LoginAlert("删除成功！");
-                } else {
-                    alert.close();
-                }
-            });
 
+            yes.setOnAction(e -> {
+                try {
+                    StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" + course));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                new Course();
+                alert.close();
+                new LoginAlert("删除成功！");
+            });
+            no.setOnAction(event -> {
+                alert.close();
+            });
         }
         else if(s.equals("Edit")) {
             Text text = new Text("请输入新课程名称：");
