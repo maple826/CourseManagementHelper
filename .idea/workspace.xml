@@ -9,6 +9,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_26_15_04__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_29_9_22_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/Memorandum.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/ddl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/资源/操作系统/书签链接/实验指导书.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/1/资源/操作系统/期末考试.word" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/Memorandum.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/123/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +47,22 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Login.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Course.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Home.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Info.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/StaticValue.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Materials.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="28uzLLxEH2OaZ6VPZTGGxrD4dxw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,9 +79,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper" />
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\image" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\src" />
     </key>
@@ -114,6 +143,17 @@
       <workItem from="1653815268839" duration="892000" />
       <workItem from="1654797189385" duration="211000" />
       <workItem from="1654839848305" duration="922000" />
+      <workItem from="1653814561441" duration="102000" />
+      <workItem from="1653816397217" duration="1194000" />
+      <workItem from="1654137995456" duration="4389000" />
+      <workItem from="1654178505609" duration="5833000" />
+      <workItem from="1654218789089" duration="4104000" />
+      <workItem from="1654260396457" duration="12299000" />
+      <workItem from="1654305940792" duration="10307000" />
+      <workItem from="1654951472985" duration="78000" />
+      <workItem from="1655039389714" duration="2861000" />
+      <workItem from="1655043250135" duration="144000" />
+      <workItem from="1655044575346" duration="4954000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -206,7 +246,42 @@
       <option name="project" value="LOCAL" />
       <updated>1653552371124</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="修复了课程界面显示多余横线的bug">
+      <created>1653814654478</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653814654478</updated>
+    </task>
+    <task id="LOCAL-00015" summary="优化了登录、主页、个人信息界面的UI设计">
+      <created>1654223906536</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1654223906536</updated>
+    </task>
+    <task id="LOCAL-00016" summary="进一步优化了登录、主页、个人信息界面的UI设计">
+      <created>1654269359851</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1654269359851</updated>
+    </task>
+    <task id="LOCAL-00017" summary="进一步优化了登录、主页、个人信息界面的UI设计">
+      <created>1654269452775</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1654269452775</updated>
+    </task>
+    <task id="LOCAL-00018" summary="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释">
+      <created>1654332280770</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1654332280770</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +310,10 @@
     <MESSAGE value="简化了测试用户数据" />
     <MESSAGE value="增加了Home页面，增加了修改密码的功能" />
     <MESSAGE value="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了README.md的文件结构，完善了测试用户，修复了多次点击“课程资料”按钮会报错的bug" />
+    <MESSAGE value="修复了课程界面显示多余横线的bug" />
+    <MESSAGE value="优化了登录、主页、个人信息界面的UI设计" />
+    <MESSAGE value="进一步优化了登录、主页、个人信息界面的UI设计" />
+    <MESSAGE value="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释" />
   </component>
 </project>
