@@ -26,13 +26,13 @@ public class Info {
     }
 
     /**
-     * 使用{@link StaticValue#topHbox}作为顶端部件 <br>
+     * 使用{@link StaticValue#topVbox}作为顶端部件 <br>
      * 使用{@link CenterChangePwd#getvBox()}作为中心部件 <br>
      * 设置标题、大小并显示
      */
     private void createInfo() {
         BorderPane pane = new BorderPane();
-        pane.setTop(StaticValue.getNewTopHBox());
+        pane.setTop(StaticValue.getNewTopVBox());
         VBox vBox = new CenterChangePwd().getvBox();
         pane.setCenter(vBox);
         StaticValue.stage.setScene(new Scene(pane,StaticValue.stageWidth,StaticValue.stageHeight));

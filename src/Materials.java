@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -271,6 +272,7 @@ class Bkmark_hplink{
 
 
         hyperlink = new Hyperlink(hplink_name);
+        hyperlink.setFont(Font.font("宋体",16));
 //        设置右键菜单
         menu = new ContextMenu();
         MenuItem itemDel = new MenuItem("删除");
@@ -385,6 +387,7 @@ class Material_alert {
             borderPane.setBottom(hBox2);
             borderPane.setMargin(vBox,new Insets(30));
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
@@ -481,6 +484,7 @@ class Material_alert {
             borderPane.setMargin(vBox,new Insets(30));
             borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             Scene mat_scene = new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5);
 //            实现拖拽文件功能
@@ -525,7 +529,7 @@ class Material_alert {
             });
             alert.setScene(mat_scene);
             alert.setTitle("提示信息");
-            alert.setHeight(200);
+            alert.setHeight(210);
             alert.show();
             yes.setOnMouseMoved(e -> {
                 yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
@@ -548,6 +552,12 @@ class Material_alert {
                     String new_mat = textField.getText();
                     if(new_mat.equals("")){
                         new LoginAlert("请输入正确的文件名！");
+                        return;
+                    }
+                    String[] tmp;
+                    tmp = new_mat.split("\\.");
+                    if(tmp.length < 2){
+                        new LoginAlert("文件名请包含后缀！");
                         return;
                     }
                     File f = new File("./data/" + StaticValue.userName + "/资源/" + course + "/" + new_mat);
@@ -606,55 +616,76 @@ class Material_alert {
     Material_alert(String s,String name,String course,int mat_or_bkm) {
 //        提示信息——删除
         if(s.equals("Delete")) {
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            ButtonType buttonYes = new ButtonType("确定");
-            ButtonType buttonNo = new ButtonType("取消");
-            alert.getButtonTypes().setAll(buttonYes, buttonNo);
-            alert.setTitle("提示信息");
-            alert.setHeaderText("");
+            Text text = new Text();
             if(mat_or_bkm == 0){
-                alert.setContentText("确定要删除资料：" + name + " 吗？");
+                text.setText("确定要删除文件：" + name + " 吗？");
             }
-            else{
+            else {
                 String[] tmp = name.split("\\.");
                 int drop_size = 0;
                 try{
                     drop_size = tmp[tmp.length-1].length();
                 }catch (IndexOutOfBoundsException excep){};
                 String hplink_name = name.substring(0,name.length()-drop_size-1);
-                alert.setContentText("确定要删除书签：" + hplink_name + " 吗？");
+                text.setText("确定要删除书签：" + hplink_name + " 吗？");
             }
 
-            alert.initOwner(Course.stage);
+            text.setFill(Color.rgb(245,202,42));
+            text.setFont(Font.font("宋体",18));
+            Button yes = new Button("确定");
+            Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
+            String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 18";
+            yes.setStyle(buttonStyle1);
+            no.setStyle(buttonStyle1);
+            HBox hBox1 = new HBox(text);
+            HBox hBox2 = new HBox(yes,no);
+            hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
+            BorderPane borderPane = new BorderPane();
+            borderPane.setCenter(hBox1);
+            borderPane.setBottom(hBox2);
+            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setMargin(hBox1,new Insets(30));
+            Stage alert = new Stage();
+
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
+
+            alert.setHeight(170);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
+            alert.setTitle("提示信息");
             alert.show();
 
-            alert.setOnCloseRequest(e -> {
-                ButtonType result = alert.getResult();
-                if (result != null && result.equals(buttonYes)) {
-                    if(mat_or_bkm == 0){
-                        try {
-                            StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" +
-                                    course + "/" + name));
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        new Materials(Materials.material_pane,course);
-                        new LoginAlert("删除成功！");
+            yes.setOnAction(e -> {
+                if(mat_or_bkm == 0){
+                    try {
+                        StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" +
+                                course + "/" + name));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
-                    else{
-                        try {
-                            StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" +
-                                    course + "/书签链接/" + name));
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        new Materials(Materials.material_pane,course);
-                        new LoginAlert("删除成功！");
-                    }
-
-                } else {
+                    new Materials(Materials.material_pane,course);
                     alert.close();
+                    new LoginAlert("删除成功！");
                 }
+                else{
+                    try {
+                        StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" +
+                                course + "/书签链接/" + name));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    new Materials(Materials.material_pane,course);
+                    alert.close();
+                    new LoginAlert("删除成功！");
+                }
+            });
+            no.setOnAction(event -> {
+                alert.close();
             });
 
         }
@@ -689,6 +720,7 @@ class Material_alert {
             borderPane.setMargin(hBox1,new Insets(30));
             borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");

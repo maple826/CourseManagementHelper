@@ -85,7 +85,7 @@ public class ManageMemorandum {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
         //设置页面的顶部标识
-        mainPane.setTop(new TopHBox().gethBox());
+        mainPane.setTop(new TopVBox().getvBox());
         //设置页面的左侧标识
         mainPane.setLeft(new leftPane1().getLeftPane());
 

@@ -2,6 +2,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.InputMethodTextRun;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -94,14 +95,15 @@ public class Login{
      * </p>
      */
     private void setStyle() {
+        stage.getIcons().add(new Image("img/icon.png"));
         //loginVBox.setStyle("-fx-background-image: url('"+ "../image/img.png" + "')");
         loginPane.setStyle("-fx-background-color: #203A97");
 
         loginName.setStyle("-fx-font-size: 14;");
         loginPwd.setStyle("-fx-font-size: 14");
 
-        String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 13";
-        String buttonStyle2 = StaticValue.buttonStyle2 + "-fx-font-size: 16";
+        String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 16";
+        String buttonStyle2 = StaticValue.buttonStyle2 + "-fx-font-size: 20";
         registerButton.setStyle(buttonStyle1);
         loginButton.setStyle(buttonStyle1);
         registerButton.setOnMouseMoved(e -> {
@@ -256,6 +258,8 @@ class LoginAlert {
      */
     LoginAlert(String s) {
         Stage alert = new Stage();
+        alert.getIcons().add(new Image("/img/light_bulb.png"));
+        alert.setHeight(200);
         BorderPane pane = new BorderPane();
         pane.setStyle("-fx-background-color: rgb(32,34,151)");
         Text text = new Text(s);
