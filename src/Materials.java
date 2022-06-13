@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -386,6 +387,7 @@ class Material_alert {
             borderPane.setBottom(hBox2);
             borderPane.setMargin(vBox,new Insets(30));
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
@@ -482,6 +484,7 @@ class Material_alert {
             borderPane.setMargin(vBox,new Insets(30));
             borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             Scene mat_scene = new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5);
 //            实现拖拽文件功能
@@ -648,6 +651,9 @@ class Material_alert {
             borderPane.setStyle("-fx-background-color: #203A97");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
+
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
+
             alert.setHeight(170);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
@@ -714,6 +720,7 @@ class Material_alert {
             borderPane.setMargin(hBox1,new Insets(30));
             borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");

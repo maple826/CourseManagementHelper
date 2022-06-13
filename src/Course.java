@@ -6,6 +6,7 @@ import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.Arrays;
 /**
  * @author maple826
+ * @author AboveParadise
  * 课程资料类
  * <p>
  *     用户选择 “课程资料” 按钮后的界面 <br>
@@ -212,6 +214,7 @@ class CourseAlert {
             borderPane.setMargin(hBox1,new Insets(30,0,0,120));
             Stage alert = new Stage();
             alert.setHeight(170);
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
@@ -278,6 +281,7 @@ class CourseAlert {
             borderPane.setStyle("-fx-background-color: #203A97");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.setHeight(170);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
@@ -346,6 +350,7 @@ class CourseAlert {
             borderPane.setStyle("-fx-background-color: #203A97");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.setHeight(170);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
@@ -390,6 +395,7 @@ class CourseAlert {
             borderPane.setMargin(hBox1,new Insets(30));
             borderPane.setStyle("-fx-background-color: #203A97");
             Stage alert = new Stage();
+            alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.setHeight(2/5 * StaticValue.stageHeight);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
