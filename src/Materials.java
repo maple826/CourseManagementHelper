@@ -526,7 +526,7 @@ class Material_alert {
             });
             alert.setScene(mat_scene);
             alert.setTitle("提示信息");
-            alert.setHeight(200);
+            alert.setHeight(210);
             alert.show();
             yes.setOnMouseMoved(e -> {
                 yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
