@@ -10,6 +10,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -30,7 +31,7 @@ import java.util.Arrays;
 public class Course {
     static Stage stage;
     BorderPane coursePane = new BorderPane();
-    HBox courseTopHBox = StaticValue.getNewTopHBox();
+    VBox courseTopVBox = StaticValue.getNewTopVBox();
     ScrollPane courseLeftScrollPane = new CourseLeftScrollPane().getPane();
     /**
      * 构造函数.
@@ -51,7 +52,7 @@ public class Course {
     private void createCourse() {
         courseLeftScrollPane.setStyle("-fx-background-color: #203A97");
         coursePane.setStyle("-fx-background-color: #203A97");
-        coursePane.setTop(courseTopHBox);
+        coursePane.setTop(courseTopVBox);
         coursePane.setLeft(courseLeftScrollPane);
         stage.setScene(new Scene(coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
         stage.setTitle("学习小帮手");
@@ -188,23 +189,52 @@ class CourseAlert {
      */
     CourseAlert(String s) {
         if(s.equals("Exit")) {
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            ButtonType buttonYes = new ButtonType("确定");
-            ButtonType buttonNo = new ButtonType("取消");
-            alert.getButtonTypes().setAll(buttonYes,buttonNo);
+            Text text = new Text("您确定要退出吗");
+            text.setFill(Color.rgb(245,202,42));
+            text.setFont(Font.font("宋体",18));
+            Button yes = new Button("确定");
+            Button no = new Button("取消");
+            yes.setFont(Font.font("Microsoft YaHei", 18));
+            no.setFont(Font.font("Microsoft YaHei", 18));
+            yes.setPadding(new Insets(10));
+            no.setPadding(new Insets(10));
+            String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 18";
+            yes.setStyle(buttonStyle1);
+            no.setStyle(buttonStyle1);
+            HBox hBox1 = new HBox(text);
+            HBox hBox2 = new HBox(yes,no);
+            hBox2.setAlignment(Pos.CENTER);
+            hBox2.setSpacing(StaticValue.stageHeight / 24);
+            BorderPane borderPane = new BorderPane();
+            borderPane.setCenter(hBox1);
+            borderPane.setBottom(hBox2);
+            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setMargin(hBox1,new Insets(30,0,0,120));
+            Stage alert = new Stage();
+            alert.setHeight(170);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
-            alert.setHeaderText("");
-            alert.setContentText("您确定要退出当前帐号吗");
-            alert.initOwner(StaticValue.stage);
             alert.show();
-            alert.setOnCloseRequest(e -> {
-                ButtonType result = alert.getResult();
-                if (result != null && result.equals(buttonYes)) {
-                    StaticValue.userName = "";
-                    new Login(StaticValue.stage);
-                } else {
-                    alert.close();
-                }
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            no.setOnMouseMoved(e -> {
+                no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            yes.setOnAction(e -> {
+                StaticValue.userName = "";
+                alert.close();
+                new Login(StaticValue.stage);
+            });
+            no.setOnAction(e -> {
+                alert.close();
             });
         }
         else if(s.equals("Exist")) {

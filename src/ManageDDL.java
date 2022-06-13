@@ -81,7 +81,7 @@ public class ManageDDL {
         BorderPane mainPane=new BorderPane();
 
         //设置DDL管理页面的顶部标识，统一使用StaticValue的顶部部分。
-        mainPane.setTop(new TopHBox().gethBox());
+        mainPane.setTop(new TopVBox().getvBox());
 
         //设置DDL管理页面的底部按钮
         mainPane.setBottom(new bottomPane().getBottomPane());

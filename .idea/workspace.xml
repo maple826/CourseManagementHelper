@@ -4,20 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_5_29_9_22_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="增加了项目文档，优化了ddl.txt权限，保证账号安全">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/Memorandum.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/ddl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/pwd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/资源/操作系统/书签链接/实验指导书.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/1/资源/操作系统/期末考试.word" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/Memorandum.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/ddl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/123/pwd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aaa.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/class.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/说明文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/说明文档.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/ManageMemorandum.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/ManageDDL.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Login.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Course.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Home.java" root0="FORCE_HIGHLIGHTING" />
@@ -82,6 +83,7 @@
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\image" />
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\src" />
     </key>
   </component>
@@ -138,7 +140,10 @@
       <workItem from="1654951472985" duration="78000" />
       <workItem from="1655039389714" duration="2861000" />
       <workItem from="1655043250135" duration="144000" />
-      <workItem from="1655044575346" duration="4954000" />
+      <workItem from="1655044575346" duration="5898000" />
+      <workItem from="1655053109858" duration="74000" />
+      <workItem from="1655054779842" duration="2001000" />
+      <workItem from="1655084911547" duration="10356000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -266,7 +271,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654332280770</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="增加了项目文档，优化了ddl.txt权限，保证账号安全">
+      <created>1655051260917</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1655051260917</updated>
+    </task>
+    <task id="LOCAL-00020" summary="增加了项目文档，优化了ddl.txt权限，保证账号安全">
+      <created>1655051602399</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1655051602399</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +318,7 @@
     <MESSAGE value="优化了登录、主页、个人信息界面的UI设计" />
     <MESSAGE value="进一步优化了登录、主页、个人信息界面的UI设计" />
     <MESSAGE value="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释" />
+    <MESSAGE value="增加了项目文档，优化了ddl.txt权限，保证账号安全" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了项目文档，优化了ddl.txt权限，保证账号安全" />
   </component>
 </project>

@@ -100,8 +100,8 @@ public class Login{
         loginName.setStyle("-fx-font-size: 14;");
         loginPwd.setStyle("-fx-font-size: 14");
 
-        String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 13";
-        String buttonStyle2 = StaticValue.buttonStyle2 + "-fx-font-size: 16";
+        String buttonStyle1 = StaticValue.buttonStyle1 + "-fx-font-size: 16";
+        String buttonStyle2 = StaticValue.buttonStyle2 + "-fx-font-size: 20";
         registerButton.setStyle(buttonStyle1);
         loginButton.setStyle(buttonStyle1);
         registerButton.setOnMouseMoved(e -> {

@@ -1,10 +1,13 @@
+import com.sun.javafx.geom.Shape;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -35,7 +38,7 @@ public class StaticValue {
     /**
      * 除登录界面外其他界面的顶层组件
      */
-    static HBox topHbox;
+    static VBox topVbox;
     static String buttonStyle1 = "-fx-background-color:darkturquoise;"+
             "-fx-background-radius:20;";
     static String buttonStyle2 = "-fx-background-color:lightskyblue;"+
@@ -61,9 +64,9 @@ public class StaticValue {
         file.delete();
     }
 
-    public static HBox getNewTopHBox() {
-        topHbox = new TopHBox().gethBox();
-        return topHbox;
+    public static VBox getNewTopVBox() {
+        topVbox = new TopVBox().getvBox();
+        return topVbox;
     }
 }
 
@@ -73,7 +76,8 @@ public class StaticValue {
  *     包括用户名，图标，及个人信息、退出、课程资料，我的DDL，备忘录按钮
  * </p>
  */
-class TopHBox {
+class TopVBox {
+    private VBox vBox = new VBox();
     private HBox hBox = new HBox();
     Label userName = new Label(StaticValue.userName);
     Button info = new Button("个人信息");
@@ -88,6 +92,7 @@ class TopHBox {
     Button resource = new Button("课程资料");
     Button ddl = new Button("我的DDL");
     Button memo = new Button("备忘录");
+    Separator separator = new Separator();
     /**
      * 右侧组件 <br>
      * 包括课程资料，我的DDL，备忘录三个按钮
@@ -102,16 +107,16 @@ class TopHBox {
      *     设置按钮触发效果
      * </p>
      */
-    TopHBox() {
+    TopVBox() {
         setStyle();
         leftBottom.setSpacing(StaticValue.stageHeight / 25);
         left.setSpacing(StaticValue.stageHeight / 20);
         right.setSpacing(StaticValue.stageWidth / 60);
 
         hBox.getChildren().addAll(left,title,right);
+        vBox.getChildren().addAll(hBox,separator);
         hBox.setMargin(left,new Insets(StaticValue.stageHeight / 30,0,
                 0,StaticValue.stageWidth / 100));
-
         hBox.setMargin(title,new Insets(StaticValue.stageHeight / 15,0,
                 0,StaticValue.stageWidth * 2 / 9));
         hBox.setMargin(right,new Insets(StaticValue.stageHeight / 7,0,
@@ -161,6 +166,9 @@ class TopHBox {
         Button[] button = {info,resource,ddl,memo};
 
         hBox.setStyle("-fx-background-color: #203A97");
+        separator.setStyle("-fx-background-color: #23b3e7;" +
+                "-fx-background-width: 10;");
+        separator.setManaged(true);
 
         userName.setFont(Font.font("黑体", FontWeight.BOLD,22));
         userName.setTextFill(Color.rgb(245,202,42));
@@ -187,7 +195,7 @@ class TopHBox {
         });
     }
 
-    HBox gethBox() {
-        return this.hBox;
+    VBox getvBox() {
+        return this.vBox;
     }
 }

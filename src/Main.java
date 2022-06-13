@@ -1,8 +1,6 @@
 import javafx.application.Application;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -11,6 +9,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         StaticValue.stage = primaryStage;
+        primaryStage.setResizable(false);
         new Login(primaryStage);
     }
 }

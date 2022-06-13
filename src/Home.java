@@ -21,7 +21,7 @@ public class Home {
      */
     private void createHome() {
         BorderPane pane = new BorderPane();
-        pane.setTop(StaticValue.getNewTopHBox());
+        pane.setTop(StaticValue.getNewTopVBox());
         pane.setStyle("-fx-background-color: #203A97");
         StaticValue.stage.setScene(new Scene(pane,StaticValue.stageWidth,StaticValue.stageHeight));
         StaticValue.stage.setTitle("学业助理");
