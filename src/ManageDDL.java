@@ -17,17 +17,27 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+/**
+ * @author ShawnZXC
+ * DDL管理类
+ * <p>设置ddl展示和管理界面</p>
+ */
 
 
 public class ManageDDL {
-    //统一使用StaticValue的stage。
+    /**
+     * <p>设置被放入scene的界面</p>
+     */
     public static Stage stage =StaticValue.stage;
 
-    //存放ddl信息
+    /**
+     * <p>此arraylist用于存放ddl信息</p>
+     */
     public static ArrayList<DDL> ddlArrayList=new ArrayList<DDL>();
 
-    //从文件中读取ddl信息
+    /**
+     * <p>从文件中读取ddl数据</p>
+     */
     public static void read() throws IOException, ParseException {
         ddlArrayList.clear();
         FileReader reader = new FileReader("./data/" + StaticValue.userName + "/ddl.txt");
@@ -40,17 +50,27 @@ public class ManageDDL {
         }
         String row_data= new String(buf);
 
-        //不同ddl的信息之间用三个#分隔。
+        /**
+         * <p>
+         *     不同ddl的信息之间用三个#分隔。
+         * </p>
+         */
         String[] manyDDLs=row_data.split("###");
 
         for(int i=0;i<manyDDLs.length-1;i++){
-            //一条ddl内部的不同部分用两个,分隔。
+            /**
+             * <p>一条ddl内部的不同部分用两个,分隔。</p>
+             */
             String[] oneDDL=manyDDLs[i].split(",,");
             DDL newDDL=new DDL(oneDDL[2],oneDDL[1],oneDDL[0]);
             ManageDDL.ddlArrayList.add(newDDL);
         }
 
-        //ddl按照截止日期排序展示
+        /**
+         * <p>
+         *     ddl按照截止日期排序展示
+         * </p>
+         */
         Collections.sort(ManageDDL.ddlArrayList, new Comparator<DDL>() {
             @Override
             public int compare(DDL o1, DDL o2) {
@@ -64,7 +84,9 @@ public class ManageDDL {
     }
 
 
-    //写回修改过的ddl信息
+    /**
+     * <p>写回所有的ddl数据</p>
+     */
     public static void write() throws IOException {
         FileWriter writer = new FileWriter("./data/" + StaticValue.userName + "/ddl.txt");
         for(int i=0;i<ManageDDL.ddlArrayList.size();i++){
@@ -75,18 +97,26 @@ public class ManageDDL {
         writer.close();
     }
 
-    //装载场景，每次刷新页面就是用这个函数重新装载场景。
+    /**
+     * <p>装载场景</p>
+     */
     public static void setScene() throws IOException, ParseException {
         ManageDDL.read();
         BorderPane mainPane=new BorderPane();
 
-        //设置DDL管理页面的顶部标识，统一使用StaticValue的顶部部分。
+        /**
+         * <p>设置顶部组件</p>
+         */
         mainPane.setTop(new TopVBox().getvBox());
 
-        //设置DDL管理页面的底部按钮
+        /**
+         * <p>设置底部组件</p>
+         */
         mainPane.setBottom(new bottomPane().getBottomPane());
 
-        //展示当前DDL
+        /**
+         * <p>中间部分用于展示当前ddl</p>
+         */
         try {
             mainPane.setCenter(new centerPane().getCenterPane());
         }
@@ -106,7 +136,10 @@ public class ManageDDL {
 
 }
 
-
+/**
+ * ddl项目栏类
+ * <p>用于作为ddl表格头</p>
+ */
 class DDLBar{
     HBox hbox=new HBox();
     DDLBar(){
@@ -142,11 +175,18 @@ class DDLBar{
     }
 }
 
-//DDL类
+/**
+ * ddl类
+ * <p>保存ddl的信息</p>
+ */
 class DDL{
     HBox hbox=new HBox();
 
-    //删除ddl的逻辑是把delete参数改为1，之后重新写回和加载ddl时便不会写回和加载这条ddl。
+    /**
+     * <p>
+     *     删除ddl的逻辑是把delete参数改为1，之后重新写回和加载ddl时便不会写回和加载这条ddl。
+     * </p>
+     */
     public int delete=0;
 
     public String str;
@@ -178,12 +218,20 @@ class DDL{
         long start = currentDate.getTime();
         long end=ddlDate.getTime();
 
-        //计算距离截止日期还有多久
+        /**
+         * <p>
+         *     计算距离截止日期还有多久
+         * </p>
+         */
         int betweenDays = (int) ((end - start)/(24*3600*1000));
         int betweenHours=(int) ((end - start)/(3600*1000));
         String timeLeft;
 
-        //flag为0代表ddl过期，需要做出提示。计算出未到期的话会把flag改为1。
+        /**
+         * <p>
+         *     flag为0代表ddl过期，需要做出提示。计算出未到期的话会把flag改为1。
+         * </p>
+         */
         int flag=0;
         if(betweenHours>=0){
             int hour=betweenHours%24;
@@ -236,7 +284,10 @@ class DDL{
     }
 }
 
-
+/**
+ * ddl管理界面底部类
+ * <p>用于设置ddl管理界面底部</p>
+ */
 class bottomPane{
     HBox bottomPane=new HBox();
     bottomPane(){
@@ -254,7 +305,9 @@ class bottomPane{
     }
 }
 
-//中间展示ddl信息
+/**
+ * <p>界面中间主体部分,展示所有ddl信息</p>
+ */
 class centerPane{
     ScrollPane centerPane=new ScrollPane();
     centerPane() throws FileNotFoundException {
@@ -273,7 +326,12 @@ class centerPane{
     }
 }
 
-//此类用于删除ddl，逻辑是把ddlArrayList中要删除的ddl的delete参数改为1，然后写回ddl和重新加载界面，写回ddl时delete参数为1的ddl不会被写回。
+/**
+ *<p>
+ *     此类用于删除ddl，逻辑是把ddlArrayList中要删除的ddl的delete参数改为1，然后写回ddl和重新加载界面，写回ddl时delete参数为1的ddl不会被写回。
+ *</p>
+ */
+
 class deleteDDL{
     deleteDDL(DDL from){
         Alert alert = new Alert(Alert.AlertType.NONE);
@@ -304,8 +362,12 @@ class deleteDDL{
 }
 
 
-//此类负责添加和编辑两个功能。
-//编辑的逻辑就是把要修改的ddl的原有信息提前放在文本框里，然后新建ddl。
+/**
+ * <p>
+ *     此类负责添加和编辑两个功能。
+ *     编辑的逻辑就是把要修改的ddl的原有信息提前放在文本框里，然后新建ddl。
+ * </p>
+ */
 class addDDL{
     addDDL(){
         Text ddlText=new Text("DDL内容：");
@@ -407,7 +469,11 @@ class addDDL{
                 else theDay=Integer.toString(day);
                 String theDate=theYear+"-"+theMonth+"-"+theDay;
 
-                //这里验证日期合法性
+                /**
+                 * <p>
+                 *     这里验证日期合法性
+                 * </p>
+                 */
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date testDate=sdf.parse(theDate);
                 String testString = sdf.format(testDate);
@@ -418,7 +484,7 @@ class addDDL{
                 if(!testString.equals(theDate)){
                     throw new Exception();
                 }
-                //一直验证到这里
+
 
                 if(newUrl.equals(urlTextNotice)){
                     newUrl="null";
@@ -437,7 +503,12 @@ class addDDL{
     }
 
 
-    //重载构造函数，这段代码是直接复制无参构造函数后稍加改动而来的。用于编辑ddl，逻辑是把旧的ddl信息提前放在文本输入框里，然后执行新建ddl。
+    /**
+     * <p>
+     *     重载构造函数，这段代码是直接复制无参构造函数后稍加改动而来的。用于编辑ddl，逻辑是把旧的ddl信息提前放在文本输入框里，然后执行新建ddl。
+     * </p>
+     * @param parentDDL
+     */
         addDDL(DDL parentDDL){
             Text ddlText=new Text("DDL内容：");
             TextField ddlTextField=new TextField(parentDDL.title);
@@ -540,7 +611,11 @@ class addDDL{
                     else theDay=Integer.toString(day);
                     String theDate=theYear+"-"+theMonth+"-"+theDay;
 
-                    //这里验证日期合法性
+                    /**
+                     * <p>
+                     *     这里验证日期合法性
+                     * </p>
+                     */
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date testDate=sdf.parse(theDate);
                     String testString = sdf.format(testDate);
@@ -551,7 +626,6 @@ class addDDL{
                     if(!testString.equals(theDate)){
                         throw new Exception();
                     }
-                    //一直验证到这里
 
                     DDL newDDL=new DDL(newDDLTitle,newUrl,theDate);
                     ManageDDL.ddlArrayList.add(newDDL);
@@ -568,8 +642,18 @@ class addDDL{
 }
 
 
-//弹窗类，传入字符串信息后可以显示
+/**
+ * <p>
+ *     弹窗类，传入字符串信息后可以显示
+ * </p>
+ */
 class PopUpWindow{
+    /**
+     * <p>
+     *     addDDL类负责编辑ddl和新加ddl两个功能，因此弹窗类也要做出对应的改变
+     * </p>
+     * @param message
+     */
     PopUpWindow(String message) {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("提示信息");
@@ -581,7 +665,14 @@ class PopUpWindow{
            new addDDL();
         });
     }
-    //addDDL类负责编辑ddl和新加ddl两个功能，因此弹窗类也要做出对应的改变
+
+    /**
+     * <p>
+     *     addDDL类负责编辑ddl和新加ddl两个功能，因此弹窗类也要做出对应的改变
+     * </p>
+     * @param message
+     * @param oldDDL
+     */
     PopUpWindow(String message,DDL oldDDL) {
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("提示信息");
@@ -595,4 +686,6 @@ class PopUpWindow{
     }
 }
 
-//https://github.com/maple826/CourseManagementHelper
+/**
+ * <p>项目地址https://github.com/maple826/CourseManagementHelper</p>
+ */

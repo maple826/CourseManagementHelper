@@ -20,15 +20,32 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
+/**
+ * @author ShawnZXC
+ * 管理备忘录的类
+ * <p>
+ *     展示和管理备忘录
+ * </p>
+ */
 public class ManageMemorandum {
-    //统一使用StaticValue的stage。
+    /**
+     * <p>设置被放入scene的界面</p>
+     */
     public static Stage stage =StaticValue.stage;
-    //这个数组存放备忘录
+    /**
+     * <p>这个List存放备忘录数据</p>
+     */
     public static ArrayList<Memorandum> MemoList=new ArrayList<Memorandum>();
-    //当前备忘录，确定哪一条在centerPane中显示
+    /**
+     * <p>当前备忘录，用于确定哪一条在centerPane中显示</p>
+     */
     public static Memorandum currentMemorandum;
 
-    //从文件中读取备忘录信息
+    /**
+     * <p>从文件中读取备忘录信息</p>
+     * @throws FileNotFoundException
+     * @throws ParseException
+     */
     public static void read() throws FileNotFoundException, ParseException {
         MemoList.clear();
         FileReader reader = new FileReader("./data/" + StaticValue.userName + "/Memorandum.txt");
@@ -41,7 +58,11 @@ public class ManageMemorandum {
         }
         String row_data=new String(buf);
 
-        //不同信息是用“###”分隔的，不仅不同备忘录是用###分隔的，一条备忘录中的不同部分也是###分隔
+        /**
+         * <p>
+         *     不同信息是用“###”分隔的，不仅不同备忘录是用###分隔的，一条备忘录中的不同部分也是###分隔
+         * </p>
+         */
         String[] splitData=row_data.split("###");
 
         for(int i=0;i<splitData.length-1;i+=3){
@@ -49,7 +70,11 @@ public class ManageMemorandum {
             MemoList.add(newMemorandum);
         }
 
-        //按照最近修改时间排序，最晚修改的在第一条
+        /**
+         * <p>
+         *     按照最近修改时间排序，最晚修改的在第一条
+         * </p>
+         */
         Collections.sort(MemoList, new Comparator<Memorandum>() {
             @Override
             public int compare(Memorandum o1, Memorandum o2) {
@@ -60,7 +85,11 @@ public class ManageMemorandum {
             }
         });
 
-        //每次重新加载页面时显示最近一次编辑的备忘录
+        /**
+         * <p>
+         *     每次重新加载页面时显示最近一次编辑的备忘录
+         * </p>
+         */
         if(currentMemorandum==null) {
             if(MemoList.size()>0) {
                 currentMemorandum = MemoList.get(0);
@@ -68,7 +97,10 @@ public class ManageMemorandum {
         }
     }
 
-    //把修改过的备忘录信息写回文件
+    /**
+     * <p>把修改过的备忘录信息写回文件</p>
+     * @throws IOException
+     */
     public static void write() throws IOException {
         ManageMemorandum.currentMemorandum=null;
         FileWriter writer = new FileWriter("./data/" + StaticValue.userName + "/Memorandum.txt");
@@ -80,16 +112,23 @@ public class ManageMemorandum {
         writer.close();
     }
 
-    //更换场景********************************
+
+    /**
+     * <p>设置场景</p>
+     * @throws FileNotFoundException
+     * @throws ParseException
+     */
     public static void setScene() throws FileNotFoundException, ParseException {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
-        //设置页面的顶部标识
+
         mainPane.setTop(new TopVBox().getvBox());
-        //设置页面的左侧标识
+
         mainPane.setLeft(new leftPane1().getLeftPane());
 
-        //展示备忘录
+        /**
+         * <p>展示备忘录</p>
+         */
         try {
             mainPane.setCenter(new centerPane1().getCenterPane());
         }
@@ -107,24 +146,43 @@ public class ManageMemorandum {
 }
 
 
-//备忘录类
+/**
+ * 备忘录类
+ * <p>
+ *     存放备忘录信息
+ * </p>
+ */
 class Memorandum{
     private  String name;
     private String content;
     private Date lastModifiedTime;
 
-    //删除备忘录的逻辑和删除ddl一样，delete参数设为1的话不显示不写回。
+    /**
+     * <p>
+     *     删除备忘录的逻辑和删除ddl一样，delete参数设为1的话不显示不写回。
+     * </p>
+     */
     public int delete=0;
     HBox hbox=new HBox();
 
-    //新建和修改备忘录用这个构造函数，时间是系统当前时间
+    /**
+     * <p>新建和修改备忘录用这个构造函数，时间是系统当前时间</p>
+     * @param name
+     * @param content
+     */
     Memorandum(String name,String content){
         this.name=name;
         this.content=content;
         this.lastModifiedTime=new Date();
     }
 
-    //读入备忘录用这个构造函数，时间是记录的时间
+    /**
+     * <p>读入备忘录用这个构造函数，时间是记录的时间</p>
+     * @param date
+     * @param name
+     * @param content
+     * @throws ParseException
+     */
     Memorandum(String date,String name,String content ) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         this.lastModifiedTime=sdf.parse(date);
@@ -176,7 +234,9 @@ class Memorandum{
 }
 
 
-//中间是当前展示的备忘录
+/**
+ * <p>界面中间是当前展示的备忘录</p>
+ */
 class centerPane1{
     ScrollPane centerPane=new ScrollPane();
     centerPane1(){
@@ -194,7 +254,9 @@ class centerPane1{
     }
 }
 
-//左边是备忘录目录
+/**
+ * <p>界面左边是备忘录目录</p>
+ */
 class leftPane1{
     ScrollPane leftPane=new ScrollPane();
     leftPane1(){
@@ -225,6 +287,9 @@ class leftPane1{
     }
 }
 
+/**
+ * <p>此类用于完成备忘录的删除</p>
+ */
 class deleteMemo {
     deleteMemo(Memorandum from) {
         Alert alert = new Alert(Alert.AlertType.NONE);
@@ -255,7 +320,9 @@ class deleteMemo {
 }
 
 
-//新建和修改备忘录都用这个类，修改的逻辑是把原有信息提前放在文本框中然后新建
+/**
+ * <p>新建和修改备忘录都用这个类，修改的逻辑是把原有信息提前放在文本框中然后新建</p>
+ */
 class addMemo{
     addMemo(Memorandum origin){
         Text nameText=new Text("备忘录名称：");
