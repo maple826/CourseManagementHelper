@@ -1,8 +1,10 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -15,10 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author ShawnZXC
@@ -121,10 +120,20 @@ public class ManageMemorandum {
     public static void setScene() throws FileNotFoundException, ParseException {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
-
+        Date date = new Date();
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(date);
+        int second = calendar.get(Calendar.SECOND);
+        if(second%2==1)
+            mainPane.setStyle("-fx-background-image: url('/img/duskBUAA.jpg');"+"-fx-background-size: cover;");
+        else
+            mainPane.setStyle("-fx-background-image: url('/img/daylightBUAA.jpg');"+"-fx-background-size: cover;");
         mainPane.setTop(new TopVBox().getvBox());
 
         mainPane.setLeft(new leftPane1().getLeftPane());
+        VBox placeHolder=new VBox();
+        placeHolder.setMinHeight(60);
+        mainPane.setBottom(placeHolder);
 
         /**
          * <p>展示备忘录</p>
@@ -204,8 +213,13 @@ class Memorandum{
         Button display =new Button("查看");
         Button delete=new Button("删除");
         Button modify=new Button("编辑");
+        display.setStyle("-fx-background-color: transparent;");
+        delete.setStyle("-fx-background-color: transparent;");
+        modify.setStyle("-fx-background-color: transparent;");
         HBox innerHBox=new HBox(display,delete,modify);
+        innerHBox.setStyle("-fx-background-color: transparent;");
         VBox innerVBox=new VBox(name,innerHBox);
+        innerVBox.setStyle("-fx-background-color: transparent;");
         hbox.getChildren().add(innerVBox);
         hbox.setAlignment(Pos.CENTER);
         display.setOnAction(e->{
@@ -247,7 +261,9 @@ class centerPane1{
         Label name=new Label(ManageMemorandum.currentMemorandum.getName());
         name.setAlignment(Pos.CENTER);
         VBox vbox=new VBox(name,date,content);
+        vbox.setStyle("-fx-background-color: transparent;");
         centerPane.setContent(vbox);
+        centerPane.setOpacity(0.8);
     }
     ScrollPane getCenterPane(){
         return this.centerPane;
@@ -261,6 +277,7 @@ class leftPane1{
     ScrollPane leftPane=new ScrollPane();
     leftPane1(){
         VBox vbox=new VBox();
+        vbox.setStyle("-fx-background-color: transparent;");
         vbox.setSpacing(20);
         for(int i=0;i<ManageMemorandum.MemoList.size();i++){
             if(ManageMemorandum.MemoList.get(i).delete==1) continue;
@@ -268,8 +285,22 @@ class leftPane1{
         }
 
         HBox bottomPane=new HBox();
+        bottomPane.setStyle("-fx-background-color: transparent;");
         bottomPane.setAlignment(Pos.CENTER);
         Button createButton =new Button("新建一条备忘录");
+        String buttonStyle1 = "-fx-background-color:darkturquoise;"+
+                "-fx-background-radius:20;";
+        String buttonStyle2 = "-fx-background-color:lightskyblue;"+
+                "-fx-background-radius:20;";
+        createButton.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        createButton.setOnMouseMoved(e -> {
+            createButton.setStyle(buttonStyle2 + "-fx-font-size: 16");
+        });
+        createButton.setOnMouseExited(e -> {
+            createButton.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        });
+
+        createButton.setOpacity(0.9);
         bottomPane.getChildren().addAll(createButton);
         bottomPane.setMinHeight(60);
         createButton.setOnAction(e->{
@@ -277,10 +308,12 @@ class leftPane1{
         });
 
         BorderPane borderPane=new BorderPane();
+        borderPane.setStyle("-fx-background-color: transparent;");
         borderPane.setBottom(bottomPane);
         borderPane.setCenter(vbox);
 
         leftPane.setContent(borderPane);
+        leftPane.setOpacity(0.5);
     }
     ScrollPane getLeftPane(){
         return this.leftPane;
@@ -327,13 +360,35 @@ class addMemo{
     addMemo(Memorandum origin){
         Text nameText=new Text("备忘录名称：");
         TextField nameTextField=new TextField(origin.getName());
+        nameText.setStyle("-fx-background-color: transparent;");
         Text contentText=new Text("备忘录内容：");
         TextField contentField=new TextField(origin.getContent());
+        contentText.setStyle("-fx-background-color: transparent;");
         Button yes=new Button("确定");
         Button no=new Button("取消");
+        String buttonStyle1 = "-fx-background-color:darkturquoise;"+
+                "-fx-background-radius:20;";
+        String buttonStyle2 = "-fx-background-color:lightskyblue;"+
+                "-fx-background-radius:20;";
+        no.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        no.setOnMouseMoved(e -> {
+            no.setStyle(buttonStyle2 + "-fx-font-size: 16");
+        });
+        no.setOnMouseExited(e -> {
+            no.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        });
+        yes.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        yes.setOnMouseMoved(e -> {
+            yes.setStyle(buttonStyle2 + "-fx-font-size: 16");
+        });
+        yes.setOnMouseExited(e -> {
+            yes.setStyle(buttonStyle1 + "-fx-font-size: 13");
+        });
+
 
         HBox topPane=new HBox();
         topPane.setAlignment(Pos.CENTER);
+        topPane.setStyle("-fx-background-color: transparent;");
         Label topTitleOfAddDDL=new Label("编辑备忘录");
         topTitleOfAddDDL.setFont(Font.font("黑体", FontWeight.BOLD,30));
         topPane.getChildren().add(topTitleOfAddDDL);
@@ -342,34 +397,40 @@ class addMemo{
         bottomPane.setAlignment(Pos.CENTER);
         bottomPane.setMinHeight(50);
         bottomPane.setSpacing(30);
-
+        bottomPane.setStyle("-fx-background-color: transparent;");
 
         HBox namePart=new HBox(nameText,nameTextField);
         namePart.setAlignment(Pos.CENTER);
         namePart.setMinHeight(80);
+        namePart.setStyle("-fx-background-color: transparent;");
 
         HBox contentTextPart=new HBox(contentText);
         contentTextPart.setAlignment(Pos.CENTER);
+        contentTextPart.setStyle("-fx-background-color: transparent;");
 
         HBox contentPart=new HBox(contentField);
         contentPart.setAlignment(Pos.CENTER);
         contentPart.setMinHeight(80);
-
+        contentPart.setStyle("-fx-background-color: transparent;");
 
         VBox centerPane=new VBox(namePart,contentTextPart,contentPart);
         centerPane.setAlignment(Pos.CENTER);
+        centerPane.setStyle("-fx-background-color: transparent;");
 
         BorderPane addMemoPane=new BorderPane();
         addMemoPane.setTop(topPane);
         addMemoPane.setBottom(bottomPane);
         addMemoPane.setCenter(centerPane);
+        addMemoPane.setStyle("-fx-background-color: transparent;");
+        addMemoPane.setStyle("-fx-background-image: url('/img/dontforget.jpg');"+"-fx-background-size: cover;");
 
 
         Scene addMemoScene=new Scene(addMemoPane);
         Stage addMemoStage=new Stage();
         addMemoStage.setScene(addMemoScene);
         addMemoStage.setTitle("编辑备忘录");
-        addMemoStage.setMinWidth(600);
+        addMemoStage.getIcons().add(new Image("/img/light_bulb.png"));
+        addMemoStage.setMinWidth(700);
         addMemoStage.show();
 
         no.setOnAction(e->{

@@ -23,9 +23,6 @@ import java.text.ParseException;
  */
 public class StaticValue {
     static Stage stage;
-//<<<<<<< HEAD
-//    static double stageWidth = 920;
-//=======
     /**
      * 场景宽度
      */
@@ -33,7 +30,6 @@ public class StaticValue {
     /**
      * 场景长度
      */
-//>>>>>>> 18f36bedfcebf7b8816e584fb0e88440624a3f03
     static double stageHeight = 500;
     /**
      * 当前用户名，初始为空
@@ -83,7 +79,7 @@ public class StaticValue {
 class TopVBox {
     private VBox vBox = new VBox();
     private HBox hBox = new HBox();
-    Label userName = new Label(StaticValue.userName);
+    Label userName = new Label("当前用户:"+StaticValue.userName);
     Button info = new Button("个人信息");
     Button exit = new Button("退出");
     /**
@@ -117,6 +113,8 @@ class TopVBox {
         left.setSpacing(StaticValue.stageHeight / 20);
         right.setSpacing(StaticValue.stageWidth / 60);
 
+        hBox.setStyle("-fx-background-color: transparent;");
+        vBox.setStyle("-fx-background-color: transparent;");
         hBox.getChildren().addAll(left,title,right);
         vBox.getChildren().addAll(hBox,separator);
         hBox.setMargin(left,new Insets(StaticValue.stageHeight / 30,0,
