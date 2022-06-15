@@ -3,6 +3,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -11,11 +12,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
+import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  * 静态值类.
@@ -43,7 +45,21 @@ public class StaticValue {
             "-fx-background-radius:20;";
     static String buttonStyle2 = "-fx-background-color:lightskyblue;"+
             "-fx-background-radius:20;";
-
+    /**
+     * 随机设置BorderPane的背景图
+     * @param dir_path 背景图文件夹路径
+     * @param pane 需设置背景的BorderPane
+     */
+    public static void set_bkg_pic(String dir_path, BorderPane pane){
+        ArrayList<String> res = new ArrayList<>();
+        All_materials.get_materials(dir_path, res);
+        String style = "";
+        Random r = new Random();
+        int num = r.nextInt(res.size());
+        dir_path = dir_path.substring(5);
+        style = "-fx-background-image: url('" + dir_path + "/" + num + ".jpg');"+"-fx-background-size: cover;";
+        pane.setStyle(style);
+    }
     /**
      * 删除file文件及其子文件
      * @param file
