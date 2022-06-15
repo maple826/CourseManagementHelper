@@ -210,13 +210,16 @@ class CourseAlert {
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
-            borderPane.setStyle("-fx-background-color: #203A97");
-            borderPane.setMargin(hBox1,new Insets(30,0,0,120));
+            text.setFont(Font.font("宋体",FontWeight.BOLD,20));
+            text.setFill(Color.rgb(32,34,151));
+            borderPane.setMargin(hBox1,new Insets(40,0,0,80));
+            borderPane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+                    "-fx-background-size: cover");
             Stage alert = new Stage();
-            alert.setHeight(170);
+            alert.setResizable(false);
             alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
+            alert.setScene(new Scene(borderPane,300,160));
             alert.setTitle("提示信息");
             alert.show();
             yes.setOnMouseMoved(e -> {

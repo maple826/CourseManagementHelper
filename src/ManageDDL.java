@@ -111,7 +111,7 @@ public class ManageDDL {
         if(second%2==1)
             mainPane.setStyle("-fx-background-image: url('/img/duskBUAA.jpg');"+"-fx-background-size: cover;");
         else
-            mainPane.setStyle("-fx-background-image: url('/img/daylightBUAA.jpg');"+"-fx-background-size: cover;");
+            mainPane.setStyle("-fx-background-image: url('/img/popup.jpg');"+"-fx-background-size: cover;");
         /**
          * <p>设置顶部组件</p>
          */

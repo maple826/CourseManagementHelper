@@ -12,6 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         StaticValue.stage = primaryStage;
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(e-> {
+            System.exit(0);
+        });
         new Login(primaryStage);
     }
 }
