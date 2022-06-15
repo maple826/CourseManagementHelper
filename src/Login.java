@@ -44,6 +44,10 @@ public class Login{
      * VBox内部竖直排布
      */
     VBox loginVBox = new VBox(loginNamePane,loginBlankPane1,loginPwdPane,loginBlankPane2,buttonPane);
+    /**
+     * 动态壁纸切换常量
+     */
+    private static int WALLPAPER_NUM = 1;
 
     /**
      * 构造函数.
@@ -96,8 +100,29 @@ public class Login{
      */
     private void setStyle() {
         stage.getIcons().add(new Image("img/icon.png"));
-        //loginVBox.setStyle("-fx-background-image: url('"+ "../image/img.png" + "')");
-        loginPane.setStyle("-fx-background-color: #203A97");
+        new Thread(() -> {
+            while (true){
+                String image = "/img/login" + String.valueOf(WALLPAPER_NUM) + ".jpg";
+                loginPane.setStyle("-fx-background-image: url("+ image +");" +
+                        "-fx-background-size: cover");
+                WALLPAPER_NUM = (WALLPAPER_NUM + 1) % 3;
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        loginNamePane.setStyle("‐fx‐background‐color: transparent;");
+        loginNamePane.setOpacity(0.7);
+        loginPwdPane.setStyle("‐fx‐background‐color: transparent;");
+        loginPwdPane.setOpacity(0.7);
+        loginBlankPane1.setStyle("‐fx‐background‐color: transparent;");
+        loginBlankPane1.setOpacity(0.7);
+        loginBlankPane2.setStyle("‐fx‐background‐color: transparent;");
+        loginBlankPane2.setOpacity(0.7);
+        buttonPane.setStyle("‐fx‐background‐color: transparent;");
+        buttonPane.setOpacity(0.7);
 
         loginName.setStyle("-fx-font-size: 14;");
         loginPwd.setStyle("-fx-font-size: 14");
@@ -258,13 +283,15 @@ class LoginAlert {
      */
     LoginAlert(String s) {
         Stage alert = new Stage();
+        alert.setResizable(false);
         alert.getIcons().add(new Image("/img/light_bulb.png"));
         alert.setHeight(200);
         BorderPane pane = new BorderPane();
-        pane.setStyle("-fx-background-color: rgb(32,34,151)");
+        pane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+                "-fx-background-size: cover");
         Text text = new Text(s);
-        text.setFont(Font.font("宋体",20));
-        text.setFill(Color.rgb(245,202,42));
+        text.setFont(Font.font("宋体",FontWeight.BOLD,20));
+        text.setFill(Color.rgb(32,34,151));
         Button button = new Button("确定");
         button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
         button.setOnAction(e -> {

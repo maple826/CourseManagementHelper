@@ -34,6 +34,9 @@ public class Info {
         BorderPane pane = new BorderPane();
         pane.setTop(StaticValue.getNewTopVBox());
         VBox vBox = new CenterChangePwd().getvBox();
+        pane.setStyle("-fx-background-image: url('/img/info.jpg');" + "-fx-background-size: cover");
+        vBox.setStyle("-fx-background-color: transparent");
+        vBox.setOpacity(0.75);
         pane.setCenter(vBox);
         StaticValue.stage.setScene(new Scene(pane,StaticValue.stageWidth,StaticValue.stageHeight));
         StaticValue.stage.setTitle("学业助理");
@@ -116,11 +119,11 @@ class CenterChangePwd {
         title.setFont(Font.font("方正姚体", 26));
         title.setTextFill(Color.rgb(245,202,42));
 
-        oldPwdLabel.setFont(Font.font("宋体",18));
+        oldPwdLabel.setFont(Font.font("宋体",FontWeight.BOLD,18));
         oldPwdLabel.setTextFill(Color.rgb(245,202,42));
-        newPwdLabel.setFont(Font.font("宋体",18));
+        newPwdLabel.setFont(Font.font("宋体",FontWeight.BOLD,18));
         newPwdLabel.setTextFill(Color.rgb(245,202,42));
-        newPwdLabel2.setFont(Font.font("宋体",18));
+        newPwdLabel2.setFont(Font.font("宋体",FontWeight.BOLD,18));
         newPwdLabel2.setTextFill(Color.rgb(245,202,42));
 
         vBox.setStyle("-fx-background-color: #203A97");
@@ -149,11 +152,13 @@ class InfoAlert {
      */
     InfoAlert(String s) {
         Stage alert = new Stage();
+        alert.setResizable(false);
         BorderPane pane = new BorderPane();
-        pane.setStyle("-fx-background-color: rgb(32,34,151)");
+        pane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+                "-fx-background-size: cover");
         Text text = new Text(s);
-        text.setFont(Font.font("宋体",20));
-        text.setFill(Color.rgb(245,202,42));
+        text.setFont(Font.font("宋体",FontWeight.BOLD,20));
+        text.setFill(Color.rgb(32,34,151));
         Button button = new Button("确定");
         button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
         button.setOnAction(e -> {
