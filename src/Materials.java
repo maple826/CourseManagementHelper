@@ -109,7 +109,7 @@ class Center_scroller_pane{
         MenuItem itemAddMat = new MenuItem("添加资料");
         MenuItem itemAddBkm = new MenuItem("添加书签");
         menu.getItems().addAll(itemAddMat,itemAddBkm);
-        mat_pane.setStyle("-fx-background-color: #203A97");
+        mat_pane.getStylesheets().add("/bkg.css");
         mat_pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.SECONDARY)) {
@@ -138,7 +138,7 @@ class Center_scroller_pane{
         title_mat.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
         title_mat.setFill(Color.rgb(245,202,42));
         mat_vbox.getChildren().add(title_mat);
-        mat_vbox.setStyle("-fx-background-color: #203A97");
+        mat_vbox.setStyle("-fx-background-color: transparent;");
         Button buttons[] = new Button[mat_list.size()];
 
         for(i = 0;i < mat_list.size();i++){
@@ -167,7 +167,7 @@ class Center_scroller_pane{
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8)); //为每个节点设置外边距
             mat_vbox.getChildren().add(options[i]);
         }
-        mat_vbox.setStyle("-fx-background-color: #203A97");
+        mat_vbox.setStyle("-fx-background-color: transparent;");
         mat_pane.setFitToHeight(true);
         mat_pane.setFitToWidth(true);
         mat_pane.setContent(mat_vbox);

@@ -27,7 +27,8 @@ import java.util.Arrays;
  * 课程资料类
  * <p>
  *     用户选择 “课程资料” 按钮后的界面 <br>
- *     具有课程添加、删除、编辑功能
+ *     具有课程添加、删除、编辑功能 <br>
+ *     切换课程时随机更换BUAA背景图
  * </p>
  */
 public class Course {
@@ -52,10 +53,12 @@ public class Course {
      * </p>
      */
     private void createCourse() {
-        courseLeftScrollPane.setStyle("-fx-background-color: #203A97");
-        coursePane.setStyle("-fx-background-color: #203A97");
+
+        courseLeftScrollPane.setStyle("-fx-background-color: transparent;");
         coursePane.setTop(courseTopVBox);
         coursePane.setLeft(courseLeftScrollPane);
+        StaticValue.set_bkg_pic("./src/img/course_bkg",coursePane);
+//        coursePane.setStyle("-fx-background-image: url('/img/course_bkg/8.jpg');"+"-fx-background-size: cover;");
         stage.setScene(new Scene(coursePane,StaticValue.stageWidth,StaticValue.stageHeight));
         stage.setTitle("学习小帮手");
         stage.show();
@@ -77,7 +80,7 @@ class CourseLeftScrollPane {
      */
     CourseLeftScrollPane() {
 
-        vBox.setStyle("-fx-background-color: #203A97");
+        vBox.setStyle("-fx-background-color: transparent;");
         vBox.setSpacing(StaticValue.stageHeight / 20);
         Text text_course = new Text("课程");
         text_course.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
@@ -97,8 +100,8 @@ class CourseLeftScrollPane {
         }
 
         pane.setContent(vBox);
-        pane.setFitToHeight(true);
-        pane.setFitToWidth(true);
+//        pane.setFitToHeight(true);
+//        pane.setFitToWidth(true);
         menu = new ContextMenu();
         MenuItem itemAdd = new MenuItem("添加");
         menu.getItems().add(itemAdd);
@@ -116,7 +119,10 @@ class CourseLeftScrollPane {
             new CourseAlert("Add");
         });
         pane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        pane.setStyle("-fx-background-color: #203A97");
+        pane.getStylesheets().add("bkg.css");
+
+//        pane.setStyle("-fx-background-color: transparent;");
+//        pane.setOpacity(0.7);//0为完全透明
     }
     /**
      * 获取该滚动栏
