@@ -107,6 +107,9 @@ public class ManageDDL {
     public static void setScene() throws IOException, ParseException {
         ManageDDL.read();
         BorderPane mainPane=new BorderPane();
+        /**
+         * 点击更换背景图
+         */
         StaticValue.set_bkg_pic("./src/img/ddl_memo_bkg",mainPane);
 //        Date date = new Date();
 //        Calendar calendar = GregorianCalendar.getInstance();
