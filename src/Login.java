@@ -100,19 +100,24 @@ public class Login{
      */
     private void setStyle() {
         stage.getIcons().add(new Image("img/icon.png"));
-        new Thread(() -> {
-            while (true){
-                String image = "/img/login" + String.valueOf(WALLPAPER_NUM) + ".jpg";
-                loginPane.setStyle("-fx-background-image: url("+ image +");" +
-                        "-fx-background-size: cover");
-                WALLPAPER_NUM = (WALLPAPER_NUM + 1) % 3;
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        try {
+            new Thread(() -> {
+                while (true){
+                    String image = "/img/login" + String.valueOf(WALLPAPER_NUM) + ".jpg";
+                    loginPane.setStyle("-fx-background-image: url("+ image +");" +
+                            "-fx-background-size: cover;");
+                    WALLPAPER_NUM = (WALLPAPER_NUM + 1) % 3;
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }).start();
+            }).start();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
         loginNamePane.setStyle("‐fx‐background‐color: transparent;");
         loginNamePane.setOpacity(0.7);
         loginPwdPane.setStyle("‐fx‐background‐color: transparent;");
@@ -287,11 +292,11 @@ class LoginAlert {
         alert.getIcons().add(new Image("/img/light_bulb.png"));
         alert.setHeight(200);
         BorderPane pane = new BorderPane();
-        pane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+        pane.setStyle("-fx-background-image: url('/img/alert.png');" +
                 "-fx-background-size: cover");
         Text text = new Text(s);
         text.setFont(Font.font("宋体",FontWeight.BOLD,20));
-        text.setFill(Color.rgb(32,34,151));
+        //text.setFill(Color.rgb(245,202,42));
         Button button = new Button("确定");
         button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
         button.setOnAction(e -> {

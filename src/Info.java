@@ -154,11 +154,11 @@ class InfoAlert {
         Stage alert = new Stage();
         alert.setResizable(false);
         BorderPane pane = new BorderPane();
-        pane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+        pane.setStyle("-fx-background-image: url('/img/alert.png');" +
                 "-fx-background-size: cover");
         Text text = new Text(s);
         text.setFont(Font.font("宋体",FontWeight.BOLD,20));
-        text.setFill(Color.rgb(32,34,151));
+        //text.setFill(Color.rgb(32,34,151));
         Button button = new Button("确定");
         button.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
         button.setOnAction(e -> {

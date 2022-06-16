@@ -198,7 +198,7 @@ class CourseAlert {
     CourseAlert(String s) {
         if(s.equals("Exit")) {
             Text text = new Text("您确定要退出吗");
-            text.setFill(Color.rgb(245,202,42));
+            //text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -217,9 +217,9 @@ class CourseAlert {
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
             text.setFont(Font.font("宋体",FontWeight.BOLD,20));
-            text.setFill(Color.rgb(32,34,151));
+            //text.setFill(Color.rgb(32,34,151));
             borderPane.setMargin(hBox1,new Insets(40,0,0,80));
-            borderPane.setStyle("-fx-background-image: url('/img/dontforget.jpg');" +
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
                     "-fx-background-size: cover");
             Stage alert = new Stage();
             alert.setResizable(false);
@@ -268,7 +268,7 @@ class CourseAlert {
         }
         else if(s.equals("Add")) {
             Text text = new Text("请输入课程名称：");
-            text.setFill(Color.rgb(245,202,42));
+            //text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             TextField textField = new TextField();
             Button yes = new Button("确定");
@@ -287,7 +287,8 @@ class CourseAlert {
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
             alert.getIcons().add(new Image("/img/light_bulb.png"));
