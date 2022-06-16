@@ -1,3 +1,4 @@
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -410,35 +411,87 @@ class centerPane{
  *     此类用于删除ddl，逻辑是把ddlArrayList中要删除的ddl的delete参数改为1，然后写回ddl和重新加载界面，写回ddl时delete参数为1的ddl不会被写回。
  *</p>
  */
-
 class deleteDDL{
     deleteDDL(DDL from){
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        ButtonType buttonYes = new ButtonType("确定");
-        ButtonType buttonNo = new ButtonType("取消");
-        alert.getButtonTypes().setAll(buttonYes, buttonNo);
-        alert.setTitle("移除一条DDL");
-        alert.setHeaderText("");
-        alert.setContentText("已完成？");
-        alert.initOwner(ManageDDL.stage);
-        alert.show();
-        alert.setOnCloseRequest(e -> {
-            ButtonType result = alert.getResult();
-            if (result != null && result.equals(buttonYes)) {
-                try {
-                    from.delete=1;
+        Stage alert = new Stage();
+        alert.setResizable(false);
+        alert.getIcons().add(new Image("/img/light_bulb.png"));
+        alert.setHeight(200);
+        BorderPane pane = new BorderPane();
+        pane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                "-fx-background-size: cover");
+        Text text = new Text("确定删除吗？");
+        text.setFont(Font.font("宋体",FontWeight.BOLD,20));
+        //text.setFill(Color.rgb(245,202,42));
+        Button yes = new Button("确定");
+        Button no =new Button("取消");
+        no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        no.setOnAction(e -> {
+            alert.close();
+        });
+        yes.setOnAction(e->{
+            try {
+                from.delete=1;
                     ManageDDL.write();
                     ManageDDL.read();
                     ManageDDL.setScene();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            } else {
-                alert.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
+        no.setOnMouseMoved(e -> {
+            no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 16");
+        });
+        no.setOnMouseExited(e -> {
+            no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        });
+        yes.setOnMouseMoved(e -> {
+            yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 16");
+        });
+        yes.setOnMouseExited(e -> {
+            yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 16");
+        });
+        pane.setCenter(text);
+        HBox bottomBox=new HBox(yes,no);
+        bottomBox.setAlignment(Pos.CENTER);
+        bottomBox.setSpacing(30);
+        pane.setBottom(bottomBox);
+        pane.setMargin(yes,new Insets(0,0,20,130));
+        pane.setMargin(no,new Insets(0,0,20,130));
+        alert.setTitle("移除一条DDL");
+        alert.setScene(new Scene(pane,300,160));
+        alert.show();
     }
 }
+//class deleteDDL{
+//    deleteDDL(DDL from){
+//        Alert alert = new Alert(Alert.AlertType.NONE);
+//        ButtonType buttonYes = new ButtonType("确定");
+//        ButtonType buttonNo = new ButtonType("取消");
+//        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+//        alert.setTitle("移除一条DDL");
+//        alert.setHeaderText("");
+//        alert.setContentText("已完成？");
+//        alert.initOwner(ManageDDL.stage);
+//        alert.show();
+//        alert.setOnCloseRequest(e -> {
+//            ButtonType result = alert.getResult();
+//            if (result != null && result.equals(buttonYes)) {
+//                try {
+//                    from.delete=1;
+//                    ManageDDL.write();
+//                    ManageDDL.read();
+//                    ManageDDL.setScene();
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+//            } else {
+//                alert.close();
+//            }
+//        });
+//    }
+//}
 
 
 /**
