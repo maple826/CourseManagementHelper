@@ -1,0 +1,8 @@
+/* 设置背景透明 */
+.split-pane{
+   -fx-background-color:transparent;
+}
+.split-pane .viewport {
+   -fx-background-color: transparent;
+}
+

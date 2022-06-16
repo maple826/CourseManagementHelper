@@ -197,8 +197,7 @@ class CourseAlert {
      */
     CourseAlert(String s) {
         if(s.equals("Exit")) {
-            Text text = new Text("您确定要退出吗");
-            //text.setFill(Color.rgb(245,202,42));
+            Text text = new Text("您确定要退出吗？");
             text.setFont(Font.font("宋体",18));
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -217,7 +216,6 @@ class CourseAlert {
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
             text.setFont(Font.font("宋体",FontWeight.BOLD,20));
-            //text.setFill(Color.rgb(32,34,151));
             borderPane.setMargin(hBox1,new Insets(40,0,0,80));
             borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
                     "-fx-background-size: cover");
@@ -250,12 +248,12 @@ class CourseAlert {
             });
         }
         else if(s.equals("Exist")) {
-            new LoginAlert("该课程已存在");
+            new LoginAlert("该课程已存在！");
         }
         //        提示信息——添加成功
         else if(s.equals("SuccessAdd")) {
             new Course();
-            new LoginAlert("添加成功");
+            new LoginAlert("添加成功！");
         }
         //        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
@@ -268,7 +266,6 @@ class CourseAlert {
         }
         else if(s.equals("Add")) {
             Text text = new Text("请输入课程名称：");
-            //text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             TextField textField = new TextField();
             Button yes = new Button("确定");
@@ -315,6 +312,10 @@ class CourseAlert {
 
             yes.setOnAction(e -> {
                 String course = textField.getText();
+                if(course.equals("")){
+                    new LoginAlert("请输入正确的课程名！");
+                    return;
+                }
                 File f = new File("./data/" + StaticValue.userName + "/资源/" + course);
                 if(f.exists()) {
                     alert.close();
@@ -339,7 +340,6 @@ class CourseAlert {
     CourseAlert(String s,String course) {
         if(s.equals("Delete")) {
             Text text = new Text("确定要删除课程：" + course + " 吗？");
-            text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -357,7 +357,8 @@ class CourseAlert {
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
             alert.getIcons().add(new Image("/img/light_bulb.png"));
@@ -366,7 +367,18 @@ class CourseAlert {
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
             alert.show();
-
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            no.setOnMouseMoved(e -> {
+                no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
             yes.setOnAction(e -> {
                 try {
                     StaticValue.deleteFile(new File("./data/" + StaticValue.userName + "/资源/" + course));
@@ -383,7 +395,6 @@ class CourseAlert {
         }
         else if(s.equals("Edit")) {
             Text text = new Text("请输入新课程名称：");
-            text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             TextField textField = new TextField();
             Button yes = new Button("确定");
@@ -403,7 +414,8 @@ class CourseAlert {
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
             borderPane.setMargin(hBox1,new Insets(30));
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             Stage alert = new Stage();
             alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.setHeight(2/5 * StaticValue.stageHeight);
@@ -445,7 +457,7 @@ class CourseAlert {
                 f1.renameTo(f2);
 //                new CourseAlert("SuccessEdit");
                 new Course();
-                new LoginAlert("更改成功");
+                new LoginAlert("更改成功！");
             });
         }
     }

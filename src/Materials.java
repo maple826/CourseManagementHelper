@@ -59,7 +59,7 @@ public class Materials{
      * </p>
      */
     private void create_materials(){
-        material_pane.setCenter(new Center_scroller_pane().get_mat_pane());
+        material_pane.setCenter(new Center_scroller_pane().getSplitPane());
         material_pane.getScene().setRoot(material_pane);
         Course.stage.show();
     }
@@ -92,7 +92,10 @@ class All_materials {
  */
 class Center_scroller_pane{
     private ScrollPane mat_pane = new ScrollPane();
+    private SplitPane splitPane = new SplitPane();
     private VBox mat_vbox = new VBox();
+    private VBox bkl_vbox = new VBox();
+    private HBox mat_hbox = new HBox();
     private ArrayList mat_list = new ArrayList<>();
     private ArrayList bkmark_list = new ArrayList();
     private ContextMenu menu;
@@ -109,11 +112,11 @@ class Center_scroller_pane{
         MenuItem itemAddMat = new MenuItem("添加资料");
         MenuItem itemAddBkm = new MenuItem("添加书签");
         menu.getItems().addAll(itemAddMat,itemAddBkm);
-        mat_pane.getStylesheets().add("/bkg.css");
-        mat_pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        splitPane.getStylesheets().add("/splitpane_bkg.css");
+        splitPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.SECONDARY)) {
-                    menu.show(mat_pane, Side.TOP, event.getX(), event.getY());
+                    menu.show(splitPane, Side.TOP, event.getX(), event.getY());
                 }
                 else if (event.getButton().equals(MouseButton.PRIMARY)) {
                     menu.hide();
@@ -133,12 +136,11 @@ class Center_scroller_pane{
             All_materials.get_materials(".//data//"+StaticValue.userName+"//资源//"+Materials.course, mat_list);
         }catch(NullPointerException exc){};
         mat_vbox.setSpacing(StaticValue.stageHeight / 20);
-        mat_vbox.setPadding(new Insets(StaticValue.stageHeight/10,0,0,StaticValue.stageWidth/3));
+        mat_vbox.setPadding(new Insets(StaticValue.stageHeight/10,0,0,StaticValue.stageWidth/8));
         Text title_mat = new Text("本地资料");
         title_mat.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
         title_mat.setFill(Color.rgb(245,202,42));
         mat_vbox.getChildren().add(title_mat);
-        mat_vbox.setStyle("-fx-background-color: transparent;");
         Button buttons[] = new Button[mat_list.size()];
 
         for(i = 0;i < mat_list.size();i++){
@@ -158,25 +160,45 @@ class Center_scroller_pane{
         Text title_bkmark = new Text("书签链接");
         title_bkmark.setFont(Font.font("华文行楷", FontWeight.BOLD, 30));
         title_bkmark.setFill(Color.rgb(245,202,42));
-        mat_vbox.getChildren().add(title_bkmark);
+        bkl_vbox.getChildren().add(title_bkmark);
 
         Hyperlink options[] = new Hyperlink[bkmark_list.size()];
         for(i = 0;i < bkmark_list.size();i++) {
 //            使用Bkmark_hplink类创建书签hyperlink
             options[i] = new Bkmark_hplink(bkmark_list.get(i).toString(),Materials.course).getHyperlink();
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8)); //为每个节点设置外边距
-            mat_vbox.getChildren().add(options[i]);
+            options[i].getStylesheets().add("/hplink.css");
+            bkl_vbox.getChildren().add(options[i]);
         }
+        bkl_vbox.setStyle("-fx-background-color: transparent;");
         mat_vbox.setStyle("-fx-background-color: transparent;");
-        mat_pane.setFitToHeight(true);
-        mat_pane.setFitToWidth(true);
-        mat_pane.setContent(mat_vbox);
+        mat_hbox.setStyle("-fx-background-color: transparent;");
+        bkl_vbox.setSpacing(StaticValue.stageHeight / 20);
+        bkl_vbox.setPadding(new Insets(StaticValue.stageHeight/10,0,0,StaticValue.stageWidth/6));
+        mat_hbox.getChildren().addAll(mat_vbox,bkl_vbox);
+//        mat_vbox.setMaxWidth(StaticValue.stageWidth/4);
+        bkl_vbox.setFillWidth(true);
+//        mat_pane.setFitToHeight(true);
+//        mat_pane.setFitToWidth(true);
+//        mat_pane.setContent(mat_hbox);
+        ScrollPane left = new ScrollPane();
+        left.getStylesheets().add("/bkg.css");
+        left.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        left.setContent(mat_vbox);
+        ScrollPane right = new ScrollPane();
+        right.getStylesheets().add("/bkg.css");
+        right.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        right.setContent(bkl_vbox);
+        splitPane.getItems().addAll(left,right);
     }
     /**
      * 获取该滚动栏
      */
     public ScrollPane get_mat_pane(){
         return mat_pane;
+    }
+    public SplitPane getSplitPane(){
+        return splitPane;
     }
 
 }
@@ -356,11 +378,8 @@ class Material_alert {
     Material_alert(String s,String course){
         if(s.equals("Add")){
             Text text_name = new Text("请输入书签名称：");
-            text_name.setFill(Color.rgb(245,202,42));
             Text text_content = new Text("请输入网址链接：");
-            text_content.setFill(Color.rgb(245,202,42));
             Text hint = new Text("(建议该网址从浏览器复制)");
-            hint.setFill(Color.rgb(245,202,42));
             text_name.setFont(Font.font("宋体",18));
             text_content.setFont(Font.font("宋体",18));
             TextField textField_name = new TextField();
@@ -383,7 +402,8 @@ class Material_alert {
             hBox2.setSpacing(StaticValue.stageHeight / 24);
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(vBox);
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             borderPane.setBottom(hBox2);
             borderPane.setMargin(vBox,new Insets(30));
             Stage alert = new Stage();
@@ -460,8 +480,6 @@ class Material_alert {
             text1 = new Text("可将本地文件拖拽至此");
             text.setFont(Font.font("宋体",18));
             text1.setFont(Font.font("宋体",16));
-            text.setFill(Color.rgb(245,202,42));
-            text1.setFill(Color.rgb(245,202,42));
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -482,7 +500,8 @@ class Material_alert {
             borderPane.setCenter(vBox);
             borderPane.setBottom(hBox2);
             borderPane.setMargin(vBox,new Insets(30));
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             Stage alert = new Stage();
             alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
@@ -581,11 +600,6 @@ class Material_alert {
         }
 //        提示信息——编辑成功
         else if(s.equals("SuccessEdit")) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("提示信息");
-//            alert.setHeaderText("");
-//            alert.setContentText("更改成功！");
-//            alert.show();
             new Materials(Materials.material_pane,course);
             new LoginAlert("编辑成功！");
         }
@@ -629,8 +643,6 @@ class Material_alert {
                 String hplink_name = name.substring(0,name.length()-drop_size-1);
                 text.setText("确定要删除书签：" + hplink_name + " 吗？");
             }
-
-            text.setFill(Color.rgb(245,202,42));
             text.setFont(Font.font("宋体",18));
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -648,7 +660,8 @@ class Material_alert {
             BorderPane borderPane = new BorderPane();
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             borderPane.setMargin(hBox1,new Insets(30));
             Stage alert = new Stage();
 
@@ -659,7 +672,18 @@ class Material_alert {
             alert.setScene(new Scene(borderPane,StaticValue.stageWidth * 2 / 5,StaticValue.stageHeight * 2 / 5));
             alert.setTitle("提示信息");
             alert.show();
-
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
+            no.setOnMouseMoved(e -> {
+                no.setStyle(StaticValue.buttonStyle2 + "-fx-font-size: 18");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(StaticValue.buttonStyle1 + "-fx-font-size: 18");
+            });
             yes.setOnAction(e -> {
                 if(mat_or_bkm == 0){
                     try {
@@ -699,7 +723,6 @@ class Material_alert {
                 text = new Text("请输入新书签名称：");
             }
             text.setFont(Font.font("宋体",18));
-            text.setFill(Color.rgb(245,202,42));
             TextField textField = new TextField();
             Button yes = new Button("确定");
             Button no = new Button("取消");
@@ -718,7 +741,8 @@ class Material_alert {
             borderPane.setCenter(hBox1);
             borderPane.setBottom(hBox2);
             borderPane.setMargin(hBox1,new Insets(30));
-            borderPane.setStyle("-fx-background-color: #203A97");
+            borderPane.setStyle("-fx-background-image: url('/img/alert.png');" +
+                    "-fx-background-size: cover");
             Stage alert = new Stage();
             alert.getIcons().add(new Image("/img/light_bulb.png"));
             alert.initModality(Modality.APPLICATION_MODAL);
