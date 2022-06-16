@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="增加了登录界面、主界面背景图片动态展示效果，增加了个人信息界面背景图片，优化了以上三部分提示信息的背景图片，文档中增加了动态背景技术即gif图示例">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="统一了提示框UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/changepwd.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/changepwd.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/class.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/img/u=1321431079,1138148911&amp;fm=193.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/说明文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/说明文档.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,15 +38,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Course.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/ManageDDL.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/ManageMemorandum.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/StaticValue.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/ManageDDL.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Login.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Course.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Home.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Materials.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Info.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/StaticValue.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Materials.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -71,11 +75,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper" />
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\image" />
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\image" />
+      <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\del" />
       <recent name="C:\Users\zyc\Desktop\CourseManagementHelper\src" />
     </key>
   </component>
@@ -138,7 +143,6 @@
       <workItem from="1655084911547" duration="10356000" />
       <workItem from="1655369548350" duration="1754000" />
       <workItem from="1655371728512" duration="830000" />
-      <workItem from="1655387372161" duration="1664000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>

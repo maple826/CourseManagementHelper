@@ -45,11 +45,6 @@ public class Login{
      */
     VBox loginVBox = new VBox(loginNamePane,loginBlankPane1,loginPwdPane,loginBlankPane2,buttonPane);
     /**
-     * 动态壁纸切换常量
-     */
-    private static int WALLPAPER_NUM = 1;
-
-    /**
      * 构造函数.
      * <p>
      *     设置UI样式 <br>
@@ -101,16 +96,24 @@ public class Login{
     private void setStyle() {
         stage.getIcons().add(new Image("img/icon.png"));
         try {
-            new Thread(() -> {
-                while (true){
-                    String image = "/img/login" + String.valueOf(WALLPAPER_NUM) + ".jpg";
-                    loginPane.setStyle("-fx-background-image: url("+ image +");" +
-                            "-fx-background-size: cover;");
-                    WALLPAPER_NUM = (WALLPAPER_NUM + 1) % 3;
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true){
+                        String image = "/img/login" + String.valueOf(StaticValue.WALLPAPER_NUM) + ".jpg";
+                        try {
+                            loginPane.setStyle("-fx-background-image: url("+ image +");" +
+                                    "-fx-background-size: cover;");
+                        }
+                        catch (Exception e) {
+                            System.out.println(e);
+                        }
+                        StaticValue.WALLPAPER_NUM = (StaticValue.WALLPAPER_NUM + 1) % 3;
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }).start();
@@ -206,6 +209,14 @@ class RegisterButton {
         registerButton.setOnAction(e -> {
             String name = na.getText(),pwd = pw.getText();
             File f = new File("./data/" + name);
+            if(name.equals("")) {
+                new LoginAlert("请输入用户名！");
+                return;
+            }
+            if(pwd.equals("")) {
+                new LoginAlert("请输入密码！");
+                return;
+            }
             if(f.exists()) {
                 new LoginAlert("用户名已存在！");
                 return;
@@ -251,6 +262,14 @@ class LoginButton {
     LoginButton(TextField na,TextField pw) {
         loginButton.setOnAction(e -> {
             String name = na.getText(),pwd = pw.getText();
+            if(name.equals("")) {
+                new LoginAlert("请输入用户名！");
+                return;
+            }
+            if(pwd.equals("")) {
+                new LoginAlert("请输入密码！");
+                return;
+            }
             File f = new File("./data/" + name);
             if(!f.exists()) {
                 new LoginAlert("用户名不存在！");

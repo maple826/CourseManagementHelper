@@ -24,6 +24,11 @@ import java.util.ArrayList;
  * 包括需要多次使用的值，组件或方法
  */
 public class StaticValue {
+    /**
+     * 动态壁纸切换常量
+     */
+    static int WALLPAPER_NUM = 1;
+
     static Stage stage;
     /**
      * 场景宽度
