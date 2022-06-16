@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了顶部信息栏UI及退出提示框，增加了项目文档中算法或技术部分" />
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="优化了顶部信息栏UI及退出提示框，增加了项目文档中算法或技术部分">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/111/ddl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/111/ddl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageDDL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageDDL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ManageMemorandum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ManageMemorandum.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,6 +137,7 @@
       <workItem from="1655054779842" duration="2001000" />
       <workItem from="1655084911547" duration="10356000" />
       <workItem from="1655305615689" duration="139000" />
+      <workItem from="1655361955937" duration="3901000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>

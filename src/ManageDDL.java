@@ -104,14 +104,15 @@ public class ManageDDL {
     public static void setScene() throws IOException, ParseException {
         ManageDDL.read();
         BorderPane mainPane=new BorderPane();
-        Date date = new Date();
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(date);
-        int second = calendar.get(Calendar.SECOND);
-        if(second%2==1)
-            mainPane.setStyle("-fx-background-image: url('/img/duskBUAA.jpg');"+"-fx-background-size: cover;");
-        else
-            mainPane.setStyle("-fx-background-image: url('/img/popup.jpg');"+"-fx-background-size: cover;");
+        StaticValue.set_bkg_pic("./src/img/ddl_memo_bkg",mainPane);
+//        Date date = new Date();
+//        Calendar calendar = GregorianCalendar.getInstance();
+//        calendar.setTime(date);
+//        int second = calendar.get(Calendar.SECOND);
+//        if(second%2==1)
+//            mainPane.setStyle("-fx-background-image: url('/img/duskBUAA.jpg');"+"-fx-background-size: cover;");
+//        else
+//            mainPane.setStyle("-fx-background-image: url('/img/popup.jpg');"+"-fx-background-size: cover;");
         /**
          * <p>设置顶部组件</p>
          */
@@ -152,35 +153,35 @@ class DDLBar{
     HBox hbox=new HBox();
     DDLBar(){
         Label titleLabel=new Label("DDL内容");
-        titleLabel.setMinWidth(StaticValue.stageWidth*3/10);
-        titleLabel.setMaxWidth(StaticValue.stageWidth*3/10);
-        titleLabel.setTextFill(Paint.valueOf("blue"));
-        titleLabel.setStyle("-fx-background-color: transparent;");
+        titleLabel.setMinWidth(StaticValue.stageWidth*2/10);
+        titleLabel.setMaxWidth(StaticValue.stageWidth*2/10);
+        titleLabel.setTextFill(Paint.valueOf("yellow"));
+        titleLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         Label hyperlink=new Label("相关链接");
         hyperlink.setMinWidth(StaticValue.stageWidth*2/10);
         hyperlink.setMaxWidth(StaticValue.stageWidth*2/10);
-        hyperlink.setTextFill(Paint.valueOf("blue"));
-        hyperlink.setStyle("-fx-background-color: transparent;");
+        hyperlink.setTextFill(Paint.valueOf("yellow"));
+        hyperlink.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         Label dateLabel=new Label("截止日期");
-        dateLabel.setMinWidth(StaticValue.stageWidth/10);
-        dateLabel.setMaxWidth(StaticValue.stageWidth/10);
-        dateLabel.setTextFill(Paint.valueOf("blue"));
-        dateLabel.setStyle("-fx-background-color: transparent;");
+        dateLabel.setMinWidth(StaticValue.stageWidth*2/10);
+        dateLabel.setMaxWidth(StaticValue.stageWidth*2/10);
+        dateLabel.setTextFill(Paint.valueOf("yellow"));
+        dateLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
 
         Label timeLabel=new Label("剩余时间");
         timeLabel.setMinWidth(StaticValue.stageWidth*2/10);
-        timeLabel.setTextFill(Paint.valueOf("blue"));
-        timeLabel.setStyle("-fx-background-color: transparent;");
+        timeLabel.setTextFill(Paint.valueOf("yellow"));
+        timeLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         Label amountLabel=new Label("当前共有"+ ManageDDL.ddlArrayList.size()+"条DDL");
         amountLabel.setMinWidth(StaticValue.stageWidth*1/10);
-        amountLabel.setTextFill(Paint.valueOf("blue"));
-        amountLabel.setStyle("-fx-background-color: transparent;");
+        amountLabel.setTextFill(Paint.valueOf("yellow"));
+        amountLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
-        hbox.setStyle("-fx-background-color: transparent;");
+        hbox.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         hbox.getChildren().addAll(titleLabel,hyperlink,dateLabel,timeLabel,amountLabel);
         hbox.setSpacing(10);
     }
@@ -215,19 +216,21 @@ class DDL{
         this.date=date;
 
         Label titleLabel=new Label(title);
-        titleLabel.setMinWidth(StaticValue.stageWidth*3/10);
-        titleLabel.setMaxWidth(StaticValue.stageWidth*3/10);
-        titleLabel.setStyle("-fx-background-color: transparent;");
+        titleLabel.setMinWidth(StaticValue.stageWidth*2/10);
+        titleLabel.setMaxWidth(StaticValue.stageWidth*2/10);
+        titleLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+
 
         Hyperlink hyperlink=new Hyperlink(url);
         hyperlink.setMinWidth(StaticValue.stageWidth*2/10);
         hyperlink.setMaxWidth(StaticValue.stageWidth*2/10);
-        hyperlink.setStyle("-fx-background-color: transparent;");
+        hyperlink.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+
 
         Label dateLabel=new Label(date);
-        dateLabel.setMinWidth(StaticValue.stageWidth/10);
-        dateLabel.setMaxWidth(StaticValue.stageWidth/10);
-        dateLabel.setStyle("-fx-background-color: transparent;");
+        dateLabel.setMinWidth(StaticValue.stageWidth*2/10);
+        dateLabel.setMaxWidth(StaticValue.stageWidth*2/10);
+        dateLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate=new Date();
@@ -259,20 +262,22 @@ class DDL{
             betweenDays=(int) ((start - end)/(24*3600*1000));
             betweenHours=(int) ((start - end)/(3600*1000));
             int hour=betweenHours%24;
-            timeLeft=String.format("请注意！已过期%d天%d小时",betweenDays,hour);
+            timeLeft=String.format("已过期%d天%d小时!",betweenDays,hour);
         }
         Label timeLabel=new Label(timeLeft);
         timeLabel.setMinWidth(StaticValue.stageWidth*2/10);
-        timeLabel.setStyle("-fx-background-color: transparent;");
+        timeLabel.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         Button button=new Button("删除");
         Button editButton=new Button("编辑");
-        editButton.setStyle("-fx-background-color: transparent;");
-        button.setStyle("-fx-background-color: transparent;");
+        editButton.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+        button.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+//        button.setStyle("-fx-font-size: 14");
+//        editButton.setStyle("-fx-font-size: 14");
 //        String buttonStyle1 = "-fx-background-color:darkturquoise;"+
-//                "-fx-background-radius:20;";
+//                "-fx-background-radius:18;";
 //        String buttonStyle2 = "-fx-background-color:lightskyblue;"+
-//                "-fx-background-radius:20;";
+//                "-fx-background-radius:18;";
 //        editButton.setStyle(buttonStyle1 + "-fx-font-size: 13");
 //        editButton.setOnMouseMoved(e -> {
 //            editButton.setStyle(buttonStyle2 + "-fx-font-size: 16");
@@ -291,7 +296,9 @@ class DDL{
         if(flag==0){
             hbox.setBackground(new Background(new BackgroundFill(Paint.valueOf("red"),null,null)));
         }
-
+        else {
+            hbox.setBackground(new Background(new BackgroundFill(Paint.valueOf("white"),null,null)));
+        }
         hbox.setOpacity(0.8);
         hbox.getChildren().addAll(titleLabel,hyperlink,dateLabel,timeLabel,editButton,button);
         hbox.setSpacing(10);
@@ -339,9 +346,9 @@ class bottomPane{
             new addDDL();
         });
         String buttonStyle1 = "-fx-background-color:darkturquoise;"+
-                "-fx-background-radius:20;";
+                "-fx-background-radius:18;";
         String buttonStyle2 = "-fx-background-color:lightskyblue;"+
-                "-fx-background-radius:20;";
+                "-fx-background-radius:18;";
         createButton.setStyle(buttonStyle1 + "-fx-font-size: 13");
         createButton.setOnMouseMoved(e -> {
             createButton.setStyle(buttonStyle2 + "-fx-font-size: 16");
@@ -367,10 +374,11 @@ class centerPane{
             if(ManageDDL.ddlArrayList.get(i).delete==1) continue;
             DDLs.getChildren().add(ManageDDL.ddlArrayList.get(i).getHBox());
         }
-        DDLs.setStyle("-fx-background-color: transparent;");
-        DDLs.setSpacing(20);
+        DDLs.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+        DDLs.setSpacing(18);
         DDLs.setAlignment(Pos.TOP_CENTER);
-        centerPane.setOpacity(0.8);
+//        centerPane.setOpacity(0.8);
+        centerPane.getStylesheets().add("bkg.css");
         centerPane.setContent(DDLs);
     }
     ScrollPane getCenterPane(){
@@ -458,7 +466,7 @@ class addDDL{
         yes.setOpacity(0.7);
         no.setOpacity(0.7);
         HBox topPane=new HBox();
-        topPane.setStyle("-fx-background-color: transparent;");
+        topPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         topPane.setAlignment(Pos.CENTER);
         Label topTitleOfAddDDL=new Label("添加新的DDL");
         topTitleOfAddDDL.setFont(Font.font("楷体", FontWeight.BOLD,30));
@@ -466,40 +474,40 @@ class addDDL{
         topPane.getChildren().add(topTitleOfAddDDL);
 
         HBox bottomPane=new HBox(yes,no);
-        bottomPane.setStyle("-fx-background-color: transparent;");
+        bottomPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         bottomPane.setAlignment(Pos.CENTER);
         bottomPane.setMinHeight(50);
         bottomPane.setSpacing(30);
 
         HBox ddlPart=new HBox(ddlText,ddlTextField);
         ddlPart.setAlignment(Pos.CENTER);
-        ddlPart.setStyle("-fx-background-color: transparent;");
+        ddlPart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         ddlPart.setMinHeight(80);
 
 
         HBox urlPart=new HBox(urlText,urlTextField);
         urlPart.setAlignment(Pos.CENTER);
         urlPart.setMinHeight(80);
-        urlPart.setStyle("-fx-background-color: transparent;");
+        urlPart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         HBox noticePart=new HBox(dueTimeLabel);
         noticePart.setAlignment(Pos.CENTER);
-        noticePart.setStyle("-fx-background-color: transparent;");
+        noticePart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         HBox dueTimePart=new HBox(yearText,yearTextField,monthText,monthTextField,dayText,dayTextField);
         dueTimePart.setAlignment(Pos.CENTER);
         dueTimePart.setMinHeight(80);
-        dueTimePart.setStyle("-fx-background-color: transparent;");
+        dueTimePart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         VBox centerPane=new VBox(ddlPart,urlPart,noticePart,dueTimePart);
         centerPane.setAlignment(Pos.CENTER);
-        centerPane.setStyle("-fx-background-color: transparent;");
+        centerPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
         BorderPane addDDLPane=new BorderPane();
         addDDLPane.setTop(topPane);
         addDDLPane.setBottom(bottomPane);
         addDDLPane.setCenter(centerPane);
 //        addDDLPane.setOpacity(0.7);
-        addDDLPane.setStyle("-fx-background-color: transparent;");
+        addDDLPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         addDDLPane.setStyle("-fx-background-image: url('/img/popup.jpg');"+"-fx-background-size: cover;");
         Scene addDDLScene=new Scene(addDDLPane);
         Stage addDDLStage=new Stage();
@@ -510,9 +518,9 @@ class addDDL{
         addDDLStage.show();
 
         String buttonStyle1 = "-fx-background-color:darkturquoise;"+
-                "-fx-background-radius:20;";
+                "-fx-background-radius:18;";
         String buttonStyle2 = "-fx-background-color:lightskyblue;"+
-                "-fx-background-radius:20;";
+                "-fx-background-radius:18;";
         no.setStyle(buttonStyle1 + "-fx-font-size: 13");
         no.setOnMouseMoved(e -> {
            no.setStyle(buttonStyle2 + "-fx-font-size: 16");
