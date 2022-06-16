@@ -1,7 +1,9 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -212,9 +214,38 @@ class Memorandum{
         Button display =new Button("查看");
         Button delete=new Button("删除");
         Button modify=new Button("编辑");
-        display.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 14");
-        delete.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 14");
-        modify.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 14");
+        display.setStyle("-fx-background-color:lightskyblue;"+"-fx-font-size: 14");
+        delete.setStyle("-fx-background-color:lightskyblue;"+"-fx-font-size: 14");
+        modify.setStyle("-fx-background-color:lightskyblue;"+"-fx-font-size: 14");
+
+
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.rgb(67,173,217));
+        display.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            display.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        display.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            display.setEffect(null);
+        });
+        delete.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            delete.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        delete.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            delete.setEffect(null);
+        });
+        modify.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            modify.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        modify.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            modify.setEffect(null);
+        });
+
+
+
+
         HBox innerHBox=new HBox(display,delete,modify);
         innerHBox.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
         VBox innerVBox=new VBox(name,innerHBox);
@@ -411,16 +442,16 @@ class addMemo{
         namePart.setMinHeight(80);
         namePart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
-        HBox contentTextPart=new HBox(contentText);
-        contentTextPart.setAlignment(Pos.CENTER);
-        contentTextPart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+//        HBox contentTextPart=new HBox(contentText);
+//        contentTextPart.setAlignment(Pos.CENTER);
+//        contentTextPart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
-        HBox contentPart=new HBox(contentField);
+        HBox contentPart=new HBox(contentText,contentField);
         contentPart.setAlignment(Pos.CENTER);
         contentPart.setMinHeight(80);
         contentPart.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
-        VBox centerPane=new VBox(namePart,contentTextPart,contentPart);
+        VBox centerPane=new VBox(namePart,contentPart);
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
 
@@ -429,7 +460,7 @@ class addMemo{
         addMemoPane.setBottom(bottomPane);
         addMemoPane.setCenter(centerPane);
         addMemoPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
-        addMemoPane.setStyle("-fx-background-image: url('/img/dontforget.jpg');"+"-fx-background-size: cover;");
+        addMemoPane.setStyle("-fx-background-image: url('/img/alert.png');"+"-fx-background-size: cover;");
 
 
         Scene addMemoScene=new Scene(addMemoPane);

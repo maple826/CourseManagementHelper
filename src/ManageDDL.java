@@ -1,7 +1,9 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -270,8 +272,25 @@ class DDL{
 
         Button button=new Button("删除");
         Button editButton=new Button("编辑");
-        editButton.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
-        button.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
+        editButton.setStyle(StaticValue.buttonStyle2+"-fx-font-size: 14");
+        button.setStyle(StaticValue.buttonStyle2+"-fx-font-size: 14");
+
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.rgb(67,173,217));
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            button.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            button.setEffect(null);
+        });
+        editButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+            editButton.setEffect(shadow);
+        });
+        //当鼠标离开按钮时移除阴影效果
+        editButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+            editButton.setEffect(null);
+        });
 //        button.setStyle("-fx-font-size: 14");
 //        editButton.setStyle("-fx-font-size: 14");
 //        String buttonStyle1 = "-fx-background-color:darkturquoise;"+
@@ -431,12 +450,12 @@ class deleteDDL{
 class addDDL{
     addDDL(){
         Text ddlText=new Text("DDL内容：");
-        ddlText.setFill(Paint.valueOf("white"));
+        ddlText.setFill(Paint.valueOf("black"));
         TextField ddlTextField=new TextField("");
         ddlTextField.setPrefWidth(400);
 
         Text urlText=new Text("链接地址：");
-        urlText.setFill(Paint.valueOf("white"));
+        urlText.setFill(Paint.valueOf("black"));
         String urlTextNotice="选填";
         TextField urlTextField=new TextField(urlTextNotice);
         urlTextField.setPrefWidth(400);
@@ -445,18 +464,18 @@ class addDDL{
 
 
         Text yearText=new Text("年：");
-        yearText.setFill(Paint.valueOf("white"));
+        yearText.setFill(Paint.valueOf("black"));
         TextField yearTextField=new TextField("");
         yearTextField.setPrefWidth(100);
 
 
         Text monthText=new Text(" 月：");
-        monthText.setFill(Paint.valueOf("white"));
+        monthText.setFill(Paint.valueOf("black"));
         TextField monthTextField=new TextField("");
         monthTextField.setPrefWidth(100);
 
         Text dayText=new Text(" 日：");
-        dayText.setFill(Paint.valueOf("white"));
+        dayText.setFill(Paint.valueOf("black"));
         TextField dayTextField=new TextField("");
         dayTextField.setPrefWidth(100);
 
@@ -470,7 +489,7 @@ class addDDL{
         topPane.setAlignment(Pos.CENTER);
         Label topTitleOfAddDDL=new Label("添加新的DDL");
         topTitleOfAddDDL.setFont(Font.font("楷体", FontWeight.BOLD,30));
-        topTitleOfAddDDL.setTextFill(Paint.valueOf("grey"));
+        topTitleOfAddDDL.setTextFill(Paint.valueOf("black"));
         topPane.getChildren().add(topTitleOfAddDDL);
 
         HBox bottomPane=new HBox(yes,no);
@@ -508,7 +527,7 @@ class addDDL{
         addDDLPane.setCenter(centerPane);
 //        addDDLPane.setOpacity(0.7);
         addDDLPane.setStyle("-fx-background-color: transparent;"+"-fx-font-size: 18");
-        addDDLPane.setStyle("-fx-background-image: url('/img/popup.jpg');"+"-fx-background-size: cover;");
+        addDDLPane.setStyle("-fx-background-image: url('/img/alert.png');"+"-fx-background-size: cover;");
         Scene addDDLScene=new Scene(addDDLPane);
         Stage addDDLStage=new Stage();
         addDDLStage.setScene(addDDLScene);
@@ -673,6 +692,7 @@ class addDDL{
             addDDLPane.setTop(topPane);
             addDDLPane.setBottom(bottomPane);
             addDDLPane.setCenter(centerPane);
+            addDDLPane.setStyle("-fx-background-image: url('/img/alert.png');"+"-fx-background-size: cover;");
 
 
             Scene addDDLScene=new Scene(addDDLPane);
@@ -682,6 +702,25 @@ class addDDL{
             addDDLStage.setTitle("计划要跟随变化~");
             addDDLStage.setMinWidth(600);
             addDDLStage.show();
+
+            String buttonStyle1 = "-fx-background-color:darkturquoise;"+
+                    "-fx-background-radius:18;";
+            String buttonStyle2 = "-fx-background-color:lightskyblue;"+
+                    "-fx-background-radius:18;";
+            no.setStyle(buttonStyle1 + "-fx-font-size: 13");
+            no.setOnMouseMoved(e -> {
+                no.setStyle(buttonStyle2 + "-fx-font-size: 16");
+            });
+            no.setOnMouseExited(e -> {
+                no.setStyle(buttonStyle1 + "-fx-font-size: 13");
+            });
+            yes.setStyle(buttonStyle1 + "-fx-font-size: 13");
+            yes.setOnMouseMoved(e -> {
+                yes.setStyle(buttonStyle2 + "-fx-font-size: 16");
+            });
+            yes.setOnMouseExited(e -> {
+                yes.setStyle(buttonStyle1 + "-fx-font-size: 13");
+            });
 
             no.setOnAction(e->{
                 addDDLStage.close();
