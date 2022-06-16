@@ -91,7 +91,6 @@ class All_materials {
  * 中心滚动栏类.
  */
 class Center_scroller_pane{
-    private ScrollPane mat_pane = new ScrollPane();
     private SplitPane splitPane = new SplitPane();
     private VBox mat_vbox = new VBox();
     private VBox bkl_vbox = new VBox();
@@ -176,11 +175,7 @@ class Center_scroller_pane{
         bkl_vbox.setSpacing(StaticValue.stageHeight / 20);
         bkl_vbox.setPadding(new Insets(StaticValue.stageHeight/10,0,0,StaticValue.stageWidth/6));
         mat_hbox.getChildren().addAll(mat_vbox,bkl_vbox);
-//        mat_vbox.setMaxWidth(StaticValue.stageWidth/4);
         bkl_vbox.setFillWidth(true);
-//        mat_pane.setFitToHeight(true);
-//        mat_pane.setFitToWidth(true);
-//        mat_pane.setContent(mat_hbox);
         ScrollPane left = new ScrollPane();
         left.getStylesheets().add("/bkg.css");
         left.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -192,11 +187,8 @@ class Center_scroller_pane{
         splitPane.getItems().addAll(left,right);
     }
     /**
-     * 获取该滚动栏
+     * 获取该中心分割栏
      */
-    public ScrollPane get_mat_pane(){
-        return mat_pane;
-    }
     public SplitPane getSplitPane(){
         return splitPane;
     }
