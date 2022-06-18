@@ -23,6 +23,7 @@ import java.io.*;
  */
 public class Login{
     public static Stage stage;
+    static boolean changeFlag = true;
     Label iconLabel = new LoginIconLabel().getLoginIconLabel();
     /**
      * BorderPane内部分为上下左右中五个区域
@@ -50,10 +51,9 @@ public class Login{
      *     设置UI样式 <br>
      *     创建登陆界面
      * </p>
-     * @param stage
      */
-    public Login(Stage stage) {
-        this.stage = stage;
+    public Login() {
+        this.stage = StaticValue.stage;
         setStyle();
         createLogin();
     }
@@ -95,11 +95,12 @@ public class Login{
      */
     private void setStyle() {
         stage.getIcons().add(new Image("img/icon.png"));
+        changeFlag = true;
         try {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true){
+                    while (changeFlag){
                         String image = "/img/login" + String.valueOf(StaticValue.WALLPAPER_NUM) + ".jpg";
                         try {
                             loginPane.setStyle("-fx-background-image: url("+ image +");" +
@@ -287,6 +288,7 @@ class LoginButton {
                     return;
                 }
                 StaticValue.userName = name;
+                Login.changeFlag = false;
                 new Home();
             } catch (IOException ex) {
                 ex.printStackTrace();

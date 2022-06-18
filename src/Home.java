@@ -8,6 +8,8 @@ import javafx.stage.Stage;
  * 主界面类
  */
 public class Home {
+    static boolean changeFlag = true;
+
     /**
      * 构造函数.
      * 创建主界面
@@ -27,7 +29,7 @@ public class Home {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true){
+                    while (changeFlag){
                         String image = "/img/login" + String.valueOf(StaticValue.WALLPAPER_NUM) + ".jpg";
                         try {
                             pane.setStyle("-fx-background-image: url("+ image +");" +

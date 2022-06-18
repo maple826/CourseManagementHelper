@@ -16,6 +16,6 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e-> {
             System.exit(0);
         });
-        new Login(primaryStage);
+        new Login();
     }
 }

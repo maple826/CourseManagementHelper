@@ -146,6 +146,7 @@ class TopVBox {
                 0,StaticValue.stageWidth / 8));
 
         info.setOnAction(e -> {
+            Home.changeFlag = false;
             new Info();
         });
 
@@ -154,11 +155,13 @@ class TopVBox {
         });
 
         resource.setOnAction(e -> {
+            Home.changeFlag = false;
             new Course();
         });
 
         ddl.setOnAction(e -> {
             try {
+                Home.changeFlag = false;
                 new ManageDDL();
             } catch (IOException | ParseException ex) {
                 ex.printStackTrace();
@@ -167,6 +170,7 @@ class TopVBox {
 
         memo.setOnAction(e -> {
             try {
+                Home.changeFlag = false;
                 new ManageMemorandum();
             } catch (FileNotFoundException | ParseException ex) {
                 ex.printStackTrace();

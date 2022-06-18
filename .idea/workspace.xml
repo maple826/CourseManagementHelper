@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="统一了提示框UI">
+    <list default="true" id="fe1576dc-69c3-4157-8f0b-0efc13510705" name="Changes" comment="添加了说明文档的说明书部分">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/changepwd.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/changepwd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/class.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StaticValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StaticValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/u=1321431079,1138148911&amp;fm=193.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/说明文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/说明文档.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +142,8 @@
       <workItem from="1655084911547" duration="10356000" />
       <workItem from="1655369548350" duration="1754000" />
       <workItem from="1655371728512" duration="830000" />
+      <workItem from="1655536074172" duration="881000" />
+      <workItem from="1655558331149" duration="7424000" />
     </task>
     <task id="LOCAL-00001" summary="login function with 3 test-user">
       <created>1652504405053</created>
@@ -284,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655051602399</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="添加了说明文档的说明书部分">
+      <created>1655399205740</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1655399205740</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +326,7 @@
     <MESSAGE value="进一步优化了登录、主页、个人信息界面的UI设计" />
     <MESSAGE value="优化了登录、个人信息界面的提示信息UI，增加了StaticValue，Login，Home，Info类的Javadoc注释" />
     <MESSAGE value="增加了项目文档，优化了ddl.txt权限，保证账号安全" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加了项目文档，优化了ddl.txt权限，保证账号安全" />
+    <MESSAGE value="添加了说明文档的说明书部分" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了说明文档的说明书部分" />
   </component>
 </project>

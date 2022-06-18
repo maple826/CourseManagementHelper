@@ -241,7 +241,7 @@ class CourseAlert {
             yes.setOnAction(e -> {
                 StaticValue.userName = "";
                 alert.close();
-                new Login(StaticValue.stage);
+                new Login();
             });
             no.setOnAction(e -> {
                 alert.close();
