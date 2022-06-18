@@ -760,6 +760,10 @@ class Material_alert {
 
             yes.setOnAction(e -> {
                 if(mat_or_bkm == 0){
+                    if(textField.getText().equals("")){
+                        new LoginAlert("请输入正确的文件名！");
+                        return;
+                    }
 //                    资料保留原有文件后缀
                     String[] temp = name.split("\\.");
                     String new_mat = textField.getText()+"."+temp[temp.length-1];
@@ -772,11 +776,19 @@ class Material_alert {
                         return;
                     }
                     alert.close();
-                    f1.renameTo(f2);
+                    if(f1.renameTo(f2) == false){
+                        new LoginAlert("需先关闭该文件！");
+                        return;
+                    }
+
                     new Material_alert("SuccessEdit",course,0);
                     new Materials(Materials.material_pane,course);
                 }
                 else{
+                    if(textField.getText().equals("")){
+                        new LoginAlert("请输入正确的书签名！");
+                        return;
+                    }
 //                    规定书签文件名后缀必须为txt
                     String new_bkm = textField.getText()+".txt";
                     File f1 = new File("./data/" + StaticValue.userName + "/资源/" + course + "/书签链接/" + name);

@@ -121,9 +121,6 @@ public class ManageMemorandum {
     public static void setScene() throws FileNotFoundException, ParseException {
         ManageMemorandum.read();
         BorderPane mainPane=new BorderPane();
-        /**
-         * 点击更换背景图
-         */
         StaticValue.set_bkg_pic("./src/img/ddl_memo_bkg",mainPane);
 //        Date date = new Date();
 //        Calendar calendar = GregorianCalendar.getInstance();
@@ -390,6 +387,7 @@ class deleteMemo{
                 ManageMemorandum.currentMemorandum = null;
                 ManageMemorandum.write();
                 ManageMemorandum.setScene();
+                alert.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
